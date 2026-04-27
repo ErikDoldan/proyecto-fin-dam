@@ -37,7 +37,7 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		# ¡PASO CLAVE!: Guardamos el ID real que viene de Django en el Global
 		Global.set_jugador_id(respuesta["jugador_id"])
 		
-		get_tree().change_scene_to_file("res://Scenes/SelectorNiveles.tscn")
+		get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
 	else:
 		var error_mensaje = body.get_string_from_utf8()
 		print("Error en el servidor. Código: ", response_code, " Detalles: ", error_mensaje)

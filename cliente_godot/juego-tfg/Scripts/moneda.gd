@@ -1,36 +1,40 @@
 extends Area2D
 
 @onready var http_request = $HTTPRequest
-
-# Simulamos que el jugador actual es el ID 3 (esto lo haremos dinámico luego)
-var jugador_id = 3 
-var puntos_a_sumar = 100
+var recogida = false # Evita que se envíe 7 veces si te quedas encima
 
 func _ready():
-	# Conectamos la señal de que algo ha entrado en la moneda
 	body_entered.connect(_on_body_entered)
+	# CONECTAMOS POR CÓDIGO (por si acaso no lo hiciste en el editor)
+	http_request.request_completed.connect(_on_http_request_request_completed)
 
 func _on_body_entered(body):
-	# Comprobamos si lo que ha entrado es el Jugador
-	if body.name == "Jugador":
+	# Si lo que entra es el Jugador y aún no la hemos procesado
+	if body.name == "Jugador" and not recogida:
+		recogida = true # Bloqueamos futuras entradas
 		enviar_puntuacion_servidor()
 
 func enviar_puntuacion_servidor():
-	# 1. Preparamos el JSON (Requirement: Intercambio JSON)
+	if Global.jugador_id == -1:
+		print("Error: No hay ID de jugador")
+		recogida = false # Permitimos reintentar si falló el ID
+		return
+
+	# Sumamos puntos (puedes ajustar la lógica de puntos aquí)
+	var puntos_a_sumar = 100 
 	var datos = {"puntuacion": puntos_a_sumar}
 	var json_datos = JSON.stringify(datos)
 	var cabeceras = ["Content-Type: application/json"]
+	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
 	
-	# 2. URL con Path Param (Requirement: Parámetros en ruta)
-	var url = "http://127.0.0.1:8000/api/jugadores/" + str(jugador_id)
-	
-	# 3. Enviamos el PUT (Requirement: Petición HTTP PUT)
 	http_request.request(url, cabeceras, HTTPClient.METHOD_PUT, json_datos)
-	print("Moneda recogida. Actualizando servidor...")
+	print("Enviando PUT a Django...")
 
-func _on_http_request_request_completed(_result, response_code, _headers, _body):
+func _on_http_request_request_completed(result, response_code, headers, body):
+	print("Respuesta de Django recibida. Código: ", response_code)
 	if response_code == 200:
-		print("Servidor actualizado con éxito.")
-		queue_free() # La moneda desaparece del juego solo si el servidor confirma
+		print("Moneda guardada en BD. Desapareciendo...")
+		queue_free() # AHORA SÍ: La moneda se borra
 	else:
-		print("Error al guardar puntos. Código: ", response_code)
+		print("Error en el servidor, permitiendo reintento.")
+		recogida = false # Si el servidor falló, permitimos volver a intentarlo 	

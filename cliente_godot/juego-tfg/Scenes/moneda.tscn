@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cscgff265g6yv"]
+[gd_scene load_steps=17 format=3 uid="uid://cscgff265g6yv"]
 
 [ext_resource type="Script" uid="uid://m22hg0bbae4" path="res://Scripts/moneda.gd" id="1_j5x4i"]
 [ext_resource type="Texture2D" uid="uid://bqjytm0xtsady" path="res://Assets/Sprites/Items/coin.png" id="2_wder7"]
@@ -95,6 +95,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5x4i"]
+radius = 5.0
+
 [node name="Moneda" type="Area2D"]
 script = ExtResource("1_j5x4i")
 
@@ -102,8 +105,10 @@ script = ExtResource("1_j5x4i")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tywn1")
 autoplay = "default"
-frame_progress = 0.03689464
+frame = 11
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j5x4i")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]

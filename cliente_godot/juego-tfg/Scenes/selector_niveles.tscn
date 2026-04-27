@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cacmsqbjcdcie"]
+[gd_scene load_steps=2 format=3 uid="uid://cacmsqbjcdcie"]
+
+[ext_resource type="Script" uid="uid://cl7n4ttgo0th7" path="res://Scripts/selector_niveles.gd" id="1_7mfc6"]
 
 [node name="SelectorNiveles" type="Control"]
 layout_mode = 3
@@ -7,3 +9,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7mfc6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 4.0
+offset_right = 195.0
+offset_bottom = 53.0
+text = "Selecciona tu destino
+"
+
+[node name="BotonNivel1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 38.0
+offset_right = 155.0
+offset_bottom = 69.0
+text = "Ir al bosque
+"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="BotonNivel1" to="." method="_on_boton_nivel_1_pressed"]
