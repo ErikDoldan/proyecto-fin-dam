@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cacmsqbjcdcie"]
+[gd_scene load_steps=3 format=3 uid="uid://cacmsqbjcdcie"]
 
 [ext_resource type="Script" uid="uid://cl7n4ttgo0th7" path="res://Scripts/selector_niveles.gd" id="1_7mfc6"]
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_d6cao"]
 
 [node name="SelectorNiveles" type="Control"]
 layout_mode = 3
@@ -12,23 +13,34 @@ grow_vertical = 2
 script = ExtResource("1_7mfc6")
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 31.0
-offset_top = 4.0
-offset_right = 195.0
-offset_bottom = 53.0
+offset_left = 334.0
+offset_top = 25.0
+offset_right = 800.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("2_d6cao")
+theme_override_font_sizes/font_size = 28
 text = "Selecciona tu destino
 "
 
 [node name="BotonNivel1" type="Button" parent="."]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 38.0
-offset_right = 155.0
-offset_bottom = 69.0
+offset_left = 69.0
+offset_top = 137.0
+offset_right = 226.0
+offset_bottom = 211.0
 text = "Ir al bosque
 "
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="InfoJugador" type="Label" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 441.0
+offset_right = 686.0
+offset_bottom = 572.0
+
 [connection signal="pressed" from="BotonNivel1" to="." method="_on_boton_nivel_1_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
