@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfroq4evav4gd"]
+[gd_scene load_steps=7 format=3 uid="uid://cfroq4evav4gd"]
 
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="1_cfwl0"]
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_ecx5m"]
 [ext_resource type="PackedScene" uid="uid://cscgff265g6yv" path="res://Scenes/moneda.tscn" id="2_3givb"]
+[ext_resource type="PackedScene" uid="uid://cllc0he5ou5su" path="res://Scenes/npc.tscn" id="4_epurl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epurl"]
 texture = ExtResource("1_ecx5m")
@@ -195,4 +196,11 @@ position = Vector2(35, 67)
 [node name="Moneda" parent="." instance=ExtResource("2_3givb")]
 position = Vector2(240, 42)
 
+[node name="NPC" parent="." instance=ExtResource("4_epurl")]
+position = Vector2(112, -207)
+
+[node name="Label" parent="NPC/PanelContainer" index="0"]
+text = "Domi: Abre el cofre para conocer el Nombre del Viento. Cuentan las crónicas del bosque que este artefacto fue forjado por los antiguos guardianes para alcanzar las copas de los árboles más sagrados. Siente su energía fluir a través de ti: si vuelves a pulsar el botón de salto mientras estás en el aire, realizarás un segundo impulso. Úsalo con sabiduría, pues ahora los caminos más altos ya no son un secreto para ti"
+
 [editable path="Jugador"]
+[editable path="NPC"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://cllc0he5ou5su"]
+
+[ext_resource type="Script" uid="uid://dur5n1ryby0yh" path="res://Scripts/npc.gd" id="1_g6unj"]
+[ext_resource type="Texture2D" uid="uid://bugoo1egtwv8s" path="res://Assets/Sprites/Characters/Domi.png" id="1_xxsvc"]
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_g6unj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ryf"]
+atlas = ExtResource("1_xxsvc")
+region = Rect2(16, 0, 16, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ig1v"]
+atlas = ExtResource("1_xxsvc")
+region = Rect2(32, 0, 16, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6atyd"]
+atlas = ExtResource("1_xxsvc")
+region = Rect2(48, 0, 16, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xkex"]
+atlas = ExtResource("1_xxsvc")
+region = Rect2(64, 0, 16, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8gudg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ryf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ig1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6atyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xkex")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qi7up"]
+radius = 23.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6nw3"]
+font = ExtResource("2_g6unj")
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="NPC" type="Area2D"]
+script = ExtResource("1_g6unj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_8gudg")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.023639545
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_qi7up")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -71.5
+offset_right = 149.0
+offset_bottom = 71.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Domi: ¡Vaya, veo que has hallado el Fragmento de Viento! Cuentan las crónicas del bosque que este artefacto fue forjado por los antiguos guardianes para alcanzar las copas de los árboles más sagrados. Siente su energía fluir a través de ti: si vuelves a pulsar el botón de salto mientras estás en el aire, realizarás un segundo impulso. Úsalo con sabiduría, pues ahora los caminos más altos ya no son un secreto para ti"
+label_settings = SubResource("LabelSettings_a6nw3")
+autowrap_mode = 3
