@@ -25,11 +25,13 @@ text = "Selecciona tu destino
 "
 
 [node name="BotonNivel1" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 69.0
 offset_top = 137.0
 offset_right = 226.0
 offset_bottom = 211.0
+theme_override_fonts/font = ExtResource("2_d6cao")
 text = "Ir al bosque
 "
 

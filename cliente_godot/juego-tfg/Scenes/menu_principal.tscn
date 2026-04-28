@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://xcfdbr86tp1f"]
+[gd_scene load_steps=3 format=3 uid="uid://xcfdbr86tp1f"]
 
 [ext_resource type="Script" uid="uid://kkophwnbyqi6" path="res://Scripts/menu_principal.gd" id="1_gjtjt"]
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_crked"]
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -13,17 +14,22 @@ script = ExtResource("1_gjtjt")
 
 [node name="InputNombre" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 579.0
-offset_top = 291.0
-offset_right = 647.5625
-offset_bottom = 322.0
+offset_left = 414.0
+offset_top = 293.0
+offset_right = 730.0
+offset_bottom = 393.0
+theme_override_fonts/font = ExtResource("2_crked")
+theme_override_font_sizes/font_size = 20
 
 [node name="BotonJugar" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 590.0
-offset_top = 248.0
-offset_right = 639.0
-offset_bottom = 279.0
+offset_left = 496.0
+offset_top = 409.0
+offset_right = 644.0
+offset_bottom = 499.0
+theme_override_fonts/font = ExtResource("2_crked")
+theme_override_font_sizes/font_size = 32
 text = "Jugar"
 
 [node name="PeticionLogin" type="HTTPRequest" parent="."]
