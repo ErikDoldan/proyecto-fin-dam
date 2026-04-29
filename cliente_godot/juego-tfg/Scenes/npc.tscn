@@ -57,7 +57,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_8gudg")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.023639545
+frame_progress = 0.43851936
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -79,6 +79,5 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="PanelContainer"]
 texture_filter = 1
 layout_mode = 2
-text = "Domi: ¡Vaya, veo que has hallado el Fragmento de Viento! Cuentan las crónicas del bosque que este artefacto fue forjado por los antiguos guardianes para alcanzar las copas de los árboles más sagrados. Siente su energía fluir a través de ti: si vuelves a pulsar el botón de salto mientras estás en el aire, realizarás un segundo impulso. Úsalo con sabiduría, pues ahora los caminos más altos ya no son un secreto para ti"
 label_settings = SubResource("LabelSettings_a6nw3")
 autowrap_mode = 3
