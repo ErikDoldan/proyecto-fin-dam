@@ -281,6 +281,12 @@ limit_right = 993
 limit_bottom = 130
 limit_smoothed = true
 
+[node name="HBoxContainer" parent="Jugador/UI" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 372.0
+offset_bottom = 83.0
+
 [node name="PlataformaH" parent="." instance=ExtResource("3_hwnlj")]
 position = Vector2(256, -43)
 

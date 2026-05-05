@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bis83iuw26ldm"]
+[gd_scene load_steps=25 format=3 uid="uid://bis83iuw26ldm"]
 
 [ext_resource type="Script" uid="uid://d2olebmdr1grm" path="res://Scripts/jugador.gd" id="1_c1mnh"]
 [ext_resource type="Texture2D" uid="uid://bjt7cblfs3n7g" path="res://Assets/Sprites/Characters/knight.png" id="2_c1mnh"]
+[ext_resource type="Texture2D" uid="uid://dy1yyhu5dqmei" path="res://Assets/Sprites/Items/textura_corazon_lleno.png" id="3_tn1hq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tn1hq"]
 atlas = ExtResource("2_c1mnh")
@@ -173,7 +174,7 @@ script = ExtResource("1_c1mnh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s0mfl")
-animation = &"Idle"
+animation = &"Hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.53125, 4)
@@ -181,3 +182,29 @@ shape = SubResource("RectangleShape2D_epurl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_left = -192.0
+offset_top = -108.0
+offset_right = -125.0
+offset_bottom = -89.0
+
+[node name="Corazon1" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_tn1hq")
+expand_mode = 3
+
+[node name="Corazon2" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_tn1hq")
+expand_mode = 3
+
+[node name="Corazon3" type="TextureRect" parent="UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_tn1hq")
+expand_mode = 3
