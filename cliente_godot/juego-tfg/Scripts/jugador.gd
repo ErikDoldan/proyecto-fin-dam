@@ -91,7 +91,26 @@ func actualizar_corazones():
 		else:
 			array_corazones[i].visible = false
 			
+	# BONUS: ¿Qué pasa si llegamos a 0 vidas?
+	# Si llegamos a 0 vidas y aún no hemos desactivado el jugador, morimos
+	if vidas <= 0 and is_physics_processing():
+		morir_definitivamente()
 	
-	if vidas <= 0:
-		print("¡GAME OVER!")
-		# Aquí luego meteremos la lógica de morir de verdad (reiniciar nivel, menú, etc.)
+func morir_definitivamente():
+	# 1. Desactivamos las físicas para que no pueda moverse ni saltar más
+	set_physics_process(false)
+	
+	# 2. Le damos un saltito dramático hacia arriba (opcional pero queda genial)
+	# Como desactivamos las físicas, usamos un Tween para moverlo
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", position + Vector2(0, -50), 0.3)
+	tween.tween_property(self, "position", position + Vector2(0, 500), 1.0).set_delay(0.3)
+	
+	# 3. Reproducimos la animación (si tienes una de morir ponla aquí, sino usamos dmg)
+	sprite.play("dmg")
+	
+	# 4. Esperamos 1.5 segundos para que el jugador asimile la derrota
+	await get_tree().create_timer(1.5).timeout
+	
+	# 5. ¡Reiniciamos el nivel actual por completo!
+	get_tree().reload_current_scene()
