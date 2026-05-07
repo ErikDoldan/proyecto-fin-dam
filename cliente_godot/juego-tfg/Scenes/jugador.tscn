@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bis83iuw26ldm"]
+[gd_scene load_steps=30 format=3 uid="uid://bis83iuw26ldm"]
 
 [ext_resource type="Script" uid="uid://d2olebmdr1grm" path="res://Scripts/jugador.gd" id="1_c1mnh"]
 [ext_resource type="Texture2D" uid="uid://bjt7cblfs3n7g" path="res://Assets/Sprites/Characters/knight.png" id="2_c1mnh"]
@@ -47,6 +47,26 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_aknpy"]
 atlas = ExtResource("2_c1mnh")
 region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0mfl"]
+atlas = ExtResource("2_c1mnh")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw8s2"]
+atlas = ExtResource("2_c1mnh")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gs4x"]
+atlas = ExtResource("2_c1mnh")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1csxk"]
+atlas = ExtResource("2_c1mnh")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk0o3"]
+atlas = ExtResource("2_c1mnh")
+region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bknw"]
 atlas = ExtResource("2_c1mnh")
@@ -137,6 +157,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_s0mfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw8s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gs4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1csxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk0o3")
+}],
+"loop": false,
+"name": &"Jump2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1bknw")
 }, {
 "duration": 1.0,
@@ -174,7 +214,7 @@ script = ExtResource("1_c1mnh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_s0mfl")
-animation = &"Hit"
+animation = &"Jump2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.53125, 4)

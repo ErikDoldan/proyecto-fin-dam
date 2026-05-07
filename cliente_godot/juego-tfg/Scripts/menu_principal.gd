@@ -30,12 +30,21 @@ func _on_boton_jugar_pressed():
 	print("Enviando petición a Django...")
 
 # Esta función se ejecuta cuando Django nos responde
+# Esta función se ejecuta cuando Django nos responde
 func _on_peticion_login_request_completed(_result, response_code, _headers, body):
 	if response_code == 201 or response_code == 200:
 		var respuesta = JSON.parse_string(body.get_string_from_utf8())
 		
-		# ¡PASO CLAVE!: Guardamos el ID real que viene de Django en el Global
+		# Guardamos el ID real que viene de Django
 		Global.set_jugador_id(respuesta["jugador_id"])
+		
+		# --- LO NUEVO: CARGAMOS EL PROGRESO DEL JUGADOR ---
+		# Usamos .get() por si acaso el diccionario no trae la variable, que no dé error
+		Global.puntuacion_actual = respuesta.get("puntuacion", 0)
+		Global.tiene_doble_salto = respuesta.get("tiene_doble_salto", false)
+		
+		print("¡Login con éxito! Puntos cargados: ", Global.puntuacion_actual, " | Doble Salto: ", Global.tiene_doble_salto)
+		# --------------------------------------------------
 		
 		get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
 	else:

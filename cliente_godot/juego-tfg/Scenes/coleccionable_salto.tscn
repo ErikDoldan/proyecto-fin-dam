@@ -218,7 +218,7 @@ scale = Vector2(7.412, 8)
 sprite_frames = SubResource("SpriteFrames_7uhj8")
 animation = &"Salto"
 autoplay = "Salto"
-frame_progress = 0.4559784
+frame_progress = 0.18119563
 
 [node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
 texture_filter = 1
