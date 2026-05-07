@@ -45,8 +45,6 @@ def api_jugadores(request):
                 return JsonResponse({'error': 'El parámetro "nombre" es obligatorio'}, status=400)
 
             # 3. Lógica inteligente: Si existe lo recupera, si no, lo crea.
-            # 'jugador' es el objeto que devuelve.
-            # 'creado' es un booleano (True si es nuevo, False si ya existía).
             jugador, creado = Jugador.objects.get_or_create(
                 nombre=nombre_recibido,
                 defaults={
@@ -63,10 +61,12 @@ def api_jugadores(request):
                 mensaje = 'Bienvenido de nuevo, progreso recuperado'
                 status_code = 200  # OK
 
-            # 5. Devolvemos la respuesta con el ID (indispensable para el Singleton de Godot)
+            # 5. ¡AQUÍ ESTÁ EL CAMBIO! Devolvemos todos los datos de la partida
             return JsonResponse({
                 'mensaje': mensaje,
-                'jugador_id': jugador.id
+                'jugador_id': jugador.id,
+                'puntuacion': jugador.puntuacion,              # <-- AÑADIDO
+                'tiene_doble_salto': jugador.tiene_doble_salto # <-- AÑADIDO
             }, status=status_code)
 
         except json.JSONDecodeError:
@@ -75,7 +75,6 @@ def api_jugadores(request):
         except Exception as e:
             # Capturamos cualquier otro error inesperado para que no devuelva un HTML 500
             return JsonResponse({'error': str(e)}, status=500)
-
 
 @csrf_exempt
 def api_jugador_detalle(request, jugador_id):
