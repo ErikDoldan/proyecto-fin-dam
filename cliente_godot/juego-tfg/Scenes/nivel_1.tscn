@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfroq4evav4gd"]
+[gd_scene load_steps=18 format=3 uid="uid://cfroq4evav4gd"]
 
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="1_cfwl0"]
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_ecx5m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjunlg6qm3p3" path="res://Scenes/plataforma_h.tscn" id="3_hwnlj"]
 [ext_resource type="PackedScene" uid="uid://cllc0he5ou5su" path="res://Scenes/npc.tscn" id="4_epurl"]
 [ext_resource type="PackedScene" uid="uid://dyksvsths2imw" path="res://Scenes/killzone.tscn" id="6_jmhww"]
+[ext_resource type="PackedScene" uid="uid://bw1ne3qjjl7uf" path="res://Scenes/coleccionable_salto.tscn" id="6_kyajb"]
 [ext_resource type="PackedScene" uid="uid://s2pe8d1t1y6i" path="res://Scenes/slime.tscn" id="7_22i05"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epurl"]
@@ -330,6 +331,19 @@ flip_h = true
 [node name="Label" parent="NPC/PanelContainer" index="0"]
 text = "Domi: Abre el cofre para conocer el Nombre del Viento. Cuentan las crónicas del bosque que este artefacto fue forjado por los antiguos guardianes para alcanzar las copas de los árboles más sagrados. Siente su energía fluir a través de ti: si vuelves a pulsar el botón de salto mientras estás en el aire, realizarás un segundo impulso. Úsalo con sabiduría, pues ahora los caminos más altos ya no son un secreto para ti"
 
+[node name="ColleccionableSalto" parent="." instance=ExtResource("6_kyajb")]
+z_index = -1
+position = Vector2(221, -201)
+
+[node name="PanelContainer" parent="ColleccionableSalto/CanvasLayer" index="0"]
+offset_left = -282.0
+offset_top = -214.0
+offset_right = 306.0
+offset_bottom = 247.0
+
+[node name="AnimatedSprite2D" parent="ColleccionableSalto/CanvasLayer/PanelContainer/VBoxContainer/EspacioObjeto" index="0"]
+position = Vector2(290, 139)
+
 [node name="Killzone" parent="." instance=ExtResource("6_jmhww")]
 position = Vector2(183, 159)
 
@@ -341,3 +355,4 @@ position = Vector2(832, -188)
 
 [editable path="Jugador"]
 [editable path="NPC"]
+[editable path="ColleccionableSalto"]

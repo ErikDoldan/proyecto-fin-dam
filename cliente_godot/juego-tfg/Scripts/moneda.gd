@@ -17,19 +17,24 @@ func _on_body_entered(body):
 func enviar_puntuacion_servidor():
 	if Global.jugador_id == -1:
 		print("Error: No hay ID de jugador")
-		recogida = false # Permitimos reintentar si falló el ID
+		recogida = false 
 		return
 
-	# Sumamos puntos (puedes ajustar la lógica de puntos aquí)
-	var puntos_a_sumar = 100 
-	var datos = {"puntuacion": puntos_a_sumar}
+	Global.puntuacion_actual += 100 
+	
+	
+	var datos = {"puntuacion": Global.puntuacion_actual}
+
+	
 	var json_datos = JSON.stringify(datos)
 	var cabeceras = ["Content-Type: application/json"]
-	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	
+
+	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id) 
 	
 	http_request.request(url, cabeceras, HTTPClient.METHOD_PUT, json_datos)
-	print("Enviando PUT a Django...")
-
+	print("Enviando PUT a Django con el total de: ", Global.puntuacion_actual)
+	
 func _on_http_request_request_completed(result, response_code, headers, body):
 	print("Respuesta de Django recibida. Código: ", response_code)
 	if response_code == 200:

@@ -5,17 +5,19 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 var vidas = 3
 var recibiendo_dano = false 
-
+var tiene_doble_salto = false
 const VELOCIDAD = 150.0
 const FUERZA_SALTO = -300.0 
 const MULTIPLICADOR_GRAVEDAD = 1.2 
+var esta_congelado = false
 
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var contenedor_corazones = $UI/HBoxContainer
 
 func _physics_process(delta):
-	
+	if esta_congelado:
+		return
 	if recibiendo_dano:
 		if not is_on_floor():
 			velocity.y += gravedad * MULTIPLICADOR_GRAVEDAD * delta
