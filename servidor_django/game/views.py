@@ -53,7 +53,7 @@ def api_jugadores(request):
                 }
             )
 
-            # 4. Definimos el mensaje y el código de estado según si es nuevo o no
+            # 4. Defino el mensaje y el código de estado según si es nuevo o no
             if creado:
                 mensaje = 'Partida creada con éxito'
                 status_code = 201  # Created
@@ -61,61 +61,63 @@ def api_jugadores(request):
                 mensaje = 'Bienvenido de nuevo, progreso recuperado'
                 status_code = 200  # OK
 
-            # 5. ¡AQUÍ ESTÁ EL CAMBIO! Devolvemos todos los datos de la partida
+
             return JsonResponse({
                 'mensaje': mensaje,
                 'jugador_id': jugador.id,
-                'puntuacion': jugador.puntuacion,              # <-- AÑADIDO
-                'tiene_doble_salto': jugador.tiene_doble_salto # <-- AÑADIDO
+                'puntuacion': jugador.puntuacion,
+                'tiene_doble_salto': jugador.tiene_doble_salto
             }, status=status_code)
 
         except json.JSONDecodeError:
-            # Si Godot nos envía algo que no es JSON, damos error
+
             return JsonResponse({'error': 'Formato JSON inválido'}, status=400)
         except Exception as e:
-            # Capturamos cualquier otro error inesperado para que no devuelva un HTML 500
+
             return JsonResponse({'error': str(e)}, status=500)
 
 @csrf_exempt
 def api_jugador_detalle(request, jugador_id):
-    # 1. Buscamos al jugador por el ID que viene en la URL (Path Param)
+    # 1. Busco al jugador por el ID que viene en la URL (Path Param)
     try:
         jugador = Jugador.objects.get(id=jugador_id)
     except Jugador.DoesNotExist:
         return JsonResponse({'error': 'Jugador no encontrado'}, status=404)
 
-    # 2. Lógica para el método GET (Leer datos para mostrar en Godot)
+    # 2. Lógica para el método GET
     if request.method == 'GET':
         return JsonResponse({
             'nombre': jugador.nombre,
             'puntuacion': jugador.puntuacion,
             'nivel_actual': jugador.nivel_actual,
-            'tiene_doble_salto': jugador.tiene_doble_salto  # <-- NUEVO: Enviamos el poder a Godot
+            'tiene_doble_salto': jugador.tiene_doble_salto
         }, status=200)
 
-    # 3. Lógica para el método PUT (Actualizar datos)
+    # 3. Lógica para el método PUT
     elif request.method == 'PUT':
         try:
             body_unicode = request.body.decode('utf-8')
             datos = json.loads(body_unicode)
 
-            # Buscamos si nos envían datos nuevos
+
             nueva_puntuacion = datos.get('puntuacion')
-            nuevo_doble_salto = datos.get('tiene_doble_salto')  # <-- NUEVO: Leemos el poder
+            nuevo_doble_salto = datos.get('tiene_doble_salto')
+            nuevas_equipadas = datos.get('habilidades_equipadas')
 
             cambios_realizados = False
 
-            # Si mandaron puntuación, la actualizamos
             if nueva_puntuacion is not None:
                 jugador.puntuacion = nueva_puntuacion
                 cambios_realizados = True
 
-            # Si mandaron el doble salto, lo actualizamos
             if nuevo_doble_salto is not None:
                 jugador.tiene_doble_salto = nuevo_doble_salto
                 cambios_realizados = True
 
-            # Si se ha modificado algo, guardamos en la base de datos
+            if nuevas_equipadas is not None:
+                jugador.habilidades_equipadas = nuevas_equipadas
+                cambios_realizados = True
+
             if cambios_realizados:
                 jugador.save()
                 return JsonResponse({'mensaje': 'Datos del jugador actualizados correctamente'}, status=200)
@@ -125,7 +127,7 @@ def api_jugador_detalle(request, jugador_id):
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Formato JSON inválido'}, status=400)
 
-    # 4. Lógica para el método DELETE (Borrar registro)
+    # 4. Lógica para el método DELETE
     elif request.method == 'DELETE':
         jugador.delete()  # Borramos de la base de datos
         return JsonResponse({'mensaje': f'Jugador {jugador_id} eliminado correctamente'}, status=200)
