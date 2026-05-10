@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ot7aedhsqwrh" path="res://Assets/Fonts/Captura de pantalla 2026-05-10 202053.png" id="4_fgk5q"]
 [ext_resource type="Texture2D" uid="uid://dicsr7jrxrts5" path="res://Assets/Fonts/Captura de pantalla 2026-05-10 202127.png" id="5_u77j8"]
 [ext_resource type="Texture2D" uid="uid://csycsj4h7178e" path="res://Assets/Sprites/Items/PadlockOrange.png" id="6_37pxe"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_r2cfi"]
+[ext_resource type="Texture2D" uid="uid://ppdbf5nhgee6" path="res://Assets/Fonts/seleccion.png" id="7_fgk5q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgk5q"]
 atlas = ExtResource("3_r2cfi")
@@ -47,6 +46,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7mfc6")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_fgk5q")
+expand_mode = 1
+
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
 layout_mode = 0
@@ -58,7 +70,6 @@ theme_override_fonts/font = ExtResource("2_d6cao")
 theme_override_font_sizes/font_size = 24
 text = "Selecciona tu destino
 "
-label_settings = SubResource("LabelSettings_r2cfi")
 horizontal_alignment = 1
 
 [node name="ContenedorNiveles" type="HBoxContainer" parent="."]
@@ -87,7 +98,7 @@ scale = Vector2(0.13227513, 0.15523936)
 sprite_frames = SubResource("SpriteFrames_t2dqe")
 animation = &"1"
 autoplay = "1"
-frame_progress = 0.7724733
+frame_progress = 0.18549444
 
 [node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel1/MarcoFoto"]
 layout_mode = 1
@@ -111,7 +122,9 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel1"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d6cao")
 text = "Ir al Bosque"
 
 [node name="TarjetaNivel2" type="VBoxContainer" parent="ContenedorNiveles"]
@@ -152,7 +165,9 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel2"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d6cao")
 text = "Ir al Desierto"
 
 [node name="TarjetaNivel3" type="VBoxContainer" parent="ContenedorNiveles"]
@@ -193,7 +208,9 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel3"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d6cao")
 text = "Ir al Bosque"
 
 [node name="TarjetaNivel4" type="VBoxContainer" parent="ContenedorNiveles"]
@@ -234,17 +251,22 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel4"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d6cao")
 text = "Ir al Bosque"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="InfoJugador" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 487.0
+offset_left = 478.0
 offset_top = 441.0
-offset_right = 686.0
+offset_right = 677.0
 offset_bottom = 572.0
+theme_override_fonts/font = ExtResource("2_d6cao")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel1/BotonEntrar" to="." method="_on_boton_nivel_1_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel2/BotonEntrar" to="." method="_on_boton_nivel_2_pressed"]

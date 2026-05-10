@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://xcfdbr86tp1f"]
+[gd_scene load_steps=5 format=3 uid="uid://xcfdbr86tp1f"]
 
 [ext_resource type="Script" uid="uid://kkophwnbyqi6" path="res://Scripts/menu_principal.gd" id="1_gjtjt"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_crked"]
+[ext_resource type="Texture2D" uid="uid://blx11o8una256" path="res://Assets/Fonts/login.png" id="2_xe6lt"]
+[ext_resource type="Texture2D" uid="uid://r8uwi55svs8x" path="res://Assets/Fonts/Gemini_Generated_Image_xocr12xocr12xocr-removebg-preview.png" id="4_cabj8"]
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -12,14 +14,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gjtjt")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xe6lt")
+expand_mode = 1
+
 [node name="InputNombre" type="LineEdit" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 414.0
 offset_top = 293.0
 offset_right = 730.0
 offset_bottom = 393.0
 theme_override_fonts/font = ExtResource("2_crked")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 
 [node name="BotonJugar" type="Button" parent="."]
 texture_filter = 1
@@ -33,6 +47,19 @@ theme_override_font_sizes/font_size = 32
 text = "Jugar"
 
 [node name="PeticionLogin" type="HTTPRequest" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -343.0
+offset_top = -55.0
+offset_right = 326.0
+offset_bottom = 318.0
+grow_horizontal = 2
+texture = ExtResource("4_cabj8")
 
 [connection signal="pressed" from="BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="request_completed" from="PeticionLogin" to="." method="_on_peticion_login_request_completed"]
