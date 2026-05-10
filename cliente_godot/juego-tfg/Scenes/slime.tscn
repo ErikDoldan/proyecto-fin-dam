@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://s2pe8d1t1y6i"]
+[gd_scene load_steps=12 format=3 uid="uid://s2pe8d1t1y6i"]
 
 [ext_resource type="Script" uid="uid://bbbiiqjsjxcxt" path="res://Scripts/slime.gd" id="1_swwnm"]
 [ext_resource type="Texture2D" uid="uid://q62g07knu1s2" path="res://Assets/Sprites/Characters/slime_green.png" id="2_aiwxb"]
+[ext_resource type="PackedScene" uid="uid://ckw4b3q66eunj" path="res://Scenes/fruta.tscn" id="2_paq7w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swwnm"]
 atlas = ExtResource("2_aiwxb")
@@ -59,6 +60,7 @@ size = Vector2(14, 9)
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_swwnm")
+escena_fruta = ExtResource("2_paq7w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

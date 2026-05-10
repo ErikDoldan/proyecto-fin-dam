@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckw4b3q66eunj"]
+
+[ext_resource type="Script" uid="uid://bbnajfrjl0ui4" path="res://Scripts/fruta.gd" id="1_lv70x"]
+[ext_resource type="Texture2D" uid="uid://fgfut0findql" path="res://Assets/Sprites/Items/fruit.png" id="2_wos1q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hi553"]
+radius = 6.0827627
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv70x"]
+atlas = ExtResource("2_wos1q")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wos1q"]
+atlas = ExtResource("2_wos1q")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi553"]
+atlas = ExtResource("2_wos1q")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b6k4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv70x")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wos1q")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi553")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="Fruta" type="Area2D"]
+script = ExtResource("1_lv70x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_hi553")
+
+[node name="SpriteAnimado" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_b6k4l")
+animation = &"3"

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0n1ve7rk15pf"]
+
+[ext_resource type="Script" uid="uid://w3p2rqo6owyt" path="res://Scripts/puerta_final.gd" id="1_ykbxj"]
+[ext_resource type="Texture2D" uid="uid://dqqci0mluu1ka" path="res://Assets/Sprites/Items/carteles.png" id="2_tkhse"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ph2x"]
+size = Vector2(14, 25)
+
+[node name="PuertaFinal" type="Area2D"]
+script = ExtResource("1_ykbxj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tkhse")
+region_enabled = true
+region_rect = Rect2(33, 18, 14, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_4ph2x")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

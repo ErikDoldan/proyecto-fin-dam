@@ -3,6 +3,7 @@ extends Node2D
 const speed = 60
 var direction = 1
 var esta_muerto = false 
+@export var escena_fruta: PackedScene
 
 @onready var ray_cast_r: RayCast2D = $RayCastR
 @onready var ray_cast_l: RayCast2D = $RayCastL
@@ -49,10 +50,9 @@ func morir(jugador: Node2D) -> void:
 	
 	#Bicho se pone rojo
 	animated_sprite.play("dmg")
+	soltar_botin()
 	
 	await animated_sprite.animation_finished
-	
-	# Borro al bicho 
 	queue_free()
 	
 func _on_hitbox_arriba_body_entered(body: Node2D) -> void:
@@ -67,3 +67,16 @@ func _on_hitbox_cuerpo_body_entered(body: Node2D) -> void:
 		if body.velocity.y <= 0:
 			if body.has_method("recibir_dano"):
 				body.recibir_dano(global_position.x)
+
+func soltar_botin():
+	if escena_fruta == null:
+		print("Error: No has puesto la escena de la fruta en el Inspector del Slime")
+		return
+		
+	var probabilidad = randi() % 100 + 1
+	if probabilidad <= 30:
+		var nueva_fruta = escena_fruta.instantiate()
+		var tipo_fruta = randi() % 3 + 1
+		nueva_fruta.configurar_fruta(tipo_fruta)
+		nueva_fruta.global_position = global_position
+		get_parent().call_deferred("add_child", nueva_fruta)

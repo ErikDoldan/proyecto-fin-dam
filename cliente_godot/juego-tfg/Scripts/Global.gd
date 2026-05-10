@@ -2,7 +2,8 @@ extends Node
 
 var jugador_id: int = -1
 var puntuacion_actual: int = 0
-
+var nivel_desbloqueado: int = 1
+	
 # 1. EL CATÁLOGO COMPLETO (8 Habilidades)
 # True = Desbloqueada (Color) | False = Bloqueada (Candado)
 var habilidades = {

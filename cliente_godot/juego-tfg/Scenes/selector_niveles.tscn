@@ -1,7 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://cacmsqbjcdcie"]
+[gd_scene load_steps=12 format=3 uid="uid://cacmsqbjcdcie"]
 
 [ext_resource type="Script" uid="uid://cl7n4ttgo0th7" path="res://Scripts/selector_niveles.gd" id="1_7mfc6"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_d6cao"]
+[ext_resource type="Texture2D" uid="uid://cvslxpdaxvsf4" path="res://Assets/Fonts/Captura de pantalla 2026-05-10 201904.png" id="3_r2cfi"]
+[ext_resource type="Texture2D" uid="uid://ot7aedhsqwrh" path="res://Assets/Fonts/Captura de pantalla 2026-05-10 202053.png" id="4_fgk5q"]
+[ext_resource type="Texture2D" uid="uid://dicsr7jrxrts5" path="res://Assets/Fonts/Captura de pantalla 2026-05-10 202127.png" id="5_u77j8"]
+[ext_resource type="Texture2D" uid="uid://csycsj4h7178e" path="res://Assets/Sprites/Items/PadlockOrange.png" id="6_37pxe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r2cfi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgk5q"]
+atlas = ExtResource("3_r2cfi")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u77j8"]
+atlas = ExtResource("4_fgk5q")
+region = Rect2(0, 0, 1512, 772)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37pxe"]
+atlas = ExtResource("5_u77j8")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t2dqe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgk5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u77j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37pxe")
+}],
+"loop": true,
+"name": &"1",
+"speed": 1.0
+}]
 
 [node name="SelectorNiveles" type="Control"]
 layout_mode = 3
@@ -15,25 +50,192 @@ script = ExtResource("1_7mfc6")
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 334.0
-offset_top = 25.0
-offset_right = 800.0
-offset_bottom = 146.0
+offset_left = 345.0
+offset_top = 53.0
+offset_right = 786.0
+offset_bottom = 159.0
 theme_override_fonts/font = ExtResource("2_d6cao")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 24
 text = "Selecciona tu destino
 "
+label_settings = SubResource("LabelSettings_r2cfi")
+horizontal_alignment = 1
 
-[node name="BotonNivel1" type="Button" parent="."]
+[node name="ContenedorNiveles" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 178.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="TarjetaNivel1" type="VBoxContainer" parent="ContenedorNiveles"]
+layout_mode = 2
+
+[node name="MarcoFoto" type="Panel" parent="ContenedorNiveles/TarjetaNivel1"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+
+[node name="FotosBucle" type="AnimatedSprite2D" parent="ContenedorNiveles/TarjetaNivel1/MarcoFoto"]
 texture_filter = 1
-layout_mode = 0
-offset_left = 69.0
-offset_top = 137.0
-offset_right = 226.0
-offset_bottom = 211.0
-theme_override_fonts/font = ExtResource("2_d6cao")
-text = "Ir al bosque
-"
+position = Vector2(99.99999, 60.000004)
+scale = Vector2(0.13227513, 0.15523936)
+sprite_frames = SubResource("SpriteFrames_t2dqe")
+animation = &"1"
+autoplay = "1"
+frame_progress = 0.7724733
+
+[node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel1/MarcoFoto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.011764706, 0.011764706, 0.7254902)
+
+[node name="IconoCandado" type="TextureRect" parent="ContenedorNiveles/TarjetaNivel1/MarcoFoto"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_37pxe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel1"]
+layout_mode = 2
+text = "Ir al Bosque"
+
+[node name="TarjetaNivel2" type="VBoxContainer" parent="ContenedorNiveles"]
+layout_mode = 2
+
+[node name="MarcoFoto" type="Panel" parent="ContenedorNiveles/TarjetaNivel2"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+
+[node name="FotosBucle" type="AnimatedSprite2D" parent="ContenedorNiveles/TarjetaNivel2/MarcoFoto"]
+texture_filter = 1
+position = Vector2(99.99998, 59.999992)
+scale = Vector2(0.13227513, 0.15523931)
+sprite_frames = SubResource("SpriteFrames_t2dqe")
+animation = &"1"
+autoplay = "1"
+frame_progress = 0.5174465
+
+[node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel2/MarcoFoto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.011764706, 0.011764706, 0.7254902)
+
+[node name="IconoCandado" type="TextureRect" parent="ContenedorNiveles/TarjetaNivel2/MarcoFoto"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_37pxe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel2"]
+layout_mode = 2
+text = "Ir al Desierto"
+
+[node name="TarjetaNivel3" type="VBoxContainer" parent="ContenedorNiveles"]
+layout_mode = 2
+
+[node name="MarcoFoto" type="Panel" parent="ContenedorNiveles/TarjetaNivel3"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+
+[node name="FotosBucle" type="AnimatedSprite2D" parent="ContenedorNiveles/TarjetaNivel3/MarcoFoto"]
+texture_filter = 1
+position = Vector2(100.00006, 60.193325)
+scale = Vector2(0.13227513, 0.15473913)
+sprite_frames = SubResource("SpriteFrames_t2dqe")
+animation = &"1"
+autoplay = "1"
+frame_progress = 0.5174465
+
+[node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel3/MarcoFoto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.011764706, 0.011764706, 0.7254902)
+
+[node name="IconoCandado" type="TextureRect" parent="ContenedorNiveles/TarjetaNivel3/MarcoFoto"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_37pxe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel3"]
+layout_mode = 2
+text = "Ir al Bosque"
+
+[node name="TarjetaNivel4" type="VBoxContainer" parent="ContenedorNiveles"]
+layout_mode = 2
+
+[node name="MarcoFoto" type="Panel" parent="ContenedorNiveles/TarjetaNivel4"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+
+[node name="FotosBucle" type="AnimatedSprite2D" parent="ContenedorNiveles/TarjetaNivel4/MarcoFoto"]
+texture_filter = 1
+position = Vector2(99.999985, 60.000008)
+scale = Vector2(0.13227512, 0.15523933)
+sprite_frames = SubResource("SpriteFrames_t2dqe")
+animation = &"1"
+autoplay = "1"
+frame_progress = 0.5174465
+
+[node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel4/MarcoFoto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.011764706, 0.011764706, 0.7254902)
+
+[node name="IconoCandado" type="TextureRect" parent="ContenedorNiveles/TarjetaNivel4/MarcoFoto"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_37pxe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotonEntrar" type="Button" parent="ContenedorNiveles/TarjetaNivel4"]
+layout_mode = 2
+text = "Ir al Bosque"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -44,5 +246,6 @@ offset_top = 441.0
 offset_right = 686.0
 offset_bottom = 572.0
 
-[connection signal="pressed" from="BotonNivel1" to="." method="_on_boton_nivel_1_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/TarjetaNivel1/BotonEntrar" to="." method="_on_boton_nivel_1_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/TarjetaNivel2/BotonEntrar" to="." method="_on_boton_nivel_2_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

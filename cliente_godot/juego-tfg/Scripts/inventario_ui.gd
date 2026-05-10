@@ -44,7 +44,7 @@ func _on_casilla_clic(event: InputEvent, nombre_habilidad: String):
 				
 			# Actualizamos las fotos para reflejar el cambio
 			actualizar_ui()
-
+			guardar_equipamiento_en_nube()
 
 func actualizar_ui():
 	# 1. ACTUALIZAR EL CATÁLOGO (Lado Derecho)
@@ -96,3 +96,19 @@ func actualizar_ui():
 				anim_destino.play()
 			else:
 				icono_destino.texture = foto_viento # Por si acaso
+@onready var http_request_save = $HTTPRequest # Asegúrate de que el nombre coincida
+
+func guardar_equipamiento_en_nube():
+	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	
+	# Convertimos nuestra lista ["a", "b"] en texto "a,b" para Django
+	var lista_texto = ",".join(Global.habilidades_equipadas)
+	
+	var datos = {
+		"habilidades_equipadas": lista_texto
+	}
+	
+	var json_datos = JSON.stringify(datos)
+	var headers = ["Content-Type: application/json"]
+	http_request_save.request(url, headers, HTTPClient.METHOD_PUT, json_datos)
+	print("Enviando equipamiento a la nube...")
