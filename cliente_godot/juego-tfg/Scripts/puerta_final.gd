@@ -1,7 +1,6 @@
 extends Area2D
 
 @onready var http_request = $HTTPRequest
-# ¡Cambiamos la ruta para que te devuelva al selector de mundos!
 @export var ruta_siguiente_nivel: String = "res://Scenes/selector_niveles.tscn"
 
 func _ready():
@@ -12,10 +11,10 @@ func _on_body_entered(body):
 	if body.name == "Jugador":
 		print("¡Nivel superado! Guardando en la nube...")
 		
-		# Congelamos al jugador para que no se mueva mientras guarda
+		# Congela al jugador 
 		body.esta_congelado = true 
 		
-		# Guardamos en Django
+		# Guarda Django
 		enviar_guardado_a_django()
 
 func enviar_guardado_a_django():

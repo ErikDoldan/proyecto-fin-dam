@@ -24,25 +24,21 @@ func abrir_cerrar_inventario():
 	if visible:
 		actualizar_ui()
 
-# --- NUEVA FUNCIÓN: GESTIONA LOS CLICS ---
+
 func _on_casilla_clic(event: InputEvent, nombre_habilidad: String):
-	# Si hemos hecho clic izquierdo...
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		
-		# Solo hacemos algo si la habilidad existe y está desbloqueada (true)
 		if Global.habilidades.has(nombre_habilidad) and Global.habilidades[nombre_habilidad] == true:
-			
-			# Si ya la tenemos equipada, la quitamos
+	
 			if nombre_habilidad in Global.habilidades_equipadas:
 				Global.habilidades_equipadas.erase(nombre_habilidad)
 			
-			# Si no la tenemos y hay menos de 4 equipadas, la ponemos
+			
 			elif Global.habilidades_equipadas.size() < 4:
 				Global.habilidades_equipadas.append(nombre_habilidad)
 			else:
 				print("¡No tienes más huecos! Desequipa algo primero.")
 				
-			# Actualizamos las fotos para reflejar el cambio
 			actualizar_ui()
 			guardar_equipamiento_en_nube()
 

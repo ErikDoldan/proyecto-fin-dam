@@ -70,7 +70,6 @@ func _on_hitbox_cuerpo_body_entered(body: Node2D) -> void:
 
 func soltar_botin():
 	if escena_fruta == null:
-		print("Error: No has puesto la escena de la fruta en el Inspector del Slime")
 		return
 		
 	var probabilidad = randi() % 100 + 1

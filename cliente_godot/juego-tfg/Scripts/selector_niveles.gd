@@ -12,7 +12,7 @@ func _ready():
 	if not http_request.request_completed.is_connected(_on_http_request_request_completed):
 		http_request.request_completed.connect(_on_http_request_request_completed)
 	
-	# Ya no bloqueamos aquí. Esperamos a que Django responda.
+
 
 func pedir_datos_jugador():
 	if Global.jugador_id == -1:
@@ -29,12 +29,12 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 		var nombre = respuesta_json.get("nombre", "Desconocido")
 		var puntos = respuesta_json.get("puntuacion", 0)
 		
-		# --- LEEMOS EL NIVEL DESBLOQUEADO DESDE DJANGO ---
+		# --- LEE EL NIVEL DESBLOQUEADO DESDE DJANGO ---
 		Global.nivel_desbloqueado = respuesta_json.get("nivel_desbloqueado", 1)
 		
 		label_info.text = "Bienvenido, " + str(nombre) + "\nPuntuación Total: " + str(puntos)
 		
-		# --- ACTUALIZAMOS LOS CANDADOS AHORA QUE SABEMOS EL NIVEL ---
+		# --- ACTUALIZA LOS CANDADOS 
 		bloquear_nivel(tarjeta_1, 1)
 		bloquear_nivel(tarjeta_2, 2)
 		bloquear_nivel(tarjeta_3, 3)
