@@ -7,6 +7,7 @@ class Jugador(models.Model):
     puntuacion = models.IntegerField(default=0)
     tiene_doble_salto = models.BooleanField(default=False)
     habilidades_equipadas = models.TextField(default="")
+    nivel_desbloqueado = models.IntegerField(default=1)
 
     def __str__(self):
         return self.nombre

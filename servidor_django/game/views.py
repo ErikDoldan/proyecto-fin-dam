@@ -90,7 +90,8 @@ def api_jugador_detalle(request, jugador_id):
             'nombre': jugador.nombre,
             'puntuacion': jugador.puntuacion,
             'nivel_actual': jugador.nivel_actual,
-            'tiene_doble_salto': jugador.tiene_doble_salto
+            'tiene_doble_salto': jugador.tiene_doble_salto,
+            'nivel_desbloqueado': jugador.nivel_desbloqueado,
         }, status=200)
 
     # 3. Lógica para el método PUT
@@ -103,6 +104,7 @@ def api_jugador_detalle(request, jugador_id):
             nueva_puntuacion = datos.get('puntuacion')
             nuevo_doble_salto = datos.get('tiene_doble_salto')
             nuevas_equipadas = datos.get('habilidades_equipadas')
+            nuevo_nivel_desbloqueado = datos.get('nivel_desbloqueado')
 
             cambios_realizados = False
 
@@ -117,6 +119,9 @@ def api_jugador_detalle(request, jugador_id):
             if nuevas_equipadas is not None:
                 jugador.habilidades_equipadas = nuevas_equipadas
                 cambios_realizados = True
+
+            if nuevo_nivel_desbloqueado is not None:
+                jugador.nivel_desbloqueado = nuevo_nivel_desbloqueado
 
             if cambios_realizados:
                 jugador.save()
