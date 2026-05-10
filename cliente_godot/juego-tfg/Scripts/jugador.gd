@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 var vidas = 3
 var recibiendo_dano = false 
-var tiene_doble_salto = false
 var ha_gastado_doble_salto = false
 const VELOCIDAD = 150.0
 const FUERZA_SALTO = -300.0 
@@ -15,12 +14,8 @@ var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var contenedor_corazones = $UI/HBoxContainer
 
-# --- ESTA ES LA FUNCIÓN QUE FALTABA ---
 func _ready():
-	# Al aparecer en el nivel, le preguntamos al Global si ya tenemos el poder
-	tiene_doble_salto = Global.tiene_doble_salto
-	print("Jugador nacido. ¿Tiene doble salto desde BD?: ", tiene_doble_salto)
-# --------------------------------------
+	pass
 
 func _physics_process(delta):
 	if esta_congelado:
@@ -45,13 +40,15 @@ func _physics_process(delta):
 		if is_on_floor():
 			# Salto normal desde el suelo
 			velocity.y = FUERZA_SALTO
-		elif tiene_doble_salto and not ha_gastado_doble_salto:
+			
+		# ¡AQUÍ ESTÁ LA MAGIA!: Ahora el jugador mira la lista del Global
+		elif "doble_salto" in Global.habilidades_equipadas and not ha_gastado_doble_salto:
 			# Doble salto en el aire
 			velocity.y = FUERZA_SALTO
 			ha_gastado_doble_salto = true
 			# Reproducimos la animación especial de doble salto
 			sprite.play("Jump2")
-
+		
 	# 4. MOVERSE A LOS LADOS
 	var direccion = Input.get_axis("ui_left", "ui_right")
 	

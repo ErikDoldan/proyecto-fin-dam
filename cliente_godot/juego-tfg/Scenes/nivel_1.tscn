@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfroq4evav4gd"]
+[gd_scene load_steps=19 format=3 uid="uid://cfroq4evav4gd"]
 
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="1_cfwl0"]
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_ecx5m"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dyksvsths2imw" path="res://Scenes/killzone.tscn" id="6_jmhww"]
 [ext_resource type="PackedScene" uid="uid://bw1ne3qjjl7uf" path="res://Scenes/coleccionable_salto.tscn" id="6_kyajb"]
 [ext_resource type="PackedScene" uid="uid://s2pe8d1t1y6i" path="res://Scenes/slime.tscn" id="7_22i05"]
+[ext_resource type="PackedScene" uid="uid://isdrhl2sg35r" path="res://Scenes/inventario_ui.tscn" id="9_ql53f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epurl"]
 texture = ExtResource("1_ecx5m")
@@ -352,6 +353,8 @@ shape = SubResource("WorldBoundaryShape2D_22i05")
 
 [node name="Slime" parent="." instance=ExtResource("7_22i05")]
 position = Vector2(832, -188)
+
+[node name="InventarioUI" parent="." instance=ExtResource("9_ql53f")]
 
 [editable path="Jugador"]
 [editable path="NPC"]

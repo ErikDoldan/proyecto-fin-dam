@@ -12,24 +12,19 @@ func _on_boton_jugar_pressed():
 		print("El nombre no puede estar vacío")
 		return
 
-	# 1. Preparamos los datos en formato diccionario (equivalente a JSON)
+	# 1. Preparamos los datos
 	var datos = {
 		"nombre": nombre_jugador
 	}
 	
-	# 2. Convertimos el diccionario a un string JSON (Requisito del proyecto)
 	var json_datos = JSON.stringify(datos)
-	
-	# 3. Configuramos las cabeceras para avisar a Django de que enviamos JSON
 	var cabeceras = ["Content-Type: application/json"]
 	
-	# 4. Enviamos la petición POST al servidor local
 	var url = "http://127.0.0.1:8000/api/jugadores"
 	http_request.request(url, cabeceras, HTTPClient.METHOD_POST, json_datos)
 	
 	print("Enviando petición a Django...")
 
-# Esta función se ejecuta cuando Django nos responde
 # Esta función se ejecuta cuando Django nos responde
 func _on_peticion_login_request_completed(_result, response_code, _headers, body):
 	if response_code == 201 or response_code == 200:
@@ -38,13 +33,18 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		# Guardamos el ID real que viene de Django
 		Global.set_jugador_id(respuesta["jugador_id"])
 		
-		# --- LO NUEVO: CARGAMOS EL PROGRESO DEL JUGADOR ---
-		# Usamos .get() por si acaso el diccionario no trae la variable, que no dé error
+		# Cargamos la puntuación
 		Global.puntuacion_actual = respuesta.get("puntuacion", 0)
-		Global.tiene_doble_salto = respuesta.get("tiene_doble_salto", false)
 		
-		print("¡Login con éxito! Puntos cargados: ", Global.puntuacion_actual, " | Doble Salto: ", Global.tiene_doble_salto)
-		# --------------------------------------------------
+		# Cargamos el poder desde Django y lo guardamos en el NUEVO DICCIONARIO
+		var poder_obtenido = respuesta.get("tiene_doble_salto", false)
+		Global.habilidades["doble_salto"] = poder_obtenido
+		
+		# Auto-equipamos la habilidad si la tiene
+		if poder_obtenido and not "doble_salto" in Global.habilidades_equipadas:
+			Global.habilidades_equipadas.append("doble_salto")
+		
+		print("¡Login con éxito! Puntos: ", Global.puntuacion_actual, " | Doble Salto: ", Global.habilidades["doble_salto"])
 		
 		get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
 	else:

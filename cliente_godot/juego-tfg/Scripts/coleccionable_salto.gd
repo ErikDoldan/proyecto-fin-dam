@@ -13,8 +13,8 @@ func _ready():
 	cartel_victoria.visible = false
 	esperando_cierre = false
 	
-	# Comprobamos si el jugador ya tenía el poder desde antes
-	if Global.tiene_doble_salto:
+	# Comprobamos en el NUEVO DICCIONARIO si el jugador ya tenía el poder
+	if Global.habilidades.has("doble_salto") and Global.habilidades["doble_salto"] == true:
 		cofre_abierto = true
 		animated_sprite.play("abrir") # Aparece abierto pero NO muestra cartel
 	else:
@@ -63,11 +63,15 @@ func _on_request_completed(_result, response_code, _headers, body):
 	# Ahora sí comprobamos si sale bien o si falla
 	if response_code == 200:
 		print("¡Cofre guardado en Django 200 OK!")
-		Global.tiene_doble_salto = true
-		if jugador_tocado:
-			jugador_tocado.tiene_doble_salto = true
+		
+		# 1. Lo marcamos como desbloqueado en el catálogo general
+		Global.habilidades["doble_salto"] = true
+		
+		# 2. Como aún no hay menú, te lo equipamos automáticamente para que lo uses ya
+		if not "doble_salto" in Global.habilidades_equipadas:
+			Global.habilidades_equipadas.append("doble_salto")
+			
 	else:
-		# Si vuelve a fallar, nos lo gritará por la consola
 		print("⚠️ ERROR EN EL COFRE. Código: ", response_code)
 		if body:
 			print("Detalles: ", body.get_string_from_utf8())
