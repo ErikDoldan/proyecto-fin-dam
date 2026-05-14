@@ -3,18 +3,21 @@ from django.db import models
 # Tabla 1
 class Jugador(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
+    contrasena = models.CharField(max_length=128, default="")
+
     nivel_actual = models.IntegerField(default=1)
     puntuacion = models.IntegerField(default=0)
     tiene_doble_salto = models.BooleanField(default=False)
     habilidades_equipadas = models.TextField(default="")
     nivel_desbloqueado = models.IntegerField(default=1)
+    tiene_dash = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre
 
 # Tabla 2
 class Item(models.Model):
-    # Opciones para el tipo de ítem
+
     TIPO_CHOICES = [
         ('H', 'Habilidad'),
         ('C', 'Consumible'),

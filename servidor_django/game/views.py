@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Item,Jugador
-
+from django.contrib.auth.hashers import make_password, check_password
 
 def api_items(request):
     # Comprobamos que la petición sea de tipo GET
@@ -30,50 +30,64 @@ def api_items(request):
         return JsonResponse({'items': datos_items}, safe=False)
 
 
-@csrf_exempt  # Desactivamos la seguridad CSRF solo para esta función
+@csrf_exempt
 def api_jugadores(request):
     if request.method == 'POST':
         try:
-            # 1. Leemos los parámetros ocultos en el cuerpo (body) de la petición
             body_unicode = request.body.decode('utf-8')
             datos = json.loads(body_unicode)
 
-            # 2. Extraemos el nombre que nos envía el cliente
             nombre_recibido = datos.get('nombre')
+            password_recibida = datos.get('contrasena')  # Nuevo campo
+            accion = datos.get('accion')  # Nuevo campo: 'login' o 'registro'
 
-            if not nombre_recibido:
-                return JsonResponse({'error': 'El parámetro "nombre" es obligatorio'}, status=400)
+            if not nombre_recibido or not password_recibida:
+                return JsonResponse({'error': 'Nombre y contraseña son obligatorios'}, status=400)
 
-            # 3. Lógica inteligente: Si existe lo recupera, si no, lo crea.
-            jugador, creado = Jugador.objects.get_or_create(
-                nombre=nombre_recibido,
-                defaults={
-                    'nivel_actual': 1,
-                    'puntuacion': 0
-                }
-            )
+            # --- LÓGICA DE REGISTRO ---
+            if accion == 'registro':
+                if Jugador.objects.filter(nombre=nombre_recibido).exists():
+                    return JsonResponse({'error': 'El nombre de usuario ya está pillado'}, status=409)
 
-            # 4. Defino el mensaje y el código de estado según si es nuevo o no
-            if creado:
-                mensaje = 'Partida creada con éxito'
-                status_code = 201  # Created
+                # Creamos el jugador con la contraseña encriptada
+                nuevo_jugador = Jugador.objects.create(
+                    nombre=nombre_recibido,
+                    contrasena=make_password(password_recibida),
+                    nivel_actual=1,
+                    puntuacion=0
+                )
+                return JsonResponse({
+                    'mensaje': 'Cuenta creada con éxito',
+                    'jugador_id': nuevo_jugador.id
+                }, status=201)
+
+            # --- LÓGICA DE LOGIN ---
+            elif accion == 'login':
+                try:
+                    jugador = Jugador.objects.get(nombre=nombre_recibido)
+
+                    # Comparamos la clave escrita con la encriptada de la base de datos
+                    if check_password(password_recibida, jugador.contrasena):
+                        return JsonResponse({
+                            'mensaje': 'Bienvenido de nuevo',
+                            'jugador_id': jugador.id,
+                            'puntuacion': jugador.puntuacion,
+                            'tiene_doble_salto': jugador.tiene_doble_salto,
+                            'tiene_dash': jugador.tiene_dash,
+                            'habilidades_equipadas': jugador.habilidades_equipadas,
+                        }, status=200)
+                    else:
+                        return JsonResponse({'error': 'La contraseña no coincide'}, status=401)
+
+                except Jugador.DoesNotExist:
+                    return JsonResponse({'error': 'El usuario no existe'}, status=404)
+
             else:
-                mensaje = 'Bienvenido de nuevo, progreso recuperado'
-                status_code = 200  # OK
-
-
-            return JsonResponse({
-                'mensaje': mensaje,
-                'jugador_id': jugador.id,
-                'puntuacion': jugador.puntuacion,
-                'tiene_doble_salto': jugador.tiene_doble_salto
-            }, status=status_code)
+                return JsonResponse({'error': 'Acción no válida'}, status=400)
 
         except json.JSONDecodeError:
-
             return JsonResponse({'error': 'Formato JSON inválido'}, status=400)
         except Exception as e:
-
             return JsonResponse({'error': str(e)}, status=500)
 
 @csrf_exempt
@@ -91,6 +105,8 @@ def api_jugador_detalle(request, jugador_id):
             'puntuacion': jugador.puntuacion,
             'nivel_actual': jugador.nivel_actual,
             'tiene_doble_salto': jugador.tiene_doble_salto,
+            'tiene_dash': jugador.tiene_dash,
+            'habilidades_equipadas': jugador.habilidades_equipadas,
             'nivel_desbloqueado': jugador.nivel_desbloqueado,
         }, status=200)
 
@@ -100,12 +116,10 @@ def api_jugador_detalle(request, jugador_id):
             body_unicode = request.body.decode('utf-8')
             datos = json.loads(body_unicode)
 
-
             nueva_puntuacion = datos.get('puntuacion')
             nuevo_doble_salto = datos.get('tiene_doble_salto')
             nuevas_equipadas = datos.get('habilidades_equipadas')
             nuevo_nivel_desbloqueado = datos.get('nivel_desbloqueado')
-
             cambios_realizados = False
 
             if nueva_puntuacion is not None:
@@ -114,6 +128,11 @@ def api_jugador_detalle(request, jugador_id):
 
             if nuevo_doble_salto is not None:
                 jugador.tiene_doble_salto = nuevo_doble_salto
+                cambios_realizados = True
+
+            nuevo_dash = datos.get('tiene_dash')
+            if nuevo_dash is not None:
+                jugador.tiene_dash = nuevo_dash
                 cambios_realizados = True
 
             if nuevas_equipadas is not None:
