@@ -6,12 +6,16 @@ extends Control
 @onready var tarjeta_2 = $ContenedorNiveles/TarjetaNivel2
 @onready var tarjeta_3 = $ContenedorNiveles/TarjetaNivel3
 @onready var tarjeta_4 = $ContenedorNiveles/TarjetaNivel4
+@onready var http_borrar = $HTTPBorrar
+@onready var dialogo_borrar = $DialogoBorrar
 
 func _ready():
 	pedir_datos_jugador()
 	if not http_request.request_completed.is_connected(_on_http_request_request_completed):
 		http_request.request_completed.connect(_on_http_request_request_completed)
-	
+		
+	if not http_borrar.request_completed.is_connected(_on_borrar_completado):
+		http_borrar.request_completed.connect(_on_borrar_completado)
 
 
 func pedir_datos_jugador():
@@ -61,3 +65,30 @@ func bloquear_nivel(tarjeta: VBoxContainer, numero_nivel: int):
 		boton.disabled = true
 		capa_oscura.visible = true
 		candado.visible = true
+
+
+func _on_boton_borrar_pressed():
+	# 1. Le decimos el tamaño exacto en píxeles (OJO: en Godot 4 se usa Vector2i con la 'i' de Integer)
+	dialogo_borrar.size = Vector2i(500, 250)
+	
+	# 2. La centramos en la pantalla y la abrimos
+	dialogo_borrar.popup_centered()
+
+
+func _on_dialogo_borrar_confirmed():
+	print("Confirmado. Solicitando borrado de la cuenta a Django...")
+	
+	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	http_borrar.request(url, [], HTTPClient.METHOD_DELETE)
+
+func _on_borrar_completado(_result, response_code, _headers, _body):
+	if response_code == 200:
+		print("¡Cuenta aniquilada! Volviendo al inicio...")
+		
+		Global.jugador_id = -1 
+		Global.nivel_desbloqueado = 1
+		Global.habilidades_equipadas = []
+		
+		get_tree().change_scene_to_file("res://Scenes/pantalla_titulo.tscn")
+	else:
+		print("Error al borrar cuenta. Código: ", response_code)

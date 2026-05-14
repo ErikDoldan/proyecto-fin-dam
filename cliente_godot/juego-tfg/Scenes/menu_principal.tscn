@@ -28,20 +28,29 @@ expand_mode = 1
 [node name="InputNombre" type="LineEdit" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 414.0
-offset_top = 293.0
+offset_left = 420.0
+offset_top = 279.0
 offset_right = 730.0
-offset_bottom = 393.0
+offset_bottom = 325.0
 theme_override_fonts/font = ExtResource("2_crked")
 theme_override_font_sizes/font_size = 32
+
+[node name="InputPassword" type="LineEdit" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 419.0
+offset_top = 365.0
+offset_right = 732.0
+offset_bottom = 409.0
+secret = true
 
 [node name="BotonJugar" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 496.0
-offset_top = 409.0
-offset_right = 644.0
-offset_bottom = 499.0
+offset_left = 657.0
+offset_top = 447.0
+offset_right = 810.0
+offset_bottom = 503.0
 theme_override_fonts/font = ExtResource("2_crked")
 theme_override_font_sizes/font_size = 32
 text = "Jugar"
@@ -61,5 +70,43 @@ offset_bottom = 318.0
 grow_horizontal = 2
 texture = ExtResource("4_cabj8")
 
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 421.0
+offset_top = 256.0
+offset_right = 647.0
+offset_bottom = 279.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_crked")
+text = "Nombre de usuario"
+
+[node name="Label2" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 421.0
+offset_top = 343.0
+offset_right = 647.0
+offset_bottom = 366.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_crked")
+text = "Contraseña"
+
+[node name="BotonRegistro" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 346.0
+offset_top = 446.0
+offset_right = 650.0
+offset_bottom = 504.0
+theme_override_fonts/font = ExtResource("2_crked")
+theme_override_font_sizes/font_size = 32
+text = "Registrarse"
+
 [connection signal="pressed" from="BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="request_completed" from="PeticionLogin" to="." method="_on_peticion_login_request_completed"]
+[connection signal="pressed" from="BotonRegistro" to="." method="_on_boton_registro_pressed"]
