@@ -1,9 +1,10 @@
 extends Control
 
-# Referencias a nuestros nodos exactos de la imagen
+# Referencias a nuestros nodos
 @onready var input_nombre = $InputNombre
 @onready var input_password = $InputPassword
 @onready var http_request = $PeticionLogin
+@onready var label_error = $LabelError # <--- Añadimos el Label para los errores
 
 # Esta función se ejecuta al pulsar el botón "Jugar" (Login)
 func _on_boton_jugar_pressed():
@@ -15,14 +16,17 @@ func _on_boton_registro_pressed():
 
 # Centralizamos la lógica de enviar datos
 func enviar_peticion(tipo_accion: String):
+	# Limpiamos el mensaje de error cada vez que intentamos de nuevo
+	label_error.text = "" 
+	
 	var nombre_jugador = input_nombre.text.strip_edges()
 	var password_jugador = input_password.text.strip_edges()
 	
 	if nombre_jugador == "" or password_jugador == "":
-		print("El nombre y la contraseña no pueden estar vacíos")
+		label_error.text = "El nombre y la contraseña no pueden estar vacíos."
 		return
 
-	# 1. Preparamos los datos incluyendo la contraseña y la acción
+	# 1. Preparamos los datos
 	var datos = {
 		"nombre": nombre_jugador,
 		"contrasena": password_jugador,
@@ -34,8 +38,6 @@ func enviar_peticion(tipo_accion: String):
 	
 	var url = "http://127.0.0.1:8000/api/jugadores"
 	http_request.request(url, cabeceras, HTTPClient.METHOD_POST, json_datos)
-	
-	print("Enviando petición a Django... Acción: ", tipo_accion)
 
 # Esta función se ejecuta cuando Django responde
 func _on_peticion_login_request_completed(_result, response_code, _headers, body):
@@ -61,20 +63,17 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		if poder_obtenido and not "doble_salto" in Global.habilidades_equipadas:
 			Global.habilidades_equipadas.append("doble_salto")
 		
-		print("¡Acceso concedido! Puntos: ", Global.puntuacion_actual, " | Doble Salto: ", Global.habilidades["doble_salto"])
-		
 		# Vamos al selector de niveles
 		get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
 		
 	# Si hay un error (Contraseña incorrecta, nombre ya usado, etc.)
 	else:
 		var error_mensaje = body.get_string_from_utf8()
-		
-		# Intentamos leer el JSON para mostrar un mensaje limpio
 		var error_json = JSON.parse_string(error_mensaje)
+		
+		# Si Django nos ha devuelto el error formateado correctamente, lo mostramos
 		if error_json and error_json.has("error"):
-			print("Error: ", error_json["error"])
-			# Aquí podrías usar uno de tus nodos Label para mostrar el error en pantalla:
-			# $Label2.text = error_json["error"] 
+			label_error.text = error_json["error"]
 		else:
-			print("Error en el servidor. Código: ", response_code, " Detalles: ", error_mensaje)
+			# Si el servidor está apagado o falla de otra forma
+			label_error.text = "Error de conexión con el servidor."

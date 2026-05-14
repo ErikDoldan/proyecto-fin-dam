@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://xcfdbr86tp1f"]
+[gd_scene load_steps=6 format=3 uid="uid://xcfdbr86tp1f"]
 
 [ext_resource type="Script" uid="uid://kkophwnbyqi6" path="res://Scripts/menu_principal.gd" id="1_gjtjt"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_crked"]
 [ext_resource type="Texture2D" uid="uid://blx11o8una256" path="res://Assets/Fonts/login.png" id="2_xe6lt"]
 [ext_resource type="Texture2D" uid="uid://r8uwi55svs8x" path="res://Assets/Fonts/Gemini_Generated_Image_xocr12xocr12xocr-removebg-preview.png" id="4_cabj8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe6lt"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.09803922, 0.023529412, 0, 0.7058824)
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -33,7 +40,7 @@ offset_top = 279.0
 offset_right = 730.0
 offset_bottom = 325.0
 theme_override_fonts/font = ExtResource("2_crked")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 
 [node name="InputPassword" type="LineEdit" parent="."]
 texture_filter = 1
@@ -42,6 +49,8 @@ offset_left = 419.0
 offset_top = 365.0
 offset_right = 732.0
 offset_bottom = 409.0
+theme_override_fonts/font = ExtResource("2_crked")
+theme_override_font_sizes/font_size = 16
 secret = true
 
 [node name="BotonJugar" type="Button" parent="."]
@@ -76,7 +85,7 @@ layout_mode = 0
 offset_left = 421.0
 offset_top = 256.0
 offset_right = 647.0
-offset_bottom = 279.0
+offset_bottom = 273.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
@@ -106,6 +115,18 @@ offset_bottom = 504.0
 theme_override_fonts/font = ExtResource("2_crked")
 theme_override_font_sizes/font_size = 32
 text = "Registrarse"
+
+[node name="LabelError" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 278.0
+offset_top = 523.0
+offset_right = 405.0
+offset_bottom = 546.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_crked")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xe6lt")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="request_completed" from="PeticionLogin" to="." method="_on_peticion_login_request_completed"]
