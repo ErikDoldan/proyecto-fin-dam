@@ -36,6 +36,17 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 		# --- LEE EL NIVEL DESBLOQUEADO DESDE DJANGO ---
 		Global.nivel_desbloqueado = respuesta_json.get("nivel_desbloqueado", 1)
 		
+		# --- ¡LO NUEVO QUE FALTABA AQUÍ! ---
+		Global.habilidades["doble_salto"] = respuesta_json.get("tiene_doble_salto", false)
+		Global.habilidades["dash"] = respuesta_json.get("tiene_dash", false)
+		
+		var equipadas_desde_db = respuesta_json.get("habilidades_equipadas", "")
+		if equipadas_desde_db != "":
+			Global.habilidades_equipadas = Array(equipadas_desde_db.split(","))
+		else:
+			Global.habilidades_equipadas = []
+		# -----------------------------------
+		
 		label_info.text = "Bienvenido, " + str(nombre) + "\nPuntuación Total: " + str(puntos)
 		
 		# --- ACTUALIZA LOS CANDADOS 
@@ -45,7 +56,6 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 		bloquear_nivel(tarjeta_4, 4)
 	else:
 		label_info.text = "Error de conexión. Código: " + str(response_code)
-
 func _on_boton_nivel_1_pressed():
 	get_tree().change_scene_to_file("res://Scenes/nivel_1.tscn") 	
 

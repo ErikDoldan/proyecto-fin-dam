@@ -4,17 +4,16 @@ extends Control
 @onready var input_nombre = $InputNombre
 @onready var input_password = $InputPassword
 @onready var http_request = $PeticionLogin
-@onready var label_error = $LabelError # <--- Añadimos el Label para los errores
+@onready var label_error = $LabelError
 
-# Esta función se ejecuta al pulsar el botón "Jugar" (Login)
 func _on_boton_jugar_pressed():
 	enviar_peticion("login")
 
-# Esta función se ejecuta al pulsar el botón "Registro"
+
 func _on_boton_registro_pressed():
 	enviar_peticion("registro")
 
-# Centralizamos la lógica de enviar datos
+
 func enviar_peticion(tipo_accion: String):
 	# Limpiamos el mensaje de error cada vez que intentamos de nuevo
 	label_error.text = "" 
@@ -41,7 +40,7 @@ func enviar_peticion(tipo_accion: String):
 
 # Esta función se ejecuta cuando Django responde
 func _on_peticion_login_request_completed(_result, response_code, _headers, body):
-	# Si todo va bien (200 OK para Login, 201 Created para Registro)
+	
 	if response_code == 201 or response_code == 200:
 		var respuesta = JSON.parse_string(body.get_string_from_utf8())
 		var equipadas_desde_db = respuesta.get("habilidades_equipadas", "")
@@ -53,6 +52,9 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		
 		var poder_obtenido = respuesta.get("tiene_doble_salto", false)
 		Global.habilidades["doble_salto"] = poder_obtenido
+		
+		var dash_obtenido = respuesta.get("tiene_dash", false)
+		Global.habilidades["dash"] = dash_obtenido
 		
 		if equipadas_desde_db != "":
 			Global.habilidades_equipadas = Array(equipadas_desde_db.split(","))
@@ -66,12 +68,10 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		# Vamos al selector de niveles
 		get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
 		
-	# Si hay un error (Contraseña incorrecta, nombre ya usado, etc.)
 	else:
 		var error_mensaje = body.get_string_from_utf8()
 		var error_json = JSON.parse_string(error_mensaje)
 		
-		# Si Django nos ha devuelto el error formateado correctamente, lo mostramos
 		if error_json and error_json.has("error"):
 			label_error.text = error_json["error"]
 		else:

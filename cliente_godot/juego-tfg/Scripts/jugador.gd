@@ -9,6 +9,9 @@ const VELOCIDAD = 150.0
 const FUERZA_SALTO = -300.0 
 const MULTIPLICADOR_GRAVEDAD = 1.2 
 var esta_congelado = false
+var velocidad_dash = 300.0 
+var esta_dasheando = false
+var puede_dashear = true
 
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -26,7 +29,16 @@ func _physics_process(delta):
 			velocity.y += gravedad * MULTIPLICADOR_GRAVEDAD * delta
 		move_and_slide()
 		return
+	if esta_dasheando:
+		velocity.y = 0 # Anulamos la gravedad para que el dash sea recto
+		move_and_slide()
+		return
 		
+	if Input.is_action_just_pressed("dash") and "dash" in Global.habilidades_equipadas and puede_dashear:
+		iniciar_dash()
+		move_and_slide() 
+		return 
+			
 	# 1. GRAVEDAD
 	if not is_on_floor():
 		velocity.y += gravedad * MULTIPLICADOR_GRAVEDAD * delta
@@ -36,7 +48,7 @@ func _physics_process(delta):
 		ha_gastado_doble_salto = false
 
 	# 3. SALTAR Y DOBLE SALTO
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("saltar"):
 		if is_on_floor():
 			# Salto normal desde el suelo
 			velocity.y = FUERZA_SALTO
@@ -50,7 +62,7 @@ func _physics_process(delta):
 			sprite.play("Jump2")
 		
 	# 4. MOVERSE A LOS LADOS
-	var direccion = Input.get_axis("ui_left", "ui_right")
+	var direccion = Input.get_axis("mover_izq","mover_der")
 	
 	if direccion != 0:
 		velocity.x = direccion * VELOCIDAD
@@ -128,3 +140,25 @@ func morir_definitivamente():
 	
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
+
+func iniciar_dash():
+	esta_dasheando = true
+	puede_dashear = false
+
+	# Averiguamos la dirección usando tu AnimatedSprite2D
+	var direccion_x = 1
+	if sprite.flip_h: 
+		direccion_x = -1
+	
+	velocity.x = direccion_x * velocidad_dash
+
+	# OPCIONAL: Si tienes animación de dash, ponla aquí
+	# sprite.play("Dash")
+
+	# El dash dura solo 0.2 segundos
+	await get_tree().create_timer(0.2).timeout
+	esta_dasheando = false
+	
+	# Tiempo de espera antes de poder volver a usarlo (1 segundo)
+	await get_tree().create_timer(0.5).timeout
+	puede_dashear = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cfroq4evav4gd"]
+[gd_scene load_steps=24 format=3 uid="uid://cfroq4evav4gd"]
 
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="1_cfwl0"]
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_ecx5m"]
 [ext_resource type="PackedScene" uid="uid://cscgff265g6yv" path="res://Scenes/moneda.tscn" id="2_3givb"]
 [ext_resource type="PackedScene" uid="uid://cjunlg6qm3p3" path="res://Scenes/plataforma_h.tscn" id="3_hwnlj"]
 [ext_resource type="PackedScene" uid="uid://cllc0he5ou5su" path="res://Scenes/npc.tscn" id="4_epurl"]
+[ext_resource type="PackedScene" uid="uid://dckc5l4pxyp3l" path="res://Scenes/coleccionable_dash.tscn" id="4_rjvxo"]
 [ext_resource type="PackedScene" uid="uid://dyksvsths2imw" path="res://Scenes/killzone.tscn" id="6_jmhww"]
 [ext_resource type="PackedScene" uid="uid://bw1ne3qjjl7uf" path="res://Scenes/coleccionable_salto.tscn" id="6_kyajb"]
 [ext_resource type="PackedScene" uid="uid://s2pe8d1t1y6i" path="res://Scenes/slime.tscn" id="7_22i05"]
@@ -257,6 +258,21 @@ _data = {
 &"RESET": SubResource("Animation_kyajb")
 }
 
+[sub_resource type="Animation" id="Animation_xvap8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(976, 85)]
+}
+
 [sub_resource type="Animation" id="Animation_ql53f"]
 resource_name = "si"
 length = 2.0
@@ -272,21 +288,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(976, 85), Vector2(1072, 85)]
-}
-
-[sub_resource type="Animation" id="Animation_xvap8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(976, 85)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjvxo"]
@@ -355,6 +356,9 @@ libraries = {
 }
 autoplay = "si"
 
+[node name="CofreDash" parent="." instance=ExtResource("4_rjvxo")]
+position = Vector2(1375, 103)
+
 [node name="Moneda" parent="." instance=ExtResource("2_3givb")]
 position = Vector2(240, 42)
 
@@ -417,8 +421,11 @@ position = Vector2(1463, -103)
 [node name="NPC3" parent="." instance=ExtResource("4_epurl")]
 position = Vector2(889, 17)
 
+[node name="PanelContainer" parent="NPC3" index="2"]
+offset_top = -45.0
+
 [node name="Label" parent="NPC3/PanelContainer" index="0"]
-text = "Domi: "
+text = "Domi: Muchos se han dado la vuelta al ver lo que hay ahí delante... Pero escucha: si logras abrirte paso entre esas bestias, o si eres lo bastante ágil para sortearlas, llegarás al cofre. Dentro yace el Fragmento de Rayo. Una reliquia olvidada que te otorgará el poder de embestir hacia adelante como un relámpago. Demuéstrame que tienes agallas."
 
 [node name="InventarioUI" parent="." instance=ExtResource("9_ql53f")]
 

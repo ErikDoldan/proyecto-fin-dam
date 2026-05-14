@@ -9,14 +9,13 @@ var cofre_abierto = false
 var esperando_cierre = false 
 
 func _ready():
-	# IMPORTANTE: Al empezar, el cartel SIEMPRE debe estar oculto
 	cartel_victoria.visible = false
 	esperando_cierre = false
 	
-	# Comprobamos en el NUEVO DICCIONARIO si el jugador ya tenía el poder
-	if Global.habilidades.has("doble_salto") and Global.habilidades["doble_salto"] == true:
+	# Comprobamos si ya tiene el dash
+	if Global.habilidades.has("dash") and Global.habilidades["dash"] == true:
 		cofre_abierto = true
-		animated_sprite.play("abrir") # Aparece abierto pero NO muestra cartel
+		animated_sprite.play("abrir") 
 	else:
 		cofre_abierto = false
 		animated_sprite.play("cerrado")
@@ -29,6 +28,7 @@ func _on_body_entered(body):
 		cofre_abierto = true
 		jugador_tocado = body
 		
+		# Usamos tu variable exacta
 		jugador_tocado.esta_congelado = true
 		animated_sprite.play("abrir")
 		await animated_sprite.animation_finished
@@ -36,11 +36,11 @@ func _on_body_entered(body):
 		cartel_victoria.visible = true
 		esperando_cierre = true
 		
-		
-		Global.habilidades["doble_salto"] = true
-		if not "doble_salto" in Global.habilidades_equipadas and Global.habilidades_equipadas.size() < 4:
-			Global.habilidades_equipadas.append("doble_salto")
-		
+		# Desbloqueamos y autoequipamos en Godot antes de enviar a Django
+		Global.habilidades["dash"] = true
+		if not "dash" in Global.habilidades_equipadas and Global.habilidades_equipadas.size() < 4:
+			Global.habilidades_equipadas.append("dash")
+			
 		enviar_a_django()
 
 func _input(event):
@@ -56,30 +56,20 @@ func cerrar_mensaje():
 func enviar_a_django():
 	var url_django = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
 	
-	# --- AHORA SÍ ENVIAMOS LAS DOS COSAS ---
 	var lista_texto = ",".join(Global.habilidades_equipadas)
+	# ¡Añadimos el tiene_dash: true para que Django se entere!
 	var datos = {
-		"tiene_doble_salto": true,
-		"habilidades_equipadas": lista_texto
+		"habilidades_equipadas": lista_texto,
+		"tiene_dash": true
 	}
 	
 	var json_datos = JSON.stringify(datos)
 	var headers = ["Content-Type: application/json"]
 	http_request.request(url_django, headers, HTTPClient.METHOD_PUT, json_datos)
-	
+
+
 func _on_request_completed(_result, response_code, _headers, body):
-	# Ahora sí comprobamos si sale bien o si falla
 	if response_code == 200:
-		print("¡Cofre guardado en Django 200 OK!")
-		
-		# 1. Lo marcamos como desbloqueado en el catálogo general
-		Global.habilidades["doble_salto"] = true
-		
-		# 2. Como aún no hay menú, te lo equipamos automáticamente para que lo uses ya
-		if not "doble_salto" in Global.habilidades_equipadas:
-			Global.habilidades_equipadas.append("doble_salto")
-			
+		print("¡Cofre Dash guardado en Django 200 OK!")
 	else:
-		print("⚠️ ERROR EN EL COFRE. Código: ", response_code)
-		if body:
-			print("Detalles: ", body.get_string_from_utf8())
+		print("⚠️ ERROR EN EL COFRE DASH. Código: ", response_code)
