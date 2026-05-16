@@ -1,0 +1,195 @@
+[gd_scene load_steps=23 format=3 uid="uid://b8kdhopi8q7ny"]
+
+[ext_resource type="Script" uid="uid://44o6p1ye6fnl" path="res://Scripts/coleccionable_fuego.gd" id="1_rgja7"]
+[ext_resource type="Texture2D" uid="uid://desfm5lp7blqd" path="res://Assets/Sprites/Items/Treasure Chest - Basic & Fancy.png" id="2_ytydq"]
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="3_04t2r"]
+[ext_resource type="Texture2D" uid="uid://dxrk3bwl4ffu2" path="res://Assets/Sprites/Items/Firebolt SpriteSheet.png" id="4_ytydq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbf82"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(0, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24nlb"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(36, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o87kl"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(72, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8sit"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(108, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk7k7"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(144, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m04lq"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(180, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enqf8"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(216, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjmfb"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(252, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6b2a"]
+atlas = ExtResource("2_ytydq")
+region = Rect2(0, 0, 36, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78wlj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbf82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24nlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o87kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8sit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk7k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m04lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enqf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjmfb")
+}],
+"loop": false,
+"name": &"abrir",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6b2a")
+}],
+"loop": false,
+"name": &"cerrado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mr6e"]
+size = Vector2(26, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o87kl"]
+font = ExtResource("3_04t2r")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04t2r"]
+atlas = ExtResource("4_ytydq")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihoca"]
+atlas = ExtResource("4_ytydq")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s88bp"]
+atlas = ExtResource("4_ytydq")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oldi3"]
+atlas = ExtResource("4_ytydq")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7uhj8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04t2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihoca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s88bp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oldi3")
+}],
+"loop": true,
+"name": &"Salto",
+"speed": 10.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g8sit"]
+font = ExtResource("3_04t2r")
+font_size = 24
+
+[node name="CofreFuego" type="Area2D"]
+script = ExtResource("1_rgja7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_78wlj")
+animation = &"abrir"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_7mr6e")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -339.0
+offset_top = -240.0
+offset_right = 385.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(104, 64.5)
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextoObjeto" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "
+ Has conseguido el
+ fragmento de fuego !!"
+label_settings = SubResource("LabelSettings_o87kl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EspacioObjeto" type="Control" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/PanelContainer/VBoxContainer/EspacioObjeto"]
+texture_filter = 1
+position = Vector2(307, 113)
+scale = Vector2(7.412, 8)
+sprite_frames = SubResource("SpriteFrames_7uhj8")
+animation = &"Salto"
+autoplay = "Salto"
+frame_progress = 0.88726264
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Pulsa Espacio para continuar
+"
+label_settings = SubResource("LabelSettings_g8sit")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

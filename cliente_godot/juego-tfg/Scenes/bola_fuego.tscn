@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmymhufkbleyr"]
+
+[ext_resource type="Script" uid="uid://8w2htdres138" path="res://Scripts/bola_fuego.gd" id="1_gl7d0"]
+[ext_resource type="Texture2D" uid="uid://b42t2qvw8t3bu" path="res://Assets/Sprites/Items/fireball.png" id="2_utumk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35b2x"]
+radius = 5.0990195
+
+[node name="BolaFuego" type="Area2D"]
+script = ExtResource("1_gl7d0")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_utumk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_35b2x")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

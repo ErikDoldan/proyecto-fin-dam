@@ -1,10 +1,11 @@
-[gd_scene load_steps=77 format=3 uid="uid://isdrhl2sg35r"]
+[gd_scene load_steps=83 format=3 uid="uid://isdrhl2sg35r"]
 
 [ext_resource type="Script" uid="uid://dyuycg4hj76at" path="res://Scripts/inventario_ui.gd" id="1_jhyeo"]
 [ext_resource type="Texture2D" uid="uid://csycsj4h7178e" path="res://Assets/Sprites/Items/PadlockOrange.png" id="2_enmq0"]
 [ext_resource type="Texture2D" uid="uid://cn43cktkl6qen" path="res://Assets/Sprites/Items/Air Explosion.png" id="3_4xhdl"]
 [ext_resource type="Texture2D" uid="uid://bjt7cblfs3n7g" path="res://Assets/Sprites/Characters/knight.png" id="3_nc0ql"]
 [ext_resource type="Texture2D" uid="uid://dvnr1gd4h0qs" path="res://Assets/Sprites/Items/Thunder projectile1 w blur.png" id="5_nc0ql"]
+[ext_resource type="Texture2D" uid="uid://dxrk3bwl4ffu2" path="res://Assets/Sprites/Items/Firebolt SpriteSheet.png" id="6_lnaj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8m881"]
 atlas = ExtResource("3_nc0ql")
@@ -520,6 +521,42 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr3xg"]
+atlas = ExtResource("6_lnaj6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejqeq"]
+atlas = ExtResource("6_lnaj6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0jd1"]
+atlas = ExtResource("6_lnaj6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0gvo"]
+atlas = ExtResource("6_lnaj6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owxsw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr3xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejqeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0jd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0gvo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="InventarioUI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_jhyeo")
@@ -691,7 +728,7 @@ position = Vector2(32, 32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_14ql7")
 autoplay = "default"
-frame_progress = 0.46360943
+frame_progress = 0.35517418
 
 [node name="dash" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
 custom_minimum_size = Vector2(64, 64)
@@ -716,11 +753,11 @@ sprite_frames = SubResource("SpriteFrames_uwv32")
 autoplay = "default"
 frame_progress = 0.46898395
 
-[node name="ataque_fuego" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
+[node name="fuego" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/ataque_fuego"]
+[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/fuego"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -730,6 +767,14 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Animacion" type="AnimatedSprite2D" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/fuego"]
+texture_filter = 1
+position = Vector2(32, 32)
+scale = Vector2(2.009, 2)
+sprite_frames = SubResource("SpriteFrames_owxsw")
+autoplay = "default"
+frame_progress = 0.7321468
 
 [node name="escudo" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
 custom_minimum_size = Vector2(64, 64)

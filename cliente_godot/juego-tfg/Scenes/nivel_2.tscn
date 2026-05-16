@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://doak8iu5sseft"]
+[gd_scene load_steps=11 format=3 uid="uid://doak8iu5sseft"]
 
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_804co"]
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="2_hxfkh"]
 [ext_resource type="PackedScene" uid="uid://dyksvsths2imw" path="res://Scenes/killzone.tscn" id="3_hxfkh"]
+[ext_resource type="PackedScene" uid="uid://deeoiqpf2w64s" path="res://Scenes/pinchos.tscn" id="4_8hre3"]
 [ext_resource type="PackedScene" uid="uid://isdrhl2sg35r" path="res://Scenes/inventario_ui.tscn" id="4_kkyht"]
+[ext_resource type="PackedScene" uid="uid://cllc0he5ou5su" path="res://Scenes/npc.tscn" id="6_amwks"]
+[ext_resource type="PackedScene" uid="uid://b8kdhopi8q7ny" path="res://Scenes/coleccionable_fuego.tscn" id="7_psj36"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkyht"]
 texture = ExtResource("1_804co")
@@ -199,6 +202,12 @@ limit_top = 0
 limit_right = 1152
 limit_bottom = 654
 
+[node name="HBoxContainer" parent="Jugador/UI" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 372.0
+offset_bottom = 83.0
+
 [node name="Killzone" parent="." instance=ExtResource("3_hxfkh")]
 position = Vector2(114, 615)
 
@@ -206,7 +215,35 @@ position = Vector2(114, 615)
 position = Vector2(-1, 19)
 shape = SubResource("WorldBoundaryShape2D_kkyht")
 
+[node name="Pinchos" parent="." instance=ExtResource("4_8hre3")]
+position = Vector2(168, 393)
+
+[node name="Pinchos2" parent="." instance=ExtResource("4_8hre3")]
+position = Vector2(104, 361)
+
+[node name="Pinchos3" parent="." instance=ExtResource("4_8hre3")]
+position = Vector2(168, 329)
+
+[node name="Pinchos4" parent="." instance=ExtResource("4_8hre3")]
+position = Vector2(104, 297)
+
+[node name="Pinchos5" parent="." instance=ExtResource("4_8hre3")]
+position = Vector2(168, 265)
+
+[node name="Pinchos6" parent="." instance=ExtResource("4_8hre3")]
+position = Vector2(104, 233)
+
 [node name="InventarioUI" parent="." instance=ExtResource("4_kkyht")]
 visible = false
 
+[node name="NPC" parent="." instance=ExtResource("6_amwks")]
+position = Vector2(247, 193)
+
+[node name="Label" parent="NPC/PanelContainer" index="0"]
+text = "Domi: \"¡Hey,veo que  has conseguido llegar hasta aqui! Ahi delante en el cofre tienes el Fragmento de Fuego. Te va a venir de lujo; con esto podrás lanzar bolas de fuego y freír a los monstruos a distancia. Pero hazme caso en una cosa: no te vengas muy arriba. Hay bichos por ahí a los que el fuego les hace cosquillas, son totalmente inmunes. Así que úsalo, pero no te confíes.\""
+
+[node name="CofreFuego" parent="." instance=ExtResource("7_psj36")]
+position = Vector2(336, 199)
+
 [editable path="Jugador"]
+[editable path="NPC"]

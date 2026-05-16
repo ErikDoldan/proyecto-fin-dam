@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://deeoiqpf2w64s"]
+
+[ext_resource type="Texture2D" uid="uid://brv4yvjoydmvy" path="res://Assets/Sprites/TileSet/Pinchos Juego.png" id="1_d15tb"]
+[ext_resource type="Script" uid="uid://dhn280qqtomo0" path="res://Scripts/pinchos.gd" id="2_o6r8l"]
+
+[node name="Pinchos" type="Area2D"]
+script = ExtResource("2_o6r8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_d15tb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, 8, -4, 2, -3, 2, -1, 7, 1, 7, 3, 2, 4, 2, 7, 8)

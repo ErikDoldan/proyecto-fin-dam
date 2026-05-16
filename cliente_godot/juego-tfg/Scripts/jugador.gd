@@ -12,7 +12,7 @@ var esta_congelado = false
 var velocidad_dash = 300.0 
 var esta_dasheando = false
 var puede_dashear = true
-
+const BOLA_FUEGO = preload("res://Scenes/bola_fuego.tscn")
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var contenedor_corazones = $UI/HBoxContainer
@@ -23,6 +23,9 @@ func _ready():
 func _physics_process(delta):
 	if esta_congelado:
 		return
+	
+	if Input.is_action_just_pressed("disparar") and "fuego" in Global.habilidades_equipadas:
+		disparar_fuego()
 		
 	if recibiendo_dano:
 		if not is_on_floor():
@@ -136,7 +139,7 @@ func morir_definitivamente():
 	tween.tween_property(self, "position", position + Vector2(0, -50), 0.3)
 	tween.tween_property(self, "position", position + Vector2(0, 500), 1.0).set_delay(0.3)
 	
-	sprite.play("dmg")
+	sprite.play("Death")
 	
 	await get_tree().create_timer(1.5).timeout
 	get_tree().reload_current_scene()
@@ -162,3 +165,22 @@ func iniciar_dash():
 	# Tiempo de espera antes de poder volver a usarlo (1 segundo)
 	await get_tree().create_timer(0.5).timeout
 	puede_dashear = true
+
+func disparar_fuego():
+	# 1. Creamos una copia de la bola de fuego
+	var nueva_bola = BOLA_FUEGO.instantiate()
+	
+	# 2. Averiguamos hacia dónde mira el jugador
+	var direccion_x = 1
+	if sprite.flip_h:
+		direccion_x = -1
+		nueva_bola.get_node("AnimatedSprite2D").flip_h = true # Volteamos el dibujo de la bola también
+	
+	nueva_bola.direccion = direccion_x
+	
+	# 3. La hace aparecer un poquito más adelante del jugador para que no salga de su ombligo
+	nueva_bola.global_position = self.global_position + Vector2(20 * direccion_x, 0)
+	
+	# 4. SÚPER IMPORTANTE: Añadimos la bola al nivel, NO al jugador. 
+	# Si se la añades al jugador, la bola se movería contigo cuando caminas.
+	get_parent().add_child(nueva_bola)

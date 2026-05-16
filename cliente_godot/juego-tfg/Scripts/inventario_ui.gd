@@ -98,13 +98,13 @@ func actualizar_ui():
 			anim_destino.visible = true
 			
 			# --- SOLUCIÓN A LAS ANIMACIONES CRUZADAS ---
-			# Buscamos la animación original del lado derecho
+			# Busca la animación original del lado derecho
 			var nodo_original = grid_catalogo.get_node_or_null(nombre_equipado + "/Animacion")
 			
 			if nodo_original:
-				# 1. Le clonamos todos los frames de la derecha a la izquierda
+				# 1. Le clona todos los frames de la derecha a la izquierda
 				anim_destino.sprite_frames = nodo_original.sprite_frames
-				# 2. Le decimos que reproduzca la misma que esté puesta a la derecha
+				# 2. Le dice q reproduzca la misma q esté puesta a la derecha
 				anim_destino.play(nodo_original.animation)
 			# -------------------------------------------
 
