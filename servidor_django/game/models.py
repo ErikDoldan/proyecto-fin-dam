@@ -11,6 +11,7 @@ class Jugador(models.Model):
     habilidades_equipadas = models.TextField(default="")
     nivel_desbloqueado = models.IntegerField(default=1)
     tiene_dash = models.BooleanField(default=False)
+    tiene_fuego = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre
