@@ -1,28 +1,28 @@
-extends Area2D
+extends CharacterBody2D
 
-var velocidad = 400.0
-var direccion = 1 # 1 es derecha, -1 es izquierda
+var velocidad_x = 350.0 # Velocidad a la que avanza
+var fuerza_rebote = -200.0 # Cuánto salta al tocar el suelo
+var direccion = 1 
+
+var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
+	
+var peso_bola = 2
 
 func _ready():
-	# Conectamos las colisiones y el detector de pantalla
-	body_entered.connect(_on_body_entered)
 	$VisibleOnScreenNotifier2D.screen_exited.connect(_on_screen_exited)
 
 func _physics_process(delta):
-	# Movemos la bola hacia adelante
-	position.x += velocidad * direccion * delta
+	# 3. Le aplicamos el peso extra a la gravedad
+	velocity.y += gravedad * peso_bola * delta
 
-func _on_body_entered(body):
-	# Si toca al jugador, la ignoramos (para no suicidarte con tu propio fuego)
-	if body.name == "Jugador":
-		return
-		
-	# ¡Aquí luego meteremos el código para hacer daño a los enemigos!
-	print("¡Pum! La bola chocó contra: ", body.name)
-	
-	# Al chocar contra cualquier otra cosa (pared, suelo, enemigo), se destruye
-	queue_free()
+	velocity.x = velocidad_x * direccion
+	move_and_slide()
+
+	if is_on_floor():
+		velocity.y = fuerza_rebote
+
+	if is_on_wall():
+		queue_free()
 
 func _on_screen_exited():
-	# Si la bola sale de la pantalla, se borra sola
-	queue_free()
+	queue_free() # Se borra al salir de la pantalla

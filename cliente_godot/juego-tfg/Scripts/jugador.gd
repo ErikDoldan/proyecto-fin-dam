@@ -167,20 +167,19 @@ func iniciar_dash():
 	puede_dashear = true
 
 func disparar_fuego():
-	# 1. Creamos una copia de la bola de fuego
 	var nueva_bola = BOLA_FUEGO.instantiate()
 	
-	# 2. Averiguamos hacia dónde mira el jugador
 	var direccion_x = 1
 	if sprite.flip_h:
 		direccion_x = -1
-		nueva_bola.get_node("AnimatedSprite2D").flip_h = true # Volteamos el dibujo de la bola también
+		# Actualizado para usar Sprite2D normal
+		nueva_bola.get_node("Sprite2D").flip_h = true 
 	
 	nueva_bola.direccion = direccion_x
-	
-	# 3. La hace aparecer un poquito más adelante del jugador para que no salga de su ombligo
 	nueva_bola.global_position = self.global_position + Vector2(20 * direccion_x, 0)
 	
-	# 4. SÚPER IMPORTANTE: Añadimos la bola al nivel, NO al jugador. 
-	# Si se la añades al jugador, la bola se movería contigo cuando caminas.
+	# Para q la bola que ignore las colisiones con el jugador.
+	# Así evitas empujarte a ti mismo o atascarte al disparar.
+	nueva_bola.add_collision_exception_with(self)
+	
 	get_parent().add_child(nueva_bola)

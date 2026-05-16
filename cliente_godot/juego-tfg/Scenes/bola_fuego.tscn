@@ -6,10 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_35b2x"]
 radius = 5.0990195
 
-[node name="BolaFuego" type="Area2D"]
+[node name="BolaFuego" type="CharacterBody2D"]
 script = ExtResource("1_gl7d0")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_utumk")
 
@@ -17,3 +17,11 @@ texture = ExtResource("2_utumk")
 shape = SubResource("CircleShape2D_35b2x")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 20
+lifetime = 0.4
+gravity = Vector2(0, -50)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(0.9380969, 0.49320167, 0.092526115, 1)
