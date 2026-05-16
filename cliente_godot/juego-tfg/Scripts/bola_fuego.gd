@@ -5,14 +5,17 @@ var fuerza_rebote = -200.0 # Cuánto salta al tocar el suelo
 var direccion = 1 
 
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
-	
+var ha_explotado = false
 var peso_bola = 2
 
 func _ready():
 	$VisibleOnScreenNotifier2D.screen_exited.connect(_on_screen_exited)
 
 func _physics_process(delta):
-	# 3. Le aplicamos el peso extra a la gravedad
+
+	if ha_explotado:
+		return
+		
 	velocity.y += gravedad * peso_bola * delta
 
 	velocity.x = velocidad_x * direccion
@@ -22,7 +25,21 @@ func _physics_process(delta):
 		velocity.y = fuerza_rebote
 
 	if is_on_wall():
-		queue_free()
+		explotar()
+		
+func explotar():
+	ha_explotado = true
+	
 
+	$CollisionShape2D.set_deferred("disabled", true)
+	
+	$Sprite2D.visible = false
+	
+	$CPUParticles2D.emitting = false 
+	
+	$Explosion.emitting = true
+	await get_tree().create_timer(0.5).timeout
+	queue_free()
+	
 func _on_screen_exited():
 	queue_free() # Se borra al salir de la pantalla
