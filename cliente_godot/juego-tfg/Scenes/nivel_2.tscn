@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://doak8iu5sseft"]
+[gd_scene load_steps=18 format=3 uid="uid://doak8iu5sseft"]
 
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_804co"]
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="2_hxfkh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://deeoiqpf2w64s" path="res://Scenes/pinchos.tscn" id="4_8hre3"]
 [ext_resource type="PackedScene" uid="uid://cbrxsu5kxj7t1" path="res://Scenes/enemigo_cazador.tscn" id="4_k5g52"]
 [ext_resource type="PackedScene" uid="uid://isdrhl2sg35r" path="res://Scenes/inventario_ui.tscn" id="4_kkyht"]
+[ext_resource type="PackedScene" uid="uid://deuculkbfd5by" path="res://Scenes/enemigo_orco.tscn" id="5_mgy73"]
 [ext_resource type="PackedScene" uid="uid://cllc0he5ou5su" path="res://Scenes/npc.tscn" id="6_amwks"]
 [ext_resource type="PackedScene" uid="uid://vkayqed2d414" path="res://Scenes/coleccionable_escudo.tscn" id="7_2wi6x"]
 [ext_resource type="PackedScene" uid="uid://b8kdhopi8q7ny" path="res://Scenes/coleccionable_fuego.tscn" id="7_psj36"]
@@ -262,6 +263,9 @@ shape = SubResource("WorldBoundaryShape2D_kkyht")
 
 [node name="EnemigoCazador" parent="." instance=ExtResource("4_k5g52")]
 position = Vector2(401, 233)
+
+[node name="EnemigoOrco" parent="." instance=ExtResource("5_mgy73")]
+position = Vector2(448, 233)
 
 [node name="Pinchos" parent="." instance=ExtResource("4_8hre3")]
 position = Vector2(168, 393)
