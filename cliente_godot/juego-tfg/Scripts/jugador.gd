@@ -14,8 +14,14 @@ var esta_dasheando = false
 var puede_dashear = true
 const BOLA_FUEGO = preload("res://Scenes/bola_fuego.tscn")
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
+var puede_disparar = true
 
 @onready var contenedor_corazones = $UI/HBoxContainer
+
+@onready var burbuja_escudo = $BurbujaEscudo
+@onready var corazon_escudo = $UI/HBoxContainer/CorazonEscudo
+var escudo_roto = false
+var tiempo_regeneracion = 10.0
 
 func _ready():
 	pass
@@ -24,7 +30,17 @@ func _physics_process(delta):
 	if esta_congelado:
 		return
 	
-	if Input.is_action_just_pressed("disparar") and "fuego" in Global.habilidades_equipadas:
+	var tiene_escudo = "escudo" in Global.habilidades_equipadas
+	
+	if tiene_escudo and not escudo_roto:
+		burbuja_escudo.visible = true
+		corazon_escudo.visible = true
+	else:
+		burbuja_escudo.visible = false
+		corazon_escudo.visible = false
+	
+	
+	if Input.is_action_just_pressed("disparar") and "fuego" in Global.habilidades_equipadas and puede_disparar:
 		disparar_fuego()
 		
 	if recibiendo_dano:
@@ -99,9 +115,13 @@ func actualizar_animaciones(direccion):
 func recibir_dano(posicion_x_enemigo):
 	if recibiendo_dano:
 		return 
+	
+	recibiendo_dano = true
+	if "escudo" in Global.habilidades_equipadas and not escudo_roto:
+		romper_escudo(posicion_x_enemigo)
+		return
 		
 	vidas -= 1
-	recibiendo_dano = true
 	print("Auch! Vidas restantes: ", vidas) 
 	actualizar_corazones()
 	
@@ -167,6 +187,7 @@ func iniciar_dash():
 	puede_dashear = true
 
 func disparar_fuego():
+	puede_disparar = false
 	var nueva_bola = BOLA_FUEGO.instantiate()
 	
 	var direccion_x = 1
@@ -183,3 +204,28 @@ func disparar_fuego():
 	nueva_bola.add_collision_exception_with(self)
 	
 	get_parent().add_child(nueva_bola)
+	await get_tree().create_timer(0.3).timeout
+	puede_disparar = true
+	
+func romper_escudo(posicion_x_enemigo):
+	escudo_roto = true
+	
+	# Opcional: Aquí podrías añadir un sonido de cristal roto
+	# $AudioEscudoRoto.play()
+	
+	# Te empujamos un poquito para que el golpe se sienta real, pero sin hacer animación de daño grave
+	var direccion_empuje = 1
+	if global_position.x < posicion_x_enemigo:
+		direccion_empuje = -1
+		
+	velocity.x = direccion_empuje * 150 
+	velocity.y = -150 
+	
+	# Volvemos a ser vulnerables casi al instante
+	await get_tree().create_timer(0.2).timeout
+	recibiendo_dano = false
+	
+	# Iniciamos la regeneración del escudo en la sombra
+	await get_tree().create_timer(tiempo_regeneracion).timeout
+	escudo_roto = false
+	print("¡Escudo regenerado!")

@@ -59,6 +59,10 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		var fuego_obtenido = respuesta.get("tiene_fuego",false)
 		Global.habilidades["fuego"] = fuego_obtenido
 		
+		var escudo_obtenido = respuesta.get("tiene_escudo",false)
+		Global.habilidades["escudo"]=escudo_obtenido
+		
+		
 		if equipadas_desde_db != "":
 			Global.habilidades_equipadas = Array(equipadas_desde_db.split(","))
 		else:
