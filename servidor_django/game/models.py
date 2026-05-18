@@ -13,6 +13,7 @@ class Jugador(models.Model):
     tiene_dash = models.BooleanField(default=False)
     tiene_fuego = models.BooleanField(default=False)
     tiene_escudo = models.BooleanField(default=False)
+    tiene_planeador = models.BooleanField(default=False)
     def __str__(self):
         return self.nombre
 

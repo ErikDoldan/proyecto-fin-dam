@@ -76,6 +76,7 @@ def api_jugadores(request):
                             'tiene_dash': jugador.tiene_dash,
                             'tiene_fuego': jugador.tiene_fuego,
                             'tiene_escudo': jugador.tiene_escudo,
+                            'tiene_planeador': jugador.tiene_planeador,
                             'habilidades_equipadas': jugador.habilidades_equipadas,
                         }, status=200)
                     else:
@@ -112,6 +113,7 @@ def api_jugador_detalle(request, jugador_id):
             'nivel_desbloqueado': jugador.nivel_desbloqueado,
             'tiene_fuego': jugador.tiene_fuego,
             'tiene_escudo': jugador.tiene_escudo,
+            'tiene_planeador': jugador.tiene_planeador,
         }, status=200)
 
     # 3. Lógica para el método PUT
@@ -148,6 +150,11 @@ def api_jugador_detalle(request, jugador_id):
             nuevo_escudo = datos.get('tiene_escudo')
             if nuevo_escudo is not None:
                 jugador.tiene_escudo = nuevo_escudo
+                cambios_realizados = True
+
+            nuevo_planeador = datos.get('tiene_planeador')
+            if nuevo_planeador is not None:
+                jugador.tiene_planeador = nuevo_planeador
                 cambios_realizados = True
 
             if nuevas_equipadas is not None:
