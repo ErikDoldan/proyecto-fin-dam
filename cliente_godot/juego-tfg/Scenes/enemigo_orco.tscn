@@ -272,7 +272,7 @@ bg_color = Color(0.00022877274, 8.3857965e-05, 1.4324685e-05, 1)
 bg_color = Color(0.8780517, 0.12396137, 0.2047672, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yajje"]
-radius = 110.11358
+radius = 70.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cgame"]
 

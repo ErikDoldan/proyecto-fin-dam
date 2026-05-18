@@ -41,7 +41,8 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 		Global.habilidades["dash"] = respuesta_json.get("tiene_dash", false)
 		Global.habilidades["fuego"] = respuesta_json.get("tiene_fuego", false)
 		Global.habilidades["escudo"] = respuesta_json.get("tiene_escudo", false)
-		
+		Global.habilidades["planeador"] = respuesta_json.get("tiene_planeador", false)
+
 		
 		
 		var equipadas_desde_db = respuesta_json.get("habilidades_equipadas", "")

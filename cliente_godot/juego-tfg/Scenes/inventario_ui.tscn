@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://isdrhl2sg35r"]
+[gd_scene load_steps=103 format=3 uid="uid://isdrhl2sg35r"]
 
 [ext_resource type="Script" uid="uid://dyuycg4hj76at" path="res://Scripts/inventario_ui.gd" id="1_jhyeo"]
 [ext_resource type="Texture2D" uid="uid://csycsj4h7178e" path="res://Assets/Sprites/Items/PadlockOrange.png" id="2_enmq0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dvnr1gd4h0qs" path="res://Assets/Sprites/Items/Thunder projectile1 w blur.png" id="5_nc0ql"]
 [ext_resource type="Texture2D" uid="uid://dxrk3bwl4ffu2" path="res://Assets/Sprites/Items/Firebolt SpriteSheet.png" id="6_lnaj6"]
 [ext_resource type="Texture2D" uid="uid://oofeiw5pk4xm" path="res://Assets/Sprites/Items/Earth projectile Spritesheet .png" id="7_j1dns"]
+[ext_resource type="Texture2D" uid="uid://bp4b5fkiq6p65" path="res://Assets/Sprites/Items/Dark VFX 1 (40x32).png" id="8_51ksq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8m881"]
 atlas = ExtResource("3_nc0ql")
@@ -608,6 +609,84 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgyan"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe7ly"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p418"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3kq5"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6erae"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(160, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikqei"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(200, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5nqf"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(240, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0fih"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(280, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b03x3"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(320, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqbkw"]
+atlas = ExtResource("8_51ksq")
+region = Rect2(360, 0, 40, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5rq2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgyan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe7ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p418")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3kq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6erae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikqei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5nqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0fih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b03x3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqbkw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="InventarioUI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_jhyeo")
@@ -850,11 +929,11 @@ sprite_frames = SubResource("SpriteFrames_xgyan")
 autoplay = "default"
 frame_progress = 0.14659847
 
-[node name="super_velocidad" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
+[node name="planeador" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/super_velocidad"]
+[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/planeador"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -865,11 +944,19 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="planeador" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
+[node name="Animacion" type="AnimatedSprite2D" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/planeador"]
+texture_filter = 1
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_t5rq2")
+autoplay = "default"
+frame_progress = 0.39691123
+
+[node name="super_velocidad" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/planeador"]
+[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/super_velocidad"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15

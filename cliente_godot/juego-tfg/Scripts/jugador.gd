@@ -60,8 +60,24 @@ func _physics_process(delta):
 			
 	# 1. GRAVEDAD
 	if not is_on_floor():
-		velocity.y += gravedad * MULTIPLICADOR_GRAVEDAD * delta
-
+		velocity.y += gravedad * delta 
+		
+		if "planeador" in Global.habilidades_equipadas and Input.is_action_pressed("saltar") and velocity.y > 0:
+			
+			
+			velocity.y = min(velocity.y, 50.0) 
+			
+			
+			$ParticulasPlaneo.emitting = true
+			
+		else:
+			
+			$ParticulasPlaneo.emitting = false
+			
+	else:
+		
+		$ParticulasPlaneo.emitting = false
+		
 	# 2. RECARGAR DOBLE SALTO
 	if is_on_floor():
 		ha_gastado_doble_salto = false
@@ -72,7 +88,7 @@ func _physics_process(delta):
 			# Salto normal desde el suelo
 			velocity.y = FUERZA_SALTO
 			
-		# ¡AQUÍ ESTÁ LA MAGIA!: Ahora el jugador mira la lista del Global
+		
 		elif "doble_salto" in Global.habilidades_equipadas and not ha_gastado_doble_salto:
 			# Doble salto en el aire
 			velocity.y = FUERZA_SALTO
