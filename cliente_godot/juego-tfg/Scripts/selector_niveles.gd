@@ -66,6 +66,10 @@ func _on_boton_nivel_1_pressed():
 func _on_boton_nivel_2_pressed():
 	get_tree().change_scene_to_file("res://Scenes/nivel_2.tscn")
 
+func _on_boton_nivel_3_pressed():
+	get_tree().change_scene_to_file("res://Scenes/nivel_3.tscn")
+
+
 func bloquear_nivel(tarjeta: VBoxContainer, numero_nivel: int):
 	var boton = tarjeta.get_node("BotonEntrar")
 	var capa_oscura = tarjeta.get_node("MarcoFoto/CapaBloqueo")

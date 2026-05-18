@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var http_request = $HTTPRequest
 @export var ruta_siguiente_nivel: String = "res://Scenes/selector_niveles.tscn"
+@export var nivel_a_desbloquear: int = 2 # <--- NUEVO: Lo podrás cambiar en el Inspector
 
 func _ready():
 	body_entered.connect(_on_body_entered)
@@ -20,8 +21,9 @@ func _on_body_entered(body):
 func enviar_guardado_a_django():
 	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
 	
-	if Global.nivel_desbloqueado < 2:
-		Global.nivel_desbloqueado = 2
+	# Usamos la variable que configures en el Inspector en lugar de un 2 fijo
+	if Global.nivel_desbloqueado < nivel_a_desbloquear:
+		Global.nivel_desbloqueado = nivel_a_desbloquear
 		
 	var lista_texto = ",".join(Global.habilidades_equipadas)
 	var datos = {

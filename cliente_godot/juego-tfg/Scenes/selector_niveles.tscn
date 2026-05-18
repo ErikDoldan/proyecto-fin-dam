@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cacmsqbjcdcie"]
+[gd_scene load_steps=22 format=3 uid="uid://cacmsqbjcdcie"]
 
 [ext_resource type="Script" uid="uid://cl7n4ttgo0th7" path="res://Scripts/selector_niveles.gd" id="1_7mfc6"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_d6cao"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dicsr7jrxrts5" path="res://Assets/Fonts/Captura de pantalla 2026-05-10 202127.png" id="5_u77j8"]
 [ext_resource type="Texture2D" uid="uid://csycsj4h7178e" path="res://Assets/Sprites/Items/PadlockOrange.png" id="6_37pxe"]
 [ext_resource type="Texture2D" uid="uid://ppdbf5nhgee6" path="res://Assets/Fonts/seleccion.png" id="7_fgk5q"]
+[ext_resource type="Texture2D" uid="uid://c3uwoutlvyuts" path="res://Assets/Fonts/FotoNivel2-1.png" id="8_u77j8"]
+[ext_resource type="Texture2D" uid="uid://dp6u1r56w1usr" path="res://Assets/Fonts/FotoNivel2-3.png" id="9_b1vt0"]
+[ext_resource type="Texture2D" uid="uid://dfsxyjklekd1" path="res://Assets/Fonts/FotoNivel2-4.png" id="10_ksp5v"]
+[ext_resource type="Texture2D" uid="uid://d2frsaa45aet5" path="res://Assets/Fonts/FotoNivel2-2.png" id="11_t2dqe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgk5q"]
 atlas = ExtResource("3_r2cfi")
@@ -31,6 +35,42 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_37pxe")
+}],
+"loop": true,
+"name": &"1",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nypq7"]
+atlas = ExtResource("8_u77j8")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pnmn"]
+atlas = ExtResource("9_b1vt0")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah5yg"]
+atlas = ExtResource("10_ksp5v")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps1jo"]
+atlas = ExtResource("11_t2dqe")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b1vt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nypq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pnmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah5yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ps1jo")
 }],
 "loop": true,
 "name": &"1",
@@ -140,10 +180,10 @@ layout_mode = 2
 texture_filter = 1
 position = Vector2(99.99998, 59.999992)
 scale = Vector2(0.13227513, 0.15523931)
-sprite_frames = SubResource("SpriteFrames_t2dqe")
+sprite_frames = SubResource("SpriteFrames_b1vt0")
 animation = &"1"
 autoplay = "1"
-frame_progress = 0.5174465
+frame_progress = 0.5091338
 
 [node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel2/MarcoFoto"]
 layout_mode = 1
@@ -213,7 +253,7 @@ stretch_mode = 5
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d6cao")
-text = "Ir al Bosque"
+text = "Ir al Dorado"
 
 [node name="TarjetaNivel4" type="VBoxContainer" parent="ContenedorNiveles"]
 layout_mode = 2
@@ -256,7 +296,7 @@ stretch_mode = 5
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d6cao")
-text = "Ir al Bosque"
+text = "Ir a la Montaña"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -295,6 +335,7 @@ text = "Borrar Cuenta"
 
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel1/BotonEntrar" to="." method="_on_boton_nivel_1_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel2/BotonEntrar" to="." method="_on_boton_nivel_2_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/TarjetaNivel3/BotonEntrar" to="." method="_on_boton_nivel_3_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="confirmed" from="DialogoBorrar" to="." method="_on_dialogo_borrar_confirmed"]
 [connection signal="pressed" from="BorrarCuenta" to="." method="_on_boton_borrar_pressed"]
