@@ -266,7 +266,7 @@ scale = Vector2(0.13227513, 0.15473913)
 sprite_frames = SubResource("SpriteFrames_nkknr")
 animation = &"1"
 autoplay = "1"
-frame_progress = 0.30884764
+frame_progress = 0.40096948
 
 [node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel3/MarcoFoto"]
 layout_mode = 1
@@ -376,6 +376,7 @@ text = "Borrar Cuenta"
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel1/BotonEntrar" to="." method="_on_boton_nivel_1_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel2/BotonEntrar" to="." method="_on_boton_nivel_2_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel3/BotonEntrar" to="." method="_on_boton_nivel_3_pressed"]
+[connection signal="pressed" from="ContenedorNiveles/TarjetaNivel4/BotonEntrar" to="." method="_on_boton_nivel_4_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="confirmed" from="DialogoBorrar" to="." method="_on_dialogo_borrar_confirmed"]
 [connection signal="pressed" from="BorrarCuenta" to="." method="_on_boton_borrar_pressed"]

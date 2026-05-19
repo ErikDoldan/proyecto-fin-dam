@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://clhsvg8sogppn"]
+[gd_scene load_steps=19 format=3 uid="uid://clhsvg8sogppn"]
 
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_5dm08"]
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="2_jxqql"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cllc0he5ou5su" path="res://Scenes/npc.tscn" id="7_0tgaq"]
 [ext_resource type="PackedScene" uid="uid://isdrhl2sg35r" path="res://Scenes/inventario_ui.tscn" id="7_koyrs"]
 [ext_resource type="PackedScene" uid="uid://c0n1ve7rk15pf" path="res://Scenes/puerta_final.tscn" id="12_io8q0"]
+[ext_resource type="PackedScene" uid="uid://cscgff265g6yv" path="res://Scenes/moneda.tscn" id="13_s86xo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jtdj"]
 texture = ExtResource("1_5dm08")
@@ -402,11 +403,69 @@ texture_filter = 1
 position = Vector2(1015, 145)
 
 [node name="Label" parent="NPC3/PanelContainer" index="0"]
+z_index = 1
 text = "Domi: \"Una vez que te adentres en la montaña, mi camino se separará del tuyo; no podré acompañarte más allá de estas puertas. A partir de aquí, tendrás que hacer esto solo. He de confesarte algo... cuando empezamos, no estaba seguro de si lo lograrías, pero he visto cómo dominabas cada poder y superabas cada obstáculo con una determinación admirable. Ha sido un verdadero honor guiarte hasta aquí. Ahora, respira hondo y usa todo lo que has aprendido, porque me temo que lo que te espera ahí dentro será tu mayor desafío hasta ahora\""
 
 [node name="PuertaFinal" parent="." instance=ExtResource("12_io8q0")]
 position = Vector2(1110, 137)
 nivel_a_desbloquear = 4
+
+[node name="Moneda" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(520, 107)
+
+[node name="Moneda2" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(280, 252)
+
+[node name="Moneda3" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(504, 395)
+
+[node name="Moneda4" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(344, 475)
+
+[node name="Moneda5" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(360, 475)
+
+[node name="Moneda6" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(376, 475)
+
+[node name="Moneda7" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(392, 475)
+
+[node name="Moneda8" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(408, 475)
+
+[node name="Moneda9" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(424, 475)
+
+[node name="Moneda10" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(344, 461)
+
+[node name="Moneda11" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(360, 461)
+
+[node name="Moneda12" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(376, 461)
+
+[node name="Moneda13" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(392, 461)
+
+[node name="Moneda14" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(408, 461)
+
+[node name="Moneda15" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(424, 461)
+
+[node name="Moneda16" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(1000, 523)
+
+[node name="Moneda17" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(1089, 564)
+
+[node name="Moneda18" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(680, 379)
+
+[node name="Moneda19" parent="." instance=ExtResource("13_s86xo")]
+position = Vector2(824, 186)
 
 [editable path="EnemigoOrco2"]
 [editable path="Jugador"]

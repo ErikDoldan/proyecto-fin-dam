@@ -71,7 +71,10 @@ func _on_boton_nivel_2_pressed():
 func _on_boton_nivel_3_pressed():
 	get_tree().change_scene_to_file("res://Scenes/nivel_3.tscn")
 
+func _on_boton_nivel_4_pressed():
+	get_tree().change_scene_to_file("res://Scenes/nivel_4.tscn")
 
+	
 func bloquear_nivel(tarjeta: VBoxContainer, numero_nivel: int):
 	var boton = tarjeta.get_node("BotonEntrar")
 	var capa_oscura = tarjeta.get_node("MarcoFoto/CapaBloqueo")
@@ -112,3 +115,7 @@ func _on_borrar_completado(_result, response_code, _headers, _body):
 		get_tree().change_scene_to_file("res://Scenes/pantalla_titulo.tscn")
 	else:
 		print("Error al borrar cuenta. Código: ", response_code)
+
+
+func _on_boton_entrar_pressed() -> void:
+	pass # Replace with function body.
