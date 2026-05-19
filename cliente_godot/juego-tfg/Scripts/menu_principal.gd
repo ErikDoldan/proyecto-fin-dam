@@ -65,6 +65,9 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		var planeador_obtenido = respuesta.get("tiene_planeador",false)
 		Global.habilidades["planeador"]=planeador_obtenido
 		
+		var agua_obtenido = respuesta.get("tiene_agua",false)
+		Global.habilidades["agua"]=agua_obtenido
+		
 		if equipadas_desde_db != "":
 			Global.habilidades_equipadas = Array(equipadas_desde_db.split(","))
 		else:

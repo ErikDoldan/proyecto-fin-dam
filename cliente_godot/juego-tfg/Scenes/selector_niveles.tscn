@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cacmsqbjcdcie"]
+[gd_scene load_steps=31 format=3 uid="uid://cacmsqbjcdcie"]
 
 [ext_resource type="Script" uid="uid://cl7n4ttgo0th7" path="res://Scripts/selector_niveles.gd" id="1_7mfc6"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_d6cao"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dp6u1r56w1usr" path="res://Assets/Fonts/FotoNivel2-3.png" id="9_b1vt0"]
 [ext_resource type="Texture2D" uid="uid://dfsxyjklekd1" path="res://Assets/Fonts/FotoNivel2-4.png" id="10_ksp5v"]
 [ext_resource type="Texture2D" uid="uid://d2frsaa45aet5" path="res://Assets/Fonts/FotoNivel2-2.png" id="11_t2dqe"]
+[ext_resource type="Texture2D" uid="uid://24tcnl28epss" path="res://Assets/Fonts/FotoNivel3-1.png" id="12_ah5yg"]
+[ext_resource type="Texture2D" uid="uid://dh526jhpn8k7x" path="res://Assets/Fonts/FotoNivel3-2.png" id="13_ps1jo"]
+[ext_resource type="Texture2D" uid="uid://c3lb5k3ahwxli" path="res://Assets/Fonts/FotoNivel3-3.png" id="14_xxe78"]
+[ext_resource type="Texture2D" uid="uid://caaiuerfdeiqj" path="res://Assets/Fonts/FotoNivel3-4.png" id="15_dha8n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgk5q"]
 atlas = ExtResource("3_r2cfi")
@@ -71,6 +75,42 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ps1jo")
+}],
+"loop": true,
+"name": &"1",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dfhm"]
+atlas = ExtResource("12_ah5yg")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awu5p"]
+atlas = ExtResource("13_ps1jo")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26w8m"]
+atlas = ExtResource("14_xxe78")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80u4c"]
+atlas = ExtResource("15_dha8n")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nkknr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dfhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awu5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26w8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80u4c")
 }],
 "loop": true,
 "name": &"1",
@@ -223,10 +263,10 @@ layout_mode = 2
 texture_filter = 1
 position = Vector2(100.00006, 60.193325)
 scale = Vector2(0.13227513, 0.15473913)
-sprite_frames = SubResource("SpriteFrames_t2dqe")
+sprite_frames = SubResource("SpriteFrames_nkknr")
 animation = &"1"
 autoplay = "1"
-frame_progress = 0.5174465
+frame_progress = 0.30884764
 
 [node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel3/MarcoFoto"]
 layout_mode = 1

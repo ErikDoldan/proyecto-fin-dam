@@ -1,0 +1,237 @@
+[gd_scene load_steps=29 format=3 uid="uid://b3j8215pmxigu"]
+
+[ext_resource type="Script" uid="uid://dn4ggfofcjrky" path="res://Scripts/coleccionable_velocidad.gd" id="1_vtudy"]
+[ext_resource type="Texture2D" uid="uid://desfm5lp7blqd" path="res://Assets/Sprites/Items/Treasure Chest - Basic & Fancy.png" id="2_4gx5g"]
+[ext_resource type="Texture2D" uid="uid://b6yigki8d6n32" path="res://Assets/Sprites/Items/WaterBall - Startup and Infinite.png" id="3_aqxpu"]
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="3_dsbv3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbf82"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(0, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24nlb"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(36, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o87kl"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(72, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8sit"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(108, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk7k7"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(144, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m04lq"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(180, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enqf8"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(216, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjmfb"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(252, 0, 36, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6b2a"]
+atlas = ExtResource("2_4gx5g")
+region = Rect2(0, 0, 36, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78wlj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbf82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24nlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o87kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8sit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk7k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m04lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enqf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjmfb")
+}],
+"loop": false,
+"name": &"abrir",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6b2a")
+}],
+"loop": false,
+"name": &"cerrado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mr6e"]
+size = Vector2(26, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o87kl"]
+font = ExtResource("3_dsbv3")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtudy"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gx5g"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsbv3"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6gom"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0shwv"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flanl"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yymcq"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr4i4"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vral5"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_026qs"]
+atlas = ExtResource("3_aqxpu")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7uhj8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtudy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gx5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsbv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6gom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0shwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flanl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yymcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr4i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vral5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_026qs")
+}],
+"loop": true,
+"name": &"Salto",
+"speed": 10.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g8sit"]
+font = ExtResource("3_dsbv3")
+font_size = 24
+
+[node name="CofreVelocidad" type="Area2D"]
+script = ExtResource("1_vtudy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_78wlj")
+animation = &"abrir"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_7mr6e")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -339.0
+offset_top = -240.0
+offset_right = 385.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(104, 64.5)
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextoObjeto" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "
+ Has conseguido el
+ fragmento de agua !!"
+label_settings = SubResource("LabelSettings_o87kl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EspacioObjeto" type="Control" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/PanelContainer/VBoxContainer/EspacioObjeto"]
+texture_filter = 1
+position = Vector2(339.00003, 168)
+scale = Vector2(6.6435, 7.03125)
+sprite_frames = SubResource("SpriteFrames_7uhj8")
+animation = &"Salto"
+autoplay = "Salto"
+frame_progress = 0.3392379
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Pulsa Espacio para continuar
+"
+label_settings = SubResource("LabelSettings_g8sit")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

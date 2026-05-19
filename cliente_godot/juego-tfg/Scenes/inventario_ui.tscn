@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://isdrhl2sg35r"]
+[gd_scene load_steps=110 format=3 uid="uid://isdrhl2sg35r"]
 
 [ext_resource type="Script" uid="uid://dyuycg4hj76at" path="res://Scripts/inventario_ui.gd" id="1_jhyeo"]
 [ext_resource type="Texture2D" uid="uid://csycsj4h7178e" path="res://Assets/Sprites/Items/PadlockOrange.png" id="2_enmq0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxrk3bwl4ffu2" path="res://Assets/Sprites/Items/Firebolt SpriteSheet.png" id="6_lnaj6"]
 [ext_resource type="Texture2D" uid="uid://oofeiw5pk4xm" path="res://Assets/Sprites/Items/Earth projectile Spritesheet .png" id="7_j1dns"]
 [ext_resource type="Texture2D" uid="uid://bp4b5fkiq6p65" path="res://Assets/Sprites/Items/Dark VFX 1 (40x32).png" id="8_51ksq"]
+[ext_resource type="Texture2D" uid="uid://b6yigki8d6n32" path="res://Assets/Sprites/Items/WaterBall - Startup and Infinite.png" id="9_17sc0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8m881"]
 atlas = ExtResource("3_nc0ql")
@@ -687,6 +688,49 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5rq2"]
+atlas = ExtResource("9_17sc0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uubdy"]
+atlas = ExtResource("9_17sc0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ms0w"]
+atlas = ExtResource("9_17sc0")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsss1"]
+atlas = ExtResource("9_17sc0")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpt5o"]
+atlas = ExtResource("9_17sc0")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_td8sx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5rq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uubdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ms0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsss1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpt5o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="InventarioUI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_jhyeo")
@@ -952,11 +996,11 @@ sprite_frames = SubResource("SpriteFrames_t5rq2")
 autoplay = "default"
 frame_progress = 0.39691123
 
-[node name="super_velocidad" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
+[node name="agua" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/super_velocidad"]
+[node name="Icono" type="TextureRect" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/agua"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -966,6 +1010,14 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Animacion" type="AnimatedSprite2D" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo/agua"]
+texture_filter = 1
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_td8sx")
+autoplay = "default"
+frame_progress = 0.91780037
 
 [node name="gancho" type="Panel" parent="Margen/DivisionPrincipal/LadoDerecho/CuadriculaCatalogo"]
 custom_minimum_size = Vector2(64, 64)

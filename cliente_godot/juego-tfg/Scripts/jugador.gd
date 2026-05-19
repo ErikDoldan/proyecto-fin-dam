@@ -6,6 +6,7 @@ var vidas = 3
 var recibiendo_dano = false 
 var ha_gastado_doble_salto = false
 const VELOCIDAD = 150.0
+var velocidad_agua = 250.0
 const FUERZA_SALTO = -300.0 
 const MULTIPLICADOR_GRAVEDAD = 1.2 
 var esta_congelado = false
@@ -99,12 +100,18 @@ func _physics_process(delta):
 	# 4. MOVERSE A LOS LADOS
 	var direccion = Input.get_axis("mover_izq","mover_der")
 	
+	# --- PASIVA: FRAGMENTO DEL AGUA ---
+	var velocidad_actual = VELOCIDAD
+	if "agua" in Global.habilidades_equipadas:
+		velocidad_actual = velocidad_agua
+	# ----------------------------------
+	
 	if direccion != 0:
-		velocity.x = direccion * VELOCIDAD
+		velocity.x = direccion * velocidad_actual 
 		# Invertir el sprite según la dirección
 		sprite.flip_h = (direccion < 0)
 	else:
-		velocity.x = move_toward(velocity.x, 0, VELOCIDAD)
+		velocity.x = move_toward(velocity.x, 0, velocidad_actual) 
 
 	# 5. GESTIÓN DE ANIMACIONES
 	actualizar_animaciones(direccion)
