@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cacmsqbjcdcie"]
+[gd_scene load_steps=42 format=3 uid="uid://cacmsqbjcdcie"]
 
 [ext_resource type="Script" uid="uid://cl7n4ttgo0th7" path="res://Scripts/selector_niveles.gd" id="1_7mfc6"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_d6cao"]
@@ -15,6 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://dh526jhpn8k7x" path="res://Assets/Fonts/FotoNivel3-2.png" id="13_ps1jo"]
 [ext_resource type="Texture2D" uid="uid://c3lb5k3ahwxli" path="res://Assets/Fonts/FotoNivel3-3.png" id="14_xxe78"]
 [ext_resource type="Texture2D" uid="uid://caaiuerfdeiqj" path="res://Assets/Fonts/FotoNivel3-4.png" id="15_dha8n"]
+[ext_resource type="Texture2D" uid="uid://d3tyoixnmopfn" path="res://Assets/Fonts/FotoNivel4-1.png" id="16_awu5p"]
+[ext_resource type="Texture2D" uid="uid://ckqih05l8vfoq" path="res://Assets/Fonts/FotoNivel4-3.png" id="17_26w8m"]
+[ext_resource type="Texture2D" uid="uid://4ba2ub651cdf" path="res://Assets/Fonts/FotoNivel4-4.png" id="18_80u4c"]
+[ext_resource type="Texture2D" uid="uid://blwq3etkx38r0" path="res://Assets/Fonts/FotoNivel4-5.png" id="19_nkknr"]
+[ext_resource type="Texture2D" uid="uid://ck31tixbn028p" path="res://Assets/Fonts/FotoNivel4-6.png" id="20_u37k1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgk5q"]
 atlas = ExtResource("3_r2cfi")
@@ -111,6 +116,49 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_80u4c")
+}],
+"loop": true,
+"name": &"1",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxrh2"]
+atlas = ExtResource("16_awu5p")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm5en"]
+atlas = ExtResource("17_26w8m")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0hva"]
+atlas = ExtResource("18_80u4c")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndqav"]
+atlas = ExtResource("19_nkknr")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipw0q"]
+atlas = ExtResource("20_u37k1")
+region = Rect2(0, 0, 1512, 773)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82f8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxrh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm5en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0hva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndqav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipw0q")
 }],
 "loop": true,
 "name": &"1",
@@ -306,10 +354,10 @@ layout_mode = 2
 texture_filter = 1
 position = Vector2(99.999985, 60.000008)
 scale = Vector2(0.13227512, 0.15523933)
-sprite_frames = SubResource("SpriteFrames_t2dqe")
+sprite_frames = SubResource("SpriteFrames_82f8h")
 animation = &"1"
 autoplay = "1"
-frame_progress = 0.5174465
+frame_progress = 0.6524524
 
 [node name="CapaBloqueo" type="ColorRect" parent="ContenedorNiveles/TarjetaNivel4/MarcoFoto"]
 layout_mode = 1

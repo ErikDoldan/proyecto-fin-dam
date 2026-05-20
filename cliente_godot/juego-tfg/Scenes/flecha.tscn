@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxojxpcfji0by"]
+
+[ext_resource type="Script" uid="uid://ct5e3h15temtw" path="res://Scripts/flecha.gd" id="1_7p3hv"]
+[ext_resource type="Texture2D" uid="uid://bwf1mc1224k06" path="res://Assets/Sprites/Characters/Arrow03(32x32).png" id="1_khu2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khu2l"]
+size = Vector2(18, 3)
+
+[node name="Flecha" type="Area2D"]
+script = ExtResource("1_7p3hv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_khu2l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_khu2l")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-8, -1, 18, 3)
