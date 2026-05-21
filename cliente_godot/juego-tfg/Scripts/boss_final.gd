@@ -15,6 +15,7 @@ var puede_atacar = true
 var tiempo_recarga_ataque = 2.0 # Segundos de descanso entre ataques
 
 const BOLA_FUEGO_BOSS = preload("res://Scenes/bola_fuego_boss.tscn")
+const PANTALLA_VICTORIA = preload("res://Scenes/pantalla_victoria.tscn")
 
 # --- NODOS ---
 @onready var sprite = $AnimatedSprite2D
@@ -220,4 +221,14 @@ func morir():
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 1.0)
 	await tween.finished
+	# --- NUEVO: La pausa dramática y la pantalla de victoria ---
+	# Esperamos 2 segundos en silencio para que el jugador respire
+	await get_tree().create_timer(2.0).timeout
+	
+	var victoria = PANTALLA_VICTORIA.instantiate()
+	
+	get_parent().add_child(victoria)
+	
+	victoria.mostrar_puntuacion(Global.puntuacion_actual) 
+	
 	queue_free()

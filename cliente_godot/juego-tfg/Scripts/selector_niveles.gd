@@ -32,6 +32,7 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 		var respuesta_json = JSON.parse_string(body.get_string_from_utf8())
 		var nombre = respuesta_json.get("nombre", "Desconocido")
 		var puntos = respuesta_json.get("puntuacion", 0)
+		Global.puntuacion_actual = puntos
 		
 		# --- LEE EL NIVEL DESBLOQUEADO DESDE DJANGO ---
 		Global.nivel_desbloqueado = respuesta_json.get("nivel_desbloqueado", 1)
