@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://bis83iuw26ldm"]
+[gd_scene load_steps=33 format=3 uid="uid://bis83iuw26ldm"]
 
 [ext_resource type="Script" uid="uid://d2olebmdr1grm" path="res://Scripts/jugador.gd" id="1_c1mnh"]
 [ext_resource type="Texture2D" uid="uid://bjt7cblfs3n7g" path="res://Assets/Sprites/Characters/knight.png" id="2_c1mnh"]
 [ext_resource type="Texture2D" uid="uid://dy1yyhu5dqmei" path="res://Assets/Sprites/Items/textura_corazon_lleno.png" id="3_tn1hq"]
 [ext_resource type="Texture2D" uid="uid://c4a6gbd3a8kqj" path="res://Assets/Sprites/Items/corazon piedra.png" id="4_n4xcq"]
 [ext_resource type="Texture2D" uid="uid://dyb5jwqcvubip" path="res://Assets/Sprites/Items/escudo piedra.png" id="5_iw3ti"]
+[ext_resource type="PackedScene" uid="uid://dkt5oyqv2drpc" path="res://Scenes/menu_pausa.tscn" id="6_iw3ti"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tn1hq"]
 atlas = ExtResource("2_c1mnh")
@@ -274,3 +275,5 @@ initial_velocity_max = 20.0
 scale_amount_min = 2.0
 scale_amount_max = 2.0
 color = Color(0.18431373, 0.011764706, 0.2509804, 0.77254903)
+
+[node name="MenuPausa" parent="." instance=ExtResource("6_iw3ti")]

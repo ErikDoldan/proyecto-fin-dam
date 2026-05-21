@@ -117,6 +117,8 @@ func _on_borrar_completado(_result, response_code, _headers, _body):
 	else:
 		print("Error al borrar cuenta. Código: ", response_code)
 
-
+func _on_boton_ver_controles_pressed():
+	$MenuControles.visible = true
+	
 func _on_boton_entrar_pressed() -> void:
 	pass # Replace with function body.

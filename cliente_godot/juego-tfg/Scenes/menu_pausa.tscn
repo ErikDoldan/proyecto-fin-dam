@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkt5oyqv2drpc"]
+
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_4gs4c"]
+[ext_resource type="Script" uid="uid://5drocci1y08q" path="res://Scripts/menu_pausa.gd" id="1_7dldy"]
+[ext_resource type="PackedScene" uid="uid://b6wydlf8pnxw2" path="res://Scenes/menu_controles.tscn" id="3_pq2yk"]
+
+[node name="MenuPausa" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7dldy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5764706)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4gs4c")
+theme_override_font_sizes/font_size = 32
+text = "JUEGO EN PAUSA
+
+
+
+"
+
+[node name="BtnContinuar" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4gs4c")
+text = "Continuar
+"
+
+[node name="BtnControles" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4gs4c")
+text = "Controles
+"
+
+[node name="BtnVolumen" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4gs4c")
+text = "Volumen"
+
+[node name="BtnSalir" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4gs4c")
+text = "Salir al menu"
+
+[node name="MenuControles" parent="." instance=ExtResource("3_pq2yk")]
+
+[connection signal="pressed" from="VBoxContainer/BtnContinuar" to="." method="_on_btn_continuar_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnControles" to="." method="_on_btn_controles_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnSalir" to="." method="_on_btn_salir_pressed"]
+[connection signal="controles_cerrados" from="MenuControles" to="." method="_on_menu_controles_controles_cerrados"]

@@ -1,0 +1,208 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6wydlf8pnxw2"]
+
+[ext_resource type="Script" uid="uid://dmtwgy7ie80to" path="res://Scripts/menu_controles.gd" id="1_r6lnu"]
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_ypxxw"]
+[ext_resource type="Texture2D" uid="uid://ba6cn0yxc240u" path="res://Assets/Sprites/TileSet/Esc.png" id="2_vapbf"]
+[ext_resource type="Texture2D" uid="uid://cjpa4u1yrgh8v" path="res://Assets/Sprites/TileSet/A.png" id="3_0yo26"]
+[ext_resource type="Texture2D" uid="uid://bibyr6wrh50af" path="res://Assets/Sprites/TileSet/D.png" id="4_y4l0i"]
+[ext_resource type="Texture2D" uid="uid://bofj4egl5f8qi" path="res://Assets/Sprites/TileSet/E.png" id="6_ce4kq"]
+[ext_resource type="Texture2D" uid="uid://dk7nowtvmn1h1" path="res://Assets/Sprites/TileSet/Espacio.png" id="7_gkypi"]
+[ext_resource type="Texture2D" uid="uid://bqmtw6htey4t4" path="res://Assets/Sprites/TileSet/ClickD.png" id="8_8irug"]
+[ext_resource type="Texture2D" uid="uid://b414j1d3pvmuk" path="res://Assets/Sprites/TileSet/ClickI.png" id="9_x3qxy"]
+
+[node name="MenuControles" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6039216)
+script = ExtResource("1_r6lnu")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Esc" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 518.0
+offset_top = 56.0
+offset_right = 582.0
+offset_bottom = 120.0
+texture = ExtResource("2_vapbf")
+
+[node name="Esc2" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 518.0
+offset_top = 142.0
+offset_right = 582.0
+offset_bottom = 206.0
+texture = ExtResource("3_0yo26")
+
+[node name="Esc3" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 518.0
+offset_top = 223.0
+offset_right = 582.0
+offset_bottom = 287.0
+texture = ExtResource("4_y4l0i")
+
+[node name="Esc4" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 518.0
+offset_top = 308.0
+offset_right = 582.0
+offset_bottom = 372.0
+texture = ExtResource("6_ce4kq")
+
+[node name="Esc5" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 490.0
+offset_top = 400.0
+offset_right = 618.0
+offset_bottom = 464.0
+texture = ExtResource("7_gkypi")
+
+[node name="Esc6" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 941.0
+offset_top = 264.0
+offset_right = 1005.0
+offset_bottom = 328.0
+texture = ExtResource("8_8irug")
+
+[node name="Esc7" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 941.0
+offset_top = 158.0
+offset_right = 1005.0
+offset_bottom = 222.0
+texture = ExtResource("9_x3qxy")
+
+[node name="Esc8" type="TextureRect" parent="TextureRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 941.0
+offset_top = 54.0
+offset_right = 1005.0
+offset_bottom = 118.0
+texture = ExtResource("9_x3qxy")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 167.0
+offset_top = 77.0
+offset_right = 485.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 24
+text = "Abrir menu pausa"
+
+[node name="Label2" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 186.0
+offset_top = 165.0
+offset_right = 504.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 24
+text = "Moverse Izq"
+
+[node name="Label3" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 186.0
+offset_top = 244.0
+offset_right = 504.0
+offset_bottom = 268.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 24
+text = "Moverse Dch"
+
+[node name="Label4" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 101.0
+offset_top = 327.0
+offset_right = 551.0
+offset_bottom = 351.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 22
+text = "Abrir/Cerrar Inventario"
+
+[node name="Label5" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 144.0
+offset_top = 419.0
+offset_right = 594.0
+offset_bottom = 443.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 24
+text = "Salto/Doble salto"
+
+[node name="Label6" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 634.0
+offset_top = 74.0
+offset_right = 1084.0
+offset_bottom = 98.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 24
+text = "Bola de fuego"
+
+[node name="Label7" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 595.0
+offset_top = 178.0
+offset_right = 1045.0
+offset_bottom = 202.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 20
+text = "Equipar/Des habilidad"
+
+[node name="Label8" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 728.0
+offset_top = 287.0
+offset_right = 1178.0
+offset_bottom = 311.0
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 24
+text = "Dashear"
+
+[node name="BtnVolver" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 259.0
+offset_right = 84.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ypxxw")
+theme_override_font_sizes/font_size = 32
+text = "Volver"
+
+[connection signal="pressed" from="BtnVolver" to="." method="_on_btn_volver_pressed"]
