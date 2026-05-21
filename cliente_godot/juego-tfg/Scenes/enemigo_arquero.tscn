@@ -272,8 +272,6 @@ script = ExtResource("1_jcr14")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_lx2d2")
 animation = &"Ataque"
-frame = 8
-frame_progress = 1.0
 offset = Vector2(-3, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,19 +1,9 @@
-[gd_scene load_steps=105 format=3 uid="uid://e3t3ll4uce8r"]
+[gd_scene load_steps=110 format=3 uid="uid://e3t3ll4uce8r"]
 
+[ext_resource type="Script" uid="uid://lb421txx4urx" path="res://Scripts/boss_final.gd" id="1_6f4j3"]
 [ext_resource type="Texture2D" uid="uid://chlp8r0qaseg3" path="res://Assets/Sprites/Characters/demon_slime_v1.0-SpriteSheet_288x160.png" id="1_voo5q"]
 [ext_resource type="Texture2D" uid="uid://cg47emjl0ao08" path="res://Assets/Sprites/Characters/demon_slime_FREE_v1.0_288x160_spritesheet.png" id="2_tcdiq"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6f4j3"]
-atlas = ExtResource("1_voo5q")
-region = Rect2(0, 1280, 288, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dasqd"]
-atlas = ExtResource("1_voo5q")
-region = Rect2(288, 1280, 288, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cmsb2"]
-atlas = ExtResource("1_voo5q")
-region = Rect2(576, 1280, 288, 160)
+[ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="4_dasqd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k2w1n"]
 atlas = ExtResource("1_voo5q")
@@ -407,15 +397,6 @@ region = Rect2(3168, 160, 288, 160)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6f4j3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dasqd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cmsb2")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_k2w1n")
 }, {
 "duration": 1.0,
@@ -469,9 +450,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qae34")
 }],
-"loop": true,
+"loop": false,
 "name": &"AtackRange",
-"speed": 9.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -519,7 +500,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ikoe5")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
 "speed": 9.0
 }, {
@@ -575,7 +556,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wy71k")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 8.0
 }, {
@@ -595,7 +576,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hbnbu")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hit",
 "speed": 8.0
 }, {
@@ -618,7 +599,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_on3b2")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle",
 "speed": 8.0
 }, {
@@ -677,7 +658,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5wwwp")
 }],
-"loop": true,
+"loop": false,
 "name": &"JumpAtack",
 "speed": 8.0
 }, {
@@ -700,7 +681,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tvrcy")
 }],
-"loop": true,
+"loop": false,
 "name": &"Spell",
 "speed": 8.0
 }, {
@@ -741,7 +722,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aqn2j")
 }],
-"loop": true,
+"loop": false,
 "name": &"Walk",
 "speed": 8.0
 }]
@@ -749,14 +730,93 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jwg2"]
 size = Vector2(52, 79)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_voo5q"]
+radius = 43.0
+height = 106.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcdiq"]
+size = Vector2(92, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6f4j3"]
+size = Vector2(195, 27)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cmsb2"]
+radius = 430.5624
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2w1n"]
+bg_color = Color(0.00022877274, 8.3857965e-05, 1.4324685e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eh47f"]
+bg_color = Color(0.8780517, 0.12396137, 0.2047672, 1)
+
 [node name="BossFinal" type="CharacterBody2D"]
+script = ExtResource("1_6f4j3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3iq7w")
-animation = &"JumpAtack"
-frame_progress = 0.79875416
+animation = &"Attack"
+frame = 14
+frame_progress = 1.0
 offset = Vector2(-1, -42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_3jwg2")
+
+[node name="HitboxMelee" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxMelee"]
+position = Vector2(-69, -4)
+shape = SubResource("CapsuleShape2D_voo5q")
+disabled = true
+
+[node name="HitboxLlamarada" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxLlamarada"]
+position = Vector2(-73, -25)
+shape = SubResource("RectangleShape2D_tcdiq")
+disabled = true
+
+[node name="HitboxOndaChoque" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxOndaChoque"]
+position = Vector2(4.5, 23.5)
+shape = SubResource("RectangleShape2D_6f4j3")
+disabled = true
+
+[node name="PuntoDisparo" type="Marker2D" parent="."]
+position = Vector2(-80, -22)
+
+[node name="RangoVision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangoVision"]
+shape = SubResource("CircleShape2D_cmsb2")
+
+[node name="UI_Boss" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ContenedorBoss" type="VBoxContainer" parent="UI_Boss"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 56.0
+offset_right = 300.0
+offset_bottom = 110.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="NombreBoss" type="Label" parent="UI_Boss/ContenedorBoss"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_dasqd")
+text = "Arazmus el Devorador de Destinos"
+
+[node name="ProgressBar" type="ProgressBar" parent="UI_Boss/ContenedorBoss"]
+custom_minimum_size = Vector2(600, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_k2w1n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eh47f")
+show_percentage = false

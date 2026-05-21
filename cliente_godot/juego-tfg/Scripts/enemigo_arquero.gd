@@ -126,9 +126,17 @@ func sufrir_dano(cantidad: int, posicion_x_ataque: float):
 func morir():
 	esta_muerto = true
 	barra_vida.visible = false
+	
+	# --- NUEVO: Apagamos la gravedad y el movimiento para que no se caigan ---
+	set_physics_process(false) 
+	
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	sprite.play("Death")
+	# (OJO: El arquero no tiene ZonaAtaque, así que esa línea solo la tendrán el oso, orco y cazador)
+	if has_node("ZonaAtaque/CollisionShape2D"):
+		$ZonaAtaque/CollisionShape2D.set_deferred("disabled", true)
+	
+	sprite.play("Death") 
 	await sprite.animation_finished
 	
 	var tween = create_tween()
