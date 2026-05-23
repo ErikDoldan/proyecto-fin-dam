@@ -130,6 +130,7 @@ grow_vertical = 2
 
 [node name="AnimacionJugador" type="AnimatedSprite2D" parent="AnclaAnimacion"]
 texture_filter = 1
+position = Vector2(0, -25)
 scale = Vector2(12, 12)
 sprite_frames = SubResource("SpriteFrames_27btx")
 animation = &"victoria"

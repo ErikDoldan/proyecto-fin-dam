@@ -17,6 +17,12 @@ const BOLA_FUEGO = preload("res://Scenes/bola_fuego.tscn")
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 var puede_disparar = true
 
+#SONIDOOOS
+@onready var sonido_fuego = $SonidoFuego
+@onready var sonido_salto = $SonidoSalto
+@onready var sonido_dash = $SonidoDash
+@onready var sonido_pupa = $SonidoPupa
+
 @onready var contenedor_corazones = $UI/HBoxContainer
 
 @onready var burbuja_escudo = $BurbujaEscudo
@@ -49,8 +55,9 @@ func _physics_process(delta):
 			velocity.y += gravedad * MULTIPLICADOR_GRAVEDAD * delta
 		move_and_slide()
 		return
+		
 	if esta_dasheando:
-		velocity.y = 0 # Anulamos la gravedad para que el dash sea recto
+		velocity.y = 0 
 		move_and_slide()
 		return
 		
@@ -88,15 +95,15 @@ func _physics_process(delta):
 		if is_on_floor():
 			# Salto normal desde el suelo
 			velocity.y = FUERZA_SALTO
-			
+			sonido_salto.play()
 		
 		elif "doble_salto" in Global.habilidades_equipadas and not ha_gastado_doble_salto:
 			# Doble salto en el aire
 			velocity.y = FUERZA_SALTO
 			ha_gastado_doble_salto = true
-			# Reproducimos la animación especial de doble salto
+			
 			sprite.play("Jump2")
-		
+			sonido_salto.play()
 	# 4. MOVERSE A LOS LADOS
 	var direccion = Input.get_axis("mover_izq","mover_der")
 	
@@ -140,8 +147,10 @@ func recibir_dano(posicion_x_enemigo):
 		return 
 	
 	recibiendo_dano = true
+	sonido_pupa.play()
 	if "escudo" in Global.habilidades_equipadas and not escudo_roto:
 		romper_escudo(posicion_x_enemigo)
+		sonido_pupa.play()
 		return
 		
 	vidas -= 1
@@ -200,7 +209,7 @@ func iniciar_dash():
 
 	# OPCIONAL: Si tienes animación de dash, ponla aquí
 	# sprite.play("Dash")
-
+	sonido_dash.play()
 	# El dash dura solo 0.2 segundos
 	await get_tree().create_timer(0.2).timeout
 	esta_dasheando = false
@@ -212,6 +221,7 @@ func iniciar_dash():
 func disparar_fuego():
 	puede_disparar = false
 	var nueva_bola = BOLA_FUEGO.instantiate()
+	sonido_fuego.play()
 	
 	var direccion_x = 1
 	if sprite.flip_h:

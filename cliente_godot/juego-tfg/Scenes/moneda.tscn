@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cscgff265g6yv"]
+[gd_scene load_steps=18 format=3 uid="uid://cscgff265g6yv"]
 
 [ext_resource type="Script" uid="uid://m22hg0bbae4" path="res://Scripts/moneda.gd" id="1_j5x4i"]
 [ext_resource type="Texture2D" uid="uid://bqjytm0xtsady" path="res://Assets/Sprites/Items/coin.png" id="2_wder7"]
+[ext_resource type="AudioStream" uid="uid://dtas3rpdnpmh0" path="res://Sounds/coin.wav" id="3_wder7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvb0b"]
 atlas = ExtResource("2_wder7")
@@ -112,3 +113,6 @@ frame_progress = 1.0
 shape = SubResource("CircleShape2D_j5x4i")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="SonidoMoneda" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wder7")
