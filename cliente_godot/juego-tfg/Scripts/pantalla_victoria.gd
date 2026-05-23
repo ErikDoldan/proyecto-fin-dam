@@ -4,7 +4,7 @@ extends CanvasLayer
 
 func _ready():
 	# Nos aseguramos de que el personaje empiece a celebrar nada más aparecer la pantalla
-	$AnimacionJugador.play("victoria") 
+	$AnclaAnimacion/AnimacionJugador.play("victoria")	
 	
 func mostrar_puntuacion(puntos_totales):
 	label_puntuacion.text = "Puntuación total: " + str(puntos_totales)
