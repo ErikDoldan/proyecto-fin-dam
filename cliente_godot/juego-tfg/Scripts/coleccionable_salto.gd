@@ -9,14 +9,14 @@ var cofre_abierto = false
 var esperando_cierre = false 
 
 func _ready():
-	# IMPORTANTE: Al empezar, el cartel SIEMPRE debe estar oculto
+	
 	cartel_victoria.visible = false
 	esperando_cierre = false
 	
-	# Comprobamos en el NUEVO DICCIONARIO si el jugador ya tenía el poder
+	
 	if Global.habilidades.has("doble_salto") and Global.habilidades["doble_salto"] == true:
 		cofre_abierto = true
-		animated_sprite.play("abrir") # Aparece abierto pero NO muestra cartel
+		animated_sprite.play("abrir") 
 	else:
 		cofre_abierto = false
 		animated_sprite.play("cerrado")
@@ -56,7 +56,7 @@ func cerrar_mensaje():
 func enviar_a_django():
 	var url_django = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
 	
-	# --- AHORA SÍ ENVIAMOS LAS DOS COSAS ---
+	
 	var lista_texto = ",".join(Global.habilidades_equipadas)
 	var datos = {
 		"tiene_doble_salto": true,
@@ -68,14 +68,14 @@ func enviar_a_django():
 	http_request.request(url_django, headers, HTTPClient.METHOD_PUT, json_datos)
 	
 func _on_request_completed(_result, response_code, _headers, body):
-	# Ahora sí comprobamos si sale bien o si falla
+	
 	if response_code == 200:
 		print("¡Cofre guardado en Django 200 OK!")
 		
-		# 1. Lo marcamos como desbloqueado en el catálogo general
+		
 		Global.habilidades["doble_salto"] = true
 		
-		# 2. Como aún no hay menú, te lo equipamos automáticamente para que lo uses ya
+		
 		if not "doble_salto" in Global.habilidades_equipadas:
 			Global.habilidades_equipadas.append("doble_salto")
 			

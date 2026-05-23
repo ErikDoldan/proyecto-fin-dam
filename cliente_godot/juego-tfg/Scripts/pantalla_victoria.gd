@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var label_puntuacion = $VBoxContainer/Puntuacion
 
 func _ready():
-	# Nos aseguramos de que el personaje empiece a celebrar nada más aparecer la pantalla
+	# El personaje empiece a celebrar nada más aparecer la pantalla
 	$AnclaAnimacion/AnimacionJugador.play("victoria")	
 	
 func mostrar_puntuacion(puntos_totales):

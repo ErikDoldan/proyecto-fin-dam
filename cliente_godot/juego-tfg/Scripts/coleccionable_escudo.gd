@@ -12,7 +12,7 @@ func _ready():
 	cartel_victoria.visible = false
 	esperando_cierre = false
 	
-	# Comprobamos si ya tiene el escudo
+	#Comprobacion escudo
 	if Global.habilidades.has("escudo") and Global.habilidades["escudo"] == true:
 		cofre_abierto = true
 		animated_sprite.play("abrir") 
@@ -35,7 +35,7 @@ func _on_body_entered(body):
 		cartel_victoria.visible = true
 		esperando_cierre = true
 		
-		# Desbloqueamos y autoequipamos en Godot
+		# Desbloquea y autoequipa
 		Global.habilidades["escudo"] = true
 		if not "escudo" in Global.habilidades_equipadas and Global.habilidades_equipadas.size() < 4:
 			Global.habilidades_equipadas.append("escudo")
@@ -56,7 +56,7 @@ func enviar_a_django():
 	var url_django = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
 	
 	var lista_texto = ",".join(Global.habilidades_equipadas)
-	# Avisamos a Django de que hemos cogido el escudo
+	# Aviso a Django de que he cogido el escudo
 	var datos = {
 		"habilidades_equipadas": lista_texto,
 		"tiene_escudo": true

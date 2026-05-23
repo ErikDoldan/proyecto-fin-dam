@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dojrktqp8xw3w"]
+
+[ext_resource type="Script" uid="uid://oqf0f0okog5t" path="res://Scripts/sonidos_ui.gd" id="1_eoqxr"]
+[ext_resource type="AudioStream" uid="uid://cmhtyfv77rbkx" path="res://Sounds/click.wav" id="1_fpyuj"]
+
+[node name="SonidosUI" type="Node"]
+script = ExtResource("1_eoqxr")
+
+[node name="SonidoClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_fpyuj")
+volume_db = 2.862

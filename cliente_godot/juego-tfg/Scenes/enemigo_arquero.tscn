@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://mxpwfg4ie82d"]
+[gd_scene load_steps=45 format=3 uid="uid://mxpwfg4ie82d"]
 
 [ext_resource type="Script" uid="uid://4e71oswqsaep" path="res://Scripts/enemigo_arquero.gd" id="1_jcr14"]
 [ext_resource type="Texture2D" uid="uid://c2300blqre8d3" path="res://Assets/Sprites/Characters/Skeleton Archer-Attack.png" id="1_rraan"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dk4qycmrkcbes" path="res://Assets/Sprites/Characters/Skeleton Archer-Death.png" id="3_f1rrv"]
 [ext_resource type="Texture2D" uid="uid://dxric0xpw7se5" path="res://Assets/Sprites/Characters/Skeleton Archer-Idle.png" id="4_q3mxl"]
 [ext_resource type="Texture2D" uid="uid://dbq51tx1p7qfe" path="res://Assets/Sprites/Characters/Skeleton Archer-Walk.png" id="5_h01e4"]
+[ext_resource type="AudioStream" uid="uid://dpd3p7tkqsk7g" path="res://Sounds/Hitesqueleto.wav" id="7_f1rrv"]
+[ext_resource type="AudioStream" uid="uid://dbetbmd6bfgda" path="res://Sounds/arco.wav" id="8_q3mxl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05gpw"]
 atlas = ExtResource("1_rraan")
@@ -291,3 +293,9 @@ show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangoVision"]
 shape = SubResource("CircleShape2D_yajje")
+
+[node name="SonidoPupa" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_f1rrv")
+
+[node name="SonidoArco" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_q3mxl")

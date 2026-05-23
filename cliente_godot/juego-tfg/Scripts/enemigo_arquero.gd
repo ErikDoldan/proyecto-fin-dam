@@ -19,6 +19,13 @@ const FLECHA = preload("res://Scenes/flecha.tscn")
 @onready var sprite = $AnimatedSprite2D
 @onready var barra_vida = $ProgressBar
 
+#Sonidos
+
+@onready var sonido_pupa = $SonidoPupa
+@onready var sonido_arco = $SonidoArco
+
+
+
 func _ready():
 	vida_actual = vida_maxima
 	barra_vida.max_value = vida_maxima
@@ -61,9 +68,9 @@ func iniciar_ataque():
 	puede_disparar = false
 	sprite.play("Ataque")
 	
-	# Esperamos 0.4s para que la flecha salga justo cuando estira la cuerda en la animación
+	# Espera 0.4s para que la flecha salga justo cuando estira la cuerda en la animación
 	await get_tree().create_timer(0.4).timeout 
-	
+	sonido_arco.play()
 	if not esta_muerto and not recibiendo_dano and jugador_objetivo != null:
 		disparar_flecha()
 		
@@ -101,6 +108,7 @@ func _on_rango_vision_exited(body):
 		jugador_objetivo = null 
 
 # --- RECIBIR DAÑO ---
+
 func sufrir_dano(cantidad: int, posicion_x_ataque: float):
 	if esta_muerto:
 		return
@@ -114,6 +122,7 @@ func sufrir_dano(cantidad: int, posicion_x_ataque: float):
 		recibiendo_dano = true
 		esta_atacando = false # Si le pegas, le cortas el ataque
 		sprite.play("Damage")
+		sonido_pupa.play()
 		sprite.modulate = Color.RED
 		await get_tree().create_timer(0.2).timeout
 		sprite.modulate = Color.WHITE
@@ -127,12 +136,12 @@ func morir():
 	esta_muerto = true
 	barra_vida.visible = false
 	
-	# --- NUEVO: Apagamos la gravedad y el movimiento para que no se caigan ---
+	
 	set_physics_process(false) 
 	
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	# (OJO: El arquero no tiene ZonaAtaque, así que esa línea solo la tendrán el oso, orco y cazador)
+	
 	if has_node("ZonaAtaque/CollisionShape2D"):
 		$ZonaAtaque/CollisionShape2D.set_deferred("disabled", true)
 	

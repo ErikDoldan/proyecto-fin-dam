@@ -12,10 +12,9 @@ func _ready():
 	cartel_victoria.visible = false
 	esperando_cierre = false
 	
-	# Comprobamos si ya tiene el Fragmento del Agua usando la palabra clave "agua"
 	if Global.habilidades.has("agua") and Global.habilidades["agua"] == true:
 		cofre_abierto = true
-		animated_sprite.play("abrir") # O el nombre que tenga tu animación de cofre abierto
+		animated_sprite.play("abrir")
 	else:
 		cofre_abierto = false
 		animated_sprite.play("cerrado")
@@ -28,26 +27,26 @@ func _on_body_entered(body):
 		cofre_abierto = true
 		jugador_tocado = body
 		
-		# Congelamos al jugador mientras se abre el cofre
+		
 		jugador_tocado.esta_congelado = true
 		animated_sprite.play("abrir")
 		await animated_sprite.animation_finished
 		
-		# Mostramos el cartel de victoria
+		
 		cartel_victoria.visible = true
 		esperando_cierre = true
 		
-		# Desbloqueamos la habilidad internamente
+	
 		Global.habilidades["agua"] = true
 		
-		# Si hay hueco, se la equipamos automáticamente
+		
 		if not "agua" in Global.habilidades_equipadas and Global.habilidades_equipadas.size() < 4:
 			Global.habilidades_equipadas.append("agua")
 			
 		enviar_a_django()
 
 func _input(event):
-	# Cuando el jugador pulse Enter / Espacio para cerrar el mensaje
+	
 	if esperando_cierre and event.is_action_pressed("ui_accept"):
 		cerrar_mensaje()
 
@@ -61,7 +60,7 @@ func enviar_a_django():
 	var url_django = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
 	var lista_texto = ",".join(Global.habilidades_equipadas)
 	
-	# Usamos 'tiene_agua' para que Django lo reconozca
+	
 	var datos = {
 		"habilidades_equipadas": lista_texto,
 		"tiene_agua": true

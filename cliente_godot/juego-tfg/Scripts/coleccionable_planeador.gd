@@ -14,7 +14,7 @@ func _ready():
 	
 	if Global.habilidades.has("planeador") and Global.habilidades["planeador"] == true:
 		cofre_abierto = true
-		animated_sprite.play("abrir") # O el nombre que tenga tu animación de cofre abierto
+		animated_sprite.play("abrir") 
 	else:
 		cofre_abierto = false
 		animated_sprite.play("cerrado")
@@ -34,7 +34,7 @@ func _on_body_entered(body):
 		cartel_victoria.visible = true
 		esperando_cierre = true
 		
-		# Desbloqueamos
+		
 		Global.habilidades["planeador"] = true
 		if not "planeador" in Global.habilidades_equipadas and Global.habilidades_equipadas.size() < 4:
 			Global.habilidades_equipadas.append("planeador")

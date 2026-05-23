@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bis83iuw26ldm"]
+[gd_scene load_steps=38 format=3 uid="uid://bis83iuw26ldm"]
 
 [ext_resource type="Script" uid="uid://d2olebmdr1grm" path="res://Scripts/jugador.gd" id="1_c1mnh"]
 [ext_resource type="Texture2D" uid="uid://bjt7cblfs3n7g" path="res://Assets/Sprites/Characters/knight.png" id="2_c1mnh"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://p4miabuwe3jd" path="res://Sounds/jump.wav" id="8_6vc6x"]
 [ext_resource type="AudioStream" uid="uid://decvautma6x2n" path="res://Sounds/Dash.wav" id="9_3cdix"]
 [ext_resource type="AudioStream" uid="uid://bignm351l8brr" path="res://Sounds/pupa.wav" id="9_x1a6r"]
+[ext_resource type="AudioStream" uid="uid://bu701e8eb8kmt" path="res://Sounds/escudo.wav" id="11_oua2g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tn1hq"]
 atlas = ExtResource("2_c1mnh")
@@ -295,3 +296,7 @@ stream = ExtResource("9_x1a6r")
 [node name="SonidoDash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_3cdix")
 volume_db = 1.01
+
+[node name="SonidoEscudo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_oua2g")
+volume_db = 4.039

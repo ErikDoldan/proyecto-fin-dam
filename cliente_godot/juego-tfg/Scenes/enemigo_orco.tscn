@@ -1,7 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://deuculkbfd5by"]
+[gd_scene load_steps=44 format=3 uid="uid://deuculkbfd5by"]
 
 [ext_resource type="Script" uid="uid://c37c7tapgnjbs" path="res://Scripts/enemigo_orco.gd" id="1_wpwa8"]
 [ext_resource type="Texture2D" uid="uid://dce4xqqadcwm8" path="res://Assets/Sprites/Characters/Elite Orc.png" id="2_vxk2q"]
+[ext_resource type="AudioStream" uid="uid://b1eg8mt78mtca" path="res://Scripts/orco.wav" id="3_wj5y3"]
+[ext_resource type="AudioStream" uid="uid://g8svvnhvqmku" path="res://Sounds/sword.wav" id="4_5no1m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wj5y3"]
 atlas = ExtResource("2_vxk2q")
@@ -315,3 +317,10 @@ shape = SubResource("CapsuleShape2D_cgame")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ZonaAtaque"]
 position = Vector2(-19, -1)
 shape = SubResource("CapsuleShape2D_cgame")
+
+[node name="SonidoPupa" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wj5y3")
+
+[node name="SonidoSword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5no1m")
+volume_db = 10.097

@@ -5,6 +5,6 @@ func _ready():
 
 func _on_detonador_puerta_entered(body):
 	if body.name == "Jugador":
-		print("¡TRAMPA ACTIVADA! El jugador ha entrado.") # <--- Añade esto
+		print("¡TRAMPA ACTIVADA! El jugador ha entrado.") 
 		$PuertaBoss.cerrar_puerta()
 		$DetonadorPuerta.queue_free()

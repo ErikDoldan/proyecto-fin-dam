@@ -12,7 +12,7 @@ func _ready():
 	cartel_victoria.visible = false
 	esperando_cierre = false
 	
-	# Comprobamos si ya tiene el dash
+
 	if Global.habilidades.has("dash") and Global.habilidades["dash"] == true:
 		cofre_abierto = true
 		animated_sprite.play("abrir") 
@@ -28,7 +28,7 @@ func _on_body_entered(body):
 		cofre_abierto = true
 		jugador_tocado = body
 		
-		# Usamos tu variable exacta
+		
 		jugador_tocado.esta_congelado = true
 		animated_sprite.play("abrir")
 		await animated_sprite.animation_finished
@@ -36,7 +36,7 @@ func _on_body_entered(body):
 		cartel_victoria.visible = true
 		esperando_cierre = true
 		
-		# Desbloqueamos y autoequipamos en Godot antes de enviar a Django
+		
 		Global.habilidades["dash"] = true
 		if not "dash" in Global.habilidades_equipadas and Global.habilidades_equipadas.size() < 4:
 			Global.habilidades_equipadas.append("dash")
@@ -57,7 +57,7 @@ func enviar_a_django():
 	var url_django = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
 	
 	var lista_texto = ",".join(Global.habilidades_equipadas)
-	# ¡Añadimos el tiene_dash: true para que Django se entere!
+	
 	var datos = {
 		"habilidades_equipadas": lista_texto,
 		"tiene_dash": true

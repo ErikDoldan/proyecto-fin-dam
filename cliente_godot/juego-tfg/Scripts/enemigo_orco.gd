@@ -9,11 +9,16 @@ var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 # --- CONTROL DE ESTADO ---
 var jugador_objetivo = null
 var esta_muerto = false
-var esta_atacando = false   # <--- NUEVO
-var recibiendo_dano = false # <--- NUEVO
+var esta_atacando = false   
+var recibiendo_dano = false 
 
 @onready var sprite = $AnimatedSprite2D
 @onready var barra_vida = $ProgressBar
+
+#Sonido
+@onready var sonido_pupa=$SonidoPupa
+@onready var sonido_sword=$SonidoSword
+
 
 func _ready():
 	vida_actual = vida_maxima
@@ -25,11 +30,11 @@ func _ready():
 	$ZonaAtaque.body_entered.connect(_on_zona_ataque_entered)
 
 func _physics_process(delta):
-	# Aplicamos gravedad siempre para que no se quede flotando si le pegas en el aire
+	
 	if not is_on_floor():
 		velocity.y += gravedad * delta
 
-	# Si está haciendo una animación importante, se frena y no persigue [cite: 2]
+	# Si está haciendo una animación importante, se frena y no persigue
 	if esta_muerto or esta_atacando or recibiendo_dano:
 		velocity.x = move_toward(velocity.x, 0, velocidad)
 		move_and_slide()
@@ -43,10 +48,10 @@ func _physics_process(delta):
 		if direccion != 0:
 			sprite.flip_h = (direccion < 0)
 			
-		sprite.play("Walk") # <--- CAMBIADO
+		sprite.play("Walk") 
 	else:
 		velocity.x = move_toward(velocity.x, 0, velocidad)
-		sprite.play("Idle") # <--- CAMBIADO
+		sprite.play("Idle") 
 
 	move_and_slide()
 
@@ -66,16 +71,16 @@ func _on_zona_ataque_entered(body):
 		
 	if body.name == "Jugador" and body.has_method("recibir_dano"):
 		esta_atacando = true
-		sprite.play("Ataque") # <--- CAMBIADO
+		sprite.play("Ataque") 
+		sonido_sword.play()
 		
-		# Hace daño al instante (o puedes mover esto debajo del await si quieres que el daño aplique al final del zarpazo)
 		body.recibir_dano(global_position.x)
 		
-		# Esperamos a que termine la animación de ataque para volver a moverse
+		
 		await sprite.animation_finished
 		esta_atacando = false
 
-# --- RECIBIR DAÑO (De las bolas de fuego) ---
+# --- RECIBIR DAÑO  ---
 func sufrir_dano(cantidad: int, posicion_x_ataque: float):
 	if esta_muerto:
 		return
@@ -91,12 +96,13 @@ func sufrir_dano(cantidad: int, posicion_x_ataque: float):
 		morir()
 	else:
 		recibiendo_dano = true
-		sprite.play("Damage") # <--- CAMBIADO
+		sprite.play("Damage")
+		sonido_pupa.play()
 		sprite.modulate = Color.RED
-		await get_tree().create_timer(0.2).timeout # [cite: 4]
+		await get_tree().create_timer(0.2).timeout 
 		sprite.modulate = Color.WHITE
 		
-		# Aseguramos que termine la animación antes de que vuelva a caminar
+		
 		if sprite.is_playing() and sprite.animation == "Damage":
 			await sprite.animation_finished
 			
@@ -106,12 +112,12 @@ func morir():
 	esta_muerto = true
 	barra_vida.visible = false
 	
-	# --- NUEVO: Apagamos la gravedad y el movimiento para que no se caigan ---
+
 	set_physics_process(false) 
 	
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	# (OJO: El arquero no tiene ZonaAtaque, así que esa línea solo la tendrán el oso, orco y cazador)
+
 	if has_node("ZonaAtaque/CollisionShape2D"):
 		$ZonaAtaque/CollisionShape2D.set_deferred("disabled", true)
 	

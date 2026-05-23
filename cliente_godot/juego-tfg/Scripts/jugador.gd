@@ -22,6 +22,7 @@ var puede_disparar = true
 @onready var sonido_salto = $SonidoSalto
 @onready var sonido_dash = $SonidoDash
 @onready var sonido_pupa = $SonidoPupa
+@onready var sonido_escudo = $SonidoEscudo
 
 @onready var contenedor_corazones = $UI/HBoxContainer
 
@@ -107,7 +108,7 @@ func _physics_process(delta):
 	# 4. MOVERSE A LOS LADOS
 	var direccion = Input.get_axis("mover_izq","mover_der")
 	
-	# --- PASIVA: FRAGMENTO DEL AGUA ---
+	# --- FRAGMENTO DEL AGUA ---
 	var velocidad_actual = VELOCIDAD
 	if "agua" in Global.habilidades_equipadas:
 		velocidad_actual = velocidad_agua
@@ -147,14 +148,14 @@ func recibir_dano(posicion_x_enemigo):
 		return 
 	
 	recibiendo_dano = true
-	sonido_pupa.play()
+	
 	if "escudo" in Global.habilidades_equipadas and not escudo_roto:
 		romper_escudo(posicion_x_enemigo)
-		sonido_pupa.play()
 		return
 		
+	sonido_pupa.play()
 	vidas -= 1
-	print("Auch! Vidas restantes: ", vidas) 
+	print("Vidas restantes: ", vidas) 
 	actualizar_corazones()
 	
 	var direccion_empuje = 1
@@ -200,16 +201,17 @@ func iniciar_dash():
 	esta_dasheando = true
 	puede_dashear = false
 
-	# Averiguamos la dirección usando tu AnimatedSprite2D
+	
 	var direccion_x = 1
 	if sprite.flip_h: 
 		direccion_x = -1
 	
 	velocity.x = direccion_x * velocidad_dash
 
-	# OPCIONAL: Si tienes animación de dash, ponla aquí
+	# animación de dash
 	# sprite.play("Dash")
 	sonido_dash.play()
+	
 	# El dash dura solo 0.2 segundos
 	await get_tree().create_timer(0.2).timeout
 	esta_dasheando = false
@@ -233,7 +235,7 @@ func disparar_fuego():
 	nueva_bola.global_position = self.global_position + Vector2(20 * direccion_x, 0)
 	
 	# Para q la bola que ignore las colisiones con el jugador.
-	# Así evitas empujarte a ti mismo o atascarte al disparar.
+	# Así evito empujarme a mi mismo o atascarme al disparar.
 	nueva_bola.add_collision_exception_with(self)
 	
 	get_parent().add_child(nueva_bola)
@@ -243,10 +245,10 @@ func disparar_fuego():
 func romper_escudo(posicion_x_enemigo):
 	escudo_roto = true
 	
-	# Opcional: Aquí podrías añadir un sonido de cristal roto
-	# $AudioEscudoRoto.play()
 	
-	# Te empujamos un poquito para que el golpe se sienta real, pero sin hacer animación de daño grave
+	sonido_escudo.play()
+	
+	# Me empuja un poquito para que el golpe se sienta real, pero sin hacer animación de daño grave
 	var direccion_empuje = 1
 	if global_position.x < posicion_x_enemigo:
 		direccion_empuje = -1
@@ -254,11 +256,11 @@ func romper_escudo(posicion_x_enemigo):
 	velocity.x = direccion_empuje * 150 
 	velocity.y = -150 
 	
-	# Volvemos a ser vulnerables casi al instante
+	# Vuelvo a ser vulnerable
 	await get_tree().create_timer(0.2).timeout
 	recibiendo_dano = false
 	
-	# Iniciamos la regeneración del escudo en la sombra
+	# Inicia la regeneración del escudo en la sombra
 	await get_tree().create_timer(tiempo_regeneracion).timeout
 	escudo_roto = false
 	print("¡Escudo regenerado!")

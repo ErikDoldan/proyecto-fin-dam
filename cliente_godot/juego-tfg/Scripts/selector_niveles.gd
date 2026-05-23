@@ -2,7 +2,7 @@ extends Control
 
 @onready var label_info = $InfoJugador
 @onready var http_request = $HTTPRequest
-@onready var tarjeta_1 = $ContenedorNiveles/TarjetaNivel1 # <- Añadimos la 1
+@onready var tarjeta_1 = $ContenedorNiveles/TarjetaNivel1 
 @onready var tarjeta_2 = $ContenedorNiveles/TarjetaNivel2
 @onready var tarjeta_3 = $ContenedorNiveles/TarjetaNivel3
 @onready var tarjeta_4 = $ContenedorNiveles/TarjetaNivel4
@@ -37,7 +37,6 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 		# --- LEE EL NIVEL DESBLOQUEADO DESDE DJANGO ---
 		Global.nivel_desbloqueado = respuesta_json.get("nivel_desbloqueado", 1)
 		
-		# --- ¡LO NUEVO QUE FALTABA AQUÍ! ---
 		Global.habilidades["doble_salto"] = respuesta_json.get("tiene_doble_salto", false)
 		Global.habilidades["dash"] = respuesta_json.get("tiene_dash", false)
 		Global.habilidades["fuego"] = respuesta_json.get("tiene_fuego", false)
@@ -52,7 +51,7 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 			Global.habilidades_equipadas = Array(equipadas_desde_db.split(","))
 		else:
 			Global.habilidades_equipadas = []
-		# -----------------------------------
+		
 		
 		label_info.text = "Bienvenido, " + str(nombre) + "\nPuntuación Total: " + str(puntos)
 		
@@ -92,10 +91,10 @@ func bloquear_nivel(tarjeta: VBoxContainer, numero_nivel: int):
 
 
 func _on_boton_borrar_pressed():
-	# 1. Le decimos el tamaño exacto en píxeles (OJO: en Godot 4 se usa Vector2i con la 'i' de Integer)
+	# 1. Le dice el tamaño exacto en píxeles 
 	dialogo_borrar.size = Vector2i(500, 250)
 	
-	# 2. La centramos en la pantalla y la abrimos
+	
 	dialogo_borrar.popup_centered()
 
 
@@ -121,4 +120,4 @@ func _on_boton_ver_controles_pressed():
 	$MenuControles.visible = true
 	
 func _on_boton_entrar_pressed() -> void:
-	pass # Replace with function body.
+	pass 

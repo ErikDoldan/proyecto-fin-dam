@@ -44,7 +44,7 @@ func _on_http_request_request_completed(_result, response_code, _headers, _body)
 	if response_code == 200:
 		print("Moneda guardada en BD. Desapareciendo...")
 		
-		# --- EVITAMOS QUE EL SONIDO SE CORTE ---
+		# --- EVITA QUE EL SONIDO SE CORTE ---
 		if sonido.playing:
 			await sonido.finished
 			

@@ -1,6 +1,6 @@
 extends Control
 
-# Referencias a nuestros nodos
+# Referencias a nodos
 @onready var input_nombre = $InputNombre
 @onready var input_password = $InputPassword
 @onready var http_request = $PeticionLogin
@@ -15,7 +15,7 @@ func _on_boton_registro_pressed():
 
 
 func enviar_peticion(tipo_accion: String):
-	# Limpiamos el mensaje de error cada vez que intentamos de nuevo
+	# Limpia el mensaje de error cada vez que intenta de nuevo
 	label_error.text = "" 
 	
 	var nombre_jugador = input_nombre.text.strip_edges()
@@ -25,7 +25,7 @@ func enviar_peticion(tipo_accion: String):
 		label_error.text = "El nombre y la contraseña no pueden estar vacíos."
 		return
 
-	# 1. Preparamos los datos
+	# 1. Prepara los datos
 	var datos = {
 		"nombre": nombre_jugador,
 		"contrasena": password_jugador,

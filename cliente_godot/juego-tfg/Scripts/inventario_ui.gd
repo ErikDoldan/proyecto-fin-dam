@@ -9,11 +9,11 @@ extends CanvasLayer
 func _ready():
 	visible = false
 	
-	# 1. Conectamos las casillas del catálogo (DERECHA) para EQUIPAR
+	# 1. Conecta las casillas del catálogo (DERECHA) para EQUIPAR
 	for casilla in grid_catalogo.get_children():
 		casilla.gui_input.connect(_on_casilla_clic.bind(casilla.name))
 
-	# 2. Conectamos las casillas del equipo (IZQUIERDA) para DESEQUIPAR
+	# 2. Conecta las casillas del equipo (IZQUIERDA) para DESEQUIPAR
 	var indice = 0
 	for casilla in grid_equipo.get_children():
 		casilla.gui_input.connect(_on_casilla_equipo_clic.bind(indice))

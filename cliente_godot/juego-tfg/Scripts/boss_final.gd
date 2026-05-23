@@ -69,10 +69,10 @@ func _physics_process(delta):
 			# para que pegue a la derecha (direccion = 1) tenemos que ponerle escala = -1
 			var escala_hitboxes = -direccion_x
 			
-			# El Spell lo dejamos como estaba porque me confirmas que funciona perfecto
+			
 			punto_disparo.position.x = abs(punto_disparo.position.x) * direccion_x 
 			
-			# Volteamos las hitboxes como si fueran un espejo
+			
 			$HitboxMelee.scale.x = escala_hitboxes
 			$HitboxLlamarada.scale.x = escala_hitboxes
 			$HitboxOndaChoque.scale.x = escala_hitboxes
@@ -151,7 +151,7 @@ func ataque_salto():
 
 func ataque_spell():
 	sprite.play("Spell")
-	await get_tree().create_timer(0.5).timeout # Tu timer intacto
+	await get_tree().create_timer(0.5).timeout 
 	
 	if jugador_objetivo != null and not esta_muerto:
 		
@@ -209,10 +209,9 @@ func morir():
 	if barra_vida: barra_vida.visible = false
 	
 	# --- ¡AQUÍ ESTÁ LA MAGIA! ---
-	# Apagamos sus físicas por completo. Ya no hay gravedad ni se moverá de su sitio.
+	
 	set_physics_process(false) 
 	
-	# Ahora ya podemos quitarle la colisión tranquilos sin que se caiga por el suelo
 	$CollisionShape2D.set_deferred("disabled", true)
 	
 	sprite.play("Death") 
@@ -221,8 +220,8 @@ func morir():
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 1.0)
 	await tween.finished
-	# --- NUEVO: La pausa dramática y la pantalla de victoria ---
-	# Esperamos 2 segundos en silencio para que el jugador respire
+	# ---Pantalla de victoria ---
+	
 	await get_tree().create_timer(2.0).timeout
 	
 	var victoria = PANTALLA_VICTORIA.instantiate()
