@@ -220,7 +220,7 @@ layer_1/tile_data = PackedInt32Array(-1376257, 196608, 13, -1310721, 196608, 13,
 
 [node name="Jugador" parent="." instance=ExtResource("2_uts83")]
 texture_filter = 1
-position = Vector2(3208, 15)
+position = Vector2(13, 612)
 
 [node name="Camera2D" parent="Jugador" index="2"]
 limit_left = 0

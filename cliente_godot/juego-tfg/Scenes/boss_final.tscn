@@ -1,9 +1,15 @@
-[gd_scene load_steps=110 format=3 uid="uid://e3t3ll4uce8r"]
+[gd_scene load_steps=116 format=3 uid="uid://e3t3ll4uce8r"]
 
 [ext_resource type="Script" uid="uid://lb421txx4urx" path="res://Scripts/boss_final.gd" id="1_6f4j3"]
 [ext_resource type="Texture2D" uid="uid://chlp8r0qaseg3" path="res://Assets/Sprites/Characters/demon_slime_v1.0-SpriteSheet_288x160.png" id="1_voo5q"]
 [ext_resource type="Texture2D" uid="uid://cg47emjl0ao08" path="res://Assets/Sprites/Characters/demon_slime_FREE_v1.0_288x160_spritesheet.png" id="2_tcdiq"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="4_dasqd"]
+[ext_resource type="AudioStream" uid="uid://842hetarpnjs" path="res://Sounds/BossPupa.wav" id="5_eh47f"]
+[ext_resource type="AudioStream" uid="uid://cslk1drxm4ap6" path="res://Sounds/demonDe.wav" id="6_k2w1n"]
+[ext_resource type="AudioStream" uid="uid://ba37k3gkvushh" path="res://Sounds/Ataque3-enemigo.wav" id="7_k2w1n"]
+[ext_resource type="AudioStream" uid="uid://ctdjlxxvcwr3r" path="res://Sounds/BossSalto.wav" id="8_obn22"]
+[ext_resource type="AudioStream" uid="uid://44uf22dtddp1" path="res://Sounds/BossSpell.wav" id="9_obn22"]
+[ext_resource type="AudioStream" uid="uid://dujhyt4777dot" path="res://Sounds/BossLlamarada.wav" id="10_f2b5x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k2w1n"]
 atlas = ExtResource("1_voo5q")
@@ -755,9 +761,7 @@ script = ExtResource("1_6f4j3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3iq7w")
-animation = &"Attack"
-frame = 14
-frame_progress = 1.0
+animation = &"AtackRange"
 offset = Vector2(-1, -42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -820,3 +824,25 @@ layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_k2w1n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_eh47f")
 show_percentage = false
+
+[node name="SonidoPupa" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_eh47f")
+volume_db = 24.0
+pitch_scale = 0.57
+
+[node name="SonidoDeath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_k2w1n")
+volume_db = 7.845
+pitch_scale = 0.69
+
+[node name="SonidoAtack1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_k2w1n")
+
+[node name="SonidoSalto" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_obn22")
+
+[node name="SonidoSpell" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_obn22")
+
+[node name="SonidoLlamarada" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_f2b5x")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1cbgxgacc3w1"]
+[gd_scene load_steps=13 format=3 uid="uid://d1cbgxgacc3w1"]
 
 [ext_resource type="Script" uid="uid://b0mrb4oqy6w1w" path="res://Scripts/pantalla_victoria.gd" id="1_ipyeh"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_obi83"]
 [ext_resource type="Texture2D" uid="uid://bjt7cblfs3n7g" path="res://Assets/Sprites/Characters/knight.png" id="3_8bc65"]
+[ext_resource type="AudioStream" uid="uid://qvx2hk1judw1" path="res://Sounds/victoria.wav" id="4_4rekl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rekl"]
 atlas = ExtResource("3_8bc65")
@@ -136,5 +137,8 @@ sprite_frames = SubResource("SpriteFrames_27btx")
 animation = &"victoria"
 frame = 6
 frame_progress = 1.0
+
+[node name="SonidoVictoria" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4rekl")
 
 [connection signal="pressed" from="VBoxContainer/Label2" to="." method="_on_boton_salir_pressed"]

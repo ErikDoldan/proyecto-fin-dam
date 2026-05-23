@@ -14,6 +14,7 @@ var recibiendo_dano = false # <--- NUEVO
 
 @onready var sprite = $AnimatedSprite2D
 @onready var barra_vida = $ProgressBar
+@onready var sonido_pupa = $SonidoPupa
 
 func _ready():
 	vida_actual = vida_maxima
@@ -92,6 +93,7 @@ func sufrir_dano(cantidad: int, posicion_x_ataque: float):
 	else:
 		recibiendo_dano = true
 		sprite.play("Damage")
+		sonido_pupa.play()
 		sprite.modulate = Color.RED
 		await get_tree().create_timer(0.2).timeout 
 		sprite.modulate = Color.WHITE

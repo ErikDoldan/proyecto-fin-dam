@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bfgsvw2i2rfht"]
+[gd_scene load_steps=45 format=3 uid="uid://bfgsvw2i2rfht"]
 
 [ext_resource type="Script" uid="uid://bxvhr83txvyx2" path="res://Scripts/enemigo_oso.gd" id="1_bebhe"]
 [ext_resource type="Texture2D" uid="uid://dpeam1nreew6" path="res://Assets/Sprites/Characters/Werebear-Attack01.png" id="2_bebhe"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://chqdm877vcuv4" path="res://Assets/Sprites/Characters/Werebear-Death.png" id="4_na1pn"]
 [ext_resource type="Texture2D" uid="uid://iej1okgt6ebe" path="res://Assets/Sprites/Characters/Werebear-Idle.png" id="5_7kv25"]
 [ext_resource type="Texture2D" uid="uid://cqt57mvrxjrsy" path="res://Assets/Sprites/Characters/Werebear-Walk.png" id="6_2xhfb"]
+[ext_resource type="AudioStream" uid="uid://b1bpc3o5sv3gb" path="res://Sounds/wolf.wav" id="7_lyd40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gijqs"]
 atlas = ExtResource("2_bebhe")
@@ -300,3 +301,6 @@ shape = SubResource("CircleShape2D_yajje")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaAtaque"]
 position = Vector2(19, -1)
 shape = SubResource("CapsuleShape2D_cgame")
+
+[node name="SonidoPupa" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_lyd40")

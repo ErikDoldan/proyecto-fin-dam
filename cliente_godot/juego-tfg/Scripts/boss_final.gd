@@ -28,6 +28,15 @@ const PANTALLA_VICTORIA = preload("res://Scenes/pantalla_victoria.tscn")
 @onready var colision_llamarada = $HitboxLlamarada/CollisionShape2D
 @onready var colision_onda = $HitboxOndaChoque/CollisionShape2D
 
+#Sonidos
+@onready var sonido_pupa = $SonidoPupa
+@onready var sonido_muerto = $SonidoDeath
+@onready var sonido_ataque = $SonidoAtack1
+@onready var sonido_salto = $SonidoSalto
+@onready var sonido_spell = $SonidoSpell
+@onready var sonido_llamarada = $SonidoLlamarada
+
+
 func _ready():
 	
 	ui_boss.visible = false #La barra de vida es invisible hasta que entres a la zona 
@@ -127,6 +136,7 @@ func decidir_ataque(distancia):
 func ataque_melee():
 	sprite.play("Attack")
 	await get_tree().create_timer(1).timeout 
+	sonido_ataque.play()
 	colision_melee.set_deferred("disabled", false)
 	await get_tree().create_timer(0.2).timeout
 	colision_melee.set_deferred("disabled", true)
@@ -134,6 +144,7 @@ func ataque_melee():
 
 func ataque_llamarada():
 	sprite.play("AtackRange")
+	sonido_llamarada.play()
 	await get_tree().create_timer(0.8).timeout 
 	colision_llamarada.set_deferred("disabled", false)
 	await get_tree().create_timer(0.3).timeout
@@ -143,6 +154,7 @@ func ataque_llamarada():
 func ataque_salto():
 	sprite.play("JumpAtack")
 	await get_tree().create_timer(1.3).timeout 
+	sonido_salto.play()
 	colision_onda.set_deferred("disabled", false)
 	
 	await get_tree().create_timer(0.2).timeout
@@ -152,13 +164,13 @@ func ataque_salto():
 func ataque_spell():
 	sprite.play("Spell")
 	await get_tree().create_timer(0.5).timeout 
-	
+	sonido_spell.play()
 	if jugador_objetivo != null and not esta_muerto:
 		
 		for i in range(3):
 			if esta_muerto or jugador_objetivo == null:
 				break
-				
+			sonido_spell.play()	
 			var nueva_bola = BOLA_FUEGO_BOSS.instantiate()
 			var dir_hacia_jugador = (jugador_objetivo.global_position - punto_disparo.global_position).normalized()
 			
@@ -200,6 +212,7 @@ func sufrir_dano(cantidad: int, posicion_x_ataque: float):
 	else:
 	
 		sprite.modulate = Color.RED
+		sonido_pupa.play()
 		await get_tree().create_timer(0.2).timeout
 		sprite.modulate = Color.WHITE
 
@@ -215,6 +228,7 @@ func morir():
 	$CollisionShape2D.set_deferred("disabled", true)
 	
 	sprite.play("Death") 
+	sonido_muerto.play()
 	await sprite.animation_finished
 	
 	var tween = create_tween()
