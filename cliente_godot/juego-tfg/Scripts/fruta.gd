@@ -2,6 +2,8 @@ extends Area2D
 
 var cantidad_curacion = 1
 @onready var colision = $CollisionShape2D 
+@onready var sonido = $Sonido
+
 
 func _ready():
 	
@@ -24,26 +26,23 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
-	# Si lo que toca la fruta es el Jugador
 	if body.name == "Jugador":
-		
-		# Comprueba si necesita curarse 
 		if body.vidas < 3:
 			body.vidas += cantidad_curacion
-			
-			# Por si la pera cura 3 y teníamos 2 vidas, que no se pase de 3
 			if body.vidas > 3:
 				body.vidas = 3 
 				
-			# Función del jugador para que dibuje los corazones de nuevo
 			body.actualizar_corazones()
-			
 			print("¡Ñam! Curado ", cantidad_curacion, " vidas. Tienes: ", body.vidas)
 			
-			# La fruta desaparece
+			$SpriteAnimado.visible = false
+			colision.set_deferred("disabled", true)
+			sonido.play()
+			await sonido.finished
 			queue_free()
 		else:
 			print("Ya tienes la vida a tope, no me puedes comer todavía.")
+			
 func configurar_fruta(tipo: int):
 	
 	cantidad_curacion = tipo

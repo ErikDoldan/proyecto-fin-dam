@@ -1,7 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://bfgsvw2i2rfht"]
+[gd_scene load_steps=46 format=3 uid="uid://bfgsvw2i2rfht"]
 
 [ext_resource type="Script" uid="uid://bxvhr83txvyx2" path="res://Scripts/enemigo_oso.gd" id="1_bebhe"]
 [ext_resource type="Texture2D" uid="uid://dpeam1nreew6" path="res://Assets/Sprites/Characters/Werebear-Attack01.png" id="2_bebhe"]
+[ext_resource type="PackedScene" uid="uid://ckw4b3q66eunj" path="res://Scenes/fruta.tscn" id="2_na1pn"]
 [ext_resource type="Texture2D" uid="uid://nc0fhirpcefe" path="res://Assets/Sprites/Characters/Werebear-Hurt.png" id="3_lyd40"]
 [ext_resource type="Texture2D" uid="uid://chqdm877vcuv4" path="res://Assets/Sprites/Characters/Werebear-Death.png" id="4_na1pn"]
 [ext_resource type="Texture2D" uid="uid://iej1okgt6ebe" path="res://Assets/Sprites/Characters/Werebear-Idle.png" id="5_7kv25"]
@@ -270,6 +271,7 @@ radius = 132.00378
 [node name="EnemigoOso" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_bebhe")
+escena_fruta = ExtResource("2_na1pn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

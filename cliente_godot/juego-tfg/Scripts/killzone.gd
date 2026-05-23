@@ -6,7 +6,7 @@ func _on_body_entered(body):
 	# El que cae es el jugador
 	if body.name == "Jugador":
 		print("El jugador se ha caído. Reiniciando...")
-		get_tree().reload_current_scene() 
+		get_tree().call_deferred("reload_current_scene")
 		
 	# Si cae cualquier otra cosa 
 	else:

@@ -11,6 +11,9 @@ var esta_muerto = false
 @onready var hitbox_arriba: Area2D = $HitboxArriba
 @onready var hitbox_cuerpo: Area2D = $HitboxCuerpo
 
+
+@onready var sound = $Death
+
 func _ready() -> void:
 	
 	
@@ -50,6 +53,7 @@ func morir(jugador: Node2D) -> void:
 	
 	#Bicho se pone rojo
 	animated_sprite.play("dmg")
+	sound.play()
 	soltar_botin()
 	
 	await animated_sprite.animation_finished

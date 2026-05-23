@@ -4,6 +4,9 @@ extends Area2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var cartel_victoria = $CanvasLayer/PanelContainer
 
+@onready var cofre = $SonidoCofre
+
+
 var jugador_tocado = null
 var cofre_abierto = false
 var esperando_cierre = false 
@@ -16,6 +19,8 @@ func _ready():
 	if Global.habilidades.has("escudo") and Global.habilidades["escudo"] == true:
 		cofre_abierto = true
 		animated_sprite.play("abrir") 
+		
+
 	else:
 		cofre_abierto = false
 		animated_sprite.play("cerrado")
@@ -30,6 +35,8 @@ func _on_body_entered(body):
 		
 		jugador_tocado.esta_congelado = true
 		animated_sprite.play("abrir")
+		cofre.play()
+
 		await animated_sprite.animation_finished
 		
 		cartel_victoria.visible = true

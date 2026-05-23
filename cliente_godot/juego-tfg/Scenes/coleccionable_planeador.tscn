@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://bnfs7rjocda7q"]
+[gd_scene load_steps=30 format=3 uid="uid://bnfs7rjocda7q"]
 
 [ext_resource type="Script" uid="uid://bayjbgxqr6bqk" path="res://Scripts/coleccionable_planeador.gd" id="1_ugtsb"]
 [ext_resource type="Texture2D" uid="uid://desfm5lp7blqd" path="res://Assets/Sprites/Items/Treasure Chest - Basic & Fancy.png" id="2_74epk"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="3_kkrnf"]
 [ext_resource type="Texture2D" uid="uid://bp4b5fkiq6p65" path="res://Assets/Sprites/Items/Dark VFX 1 (40x32).png" id="4_74epk"]
+[ext_resource type="AudioStream" uid="uid://4jrlx4p6206h" path="res://Sounds/Chest.wav" id="5_74epk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dbf82"]
 atlas = ExtResource("2_74epk")
@@ -233,5 +234,8 @@ layout_mode = 2
 text = "Pulsa Espacio para continuar
 "
 label_settings = SubResource("LabelSettings_g8sit")
+
+[node name="SonidoCofre" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_74epk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

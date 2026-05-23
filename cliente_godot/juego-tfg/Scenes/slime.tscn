@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://s2pe8d1t1y6i"]
+[gd_scene load_steps=13 format=3 uid="uid://s2pe8d1t1y6i"]
 
 [ext_resource type="Script" uid="uid://bbbiiqjsjxcxt" path="res://Scripts/slime.gd" id="1_swwnm"]
 [ext_resource type="Texture2D" uid="uid://q62g07knu1s2" path="res://Assets/Sprites/Characters/slime_green.png" id="2_aiwxb"]
 [ext_resource type="PackedScene" uid="uid://ckw4b3q66eunj" path="res://Scenes/fruta.tscn" id="2_paq7w"]
+[ext_resource type="AudioStream" uid="uid://dff26mhbx46x5" path="res://Sounds/slimeso.wav" id="4_paq7w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swwnm"]
 atlas = ExtResource("2_aiwxb")
@@ -87,3 +88,7 @@ shape = SubResource("RectangleShape2D_aiwxb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxCuerpo"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_swwnm")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_paq7w")
+volume_db = 24.0

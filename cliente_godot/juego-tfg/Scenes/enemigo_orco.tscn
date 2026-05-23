@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://deuculkbfd5by"]
+[gd_scene load_steps=45 format=3 uid="uid://deuculkbfd5by"]
 
 [ext_resource type="Script" uid="uid://c37c7tapgnjbs" path="res://Scripts/enemigo_orco.gd" id="1_wpwa8"]
 [ext_resource type="Texture2D" uid="uid://dce4xqqadcwm8" path="res://Assets/Sprites/Characters/Elite Orc.png" id="2_vxk2q"]
+[ext_resource type="PackedScene" uid="uid://ckw4b3q66eunj" path="res://Scenes/fruta.tscn" id="2_ymxcp"]
 [ext_resource type="AudioStream" uid="uid://b1eg8mt78mtca" path="res://Scripts/orco.wav" id="3_wj5y3"]
 [ext_resource type="AudioStream" uid="uid://g8svvnhvqmku" path="res://Sounds/sword.wav" id="4_5no1m"]
 
@@ -281,6 +282,7 @@ radius = 70.0
 [node name="EnemigoOrco" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_wpwa8")
+escena_fruta = ExtResource("2_ymxcp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

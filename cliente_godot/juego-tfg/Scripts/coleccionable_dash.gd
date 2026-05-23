@@ -4,6 +4,9 @@ extends Area2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var cartel_victoria = $CanvasLayer/PanelContainer
 
+@onready var cofre = $SonidoCofre
+
+
 var jugador_tocado = null
 var cofre_abierto = false
 var esperando_cierre = false 
@@ -31,6 +34,7 @@ func _on_body_entered(body):
 		
 		jugador_tocado.esta_congelado = true
 		animated_sprite.play("abrir")
+		cofre.play()
 		await animated_sprite.animation_finished
 		
 		cartel_victoria.visible = true
@@ -68,7 +72,7 @@ func enviar_a_django():
 	http_request.request(url_django, headers, HTTPClient.METHOD_PUT, json_datos)
 
 
-func _on_request_completed(_result, response_code, _headers, body):
+func _on_request_completed(_result, response_code, _headers, _body):
 	if response_code == 200:
 		print("¡Cofre Dash guardado en Django 200 OK!")
 	else:

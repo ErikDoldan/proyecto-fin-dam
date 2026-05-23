@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckw4b3q66eunj"]
+[gd_scene load_steps=9 format=3 uid="uid://ckw4b3q66eunj"]
 
 [ext_resource type="Script" uid="uid://bbnajfrjl0ui4" path="res://Scripts/fruta.gd" id="1_lv70x"]
 [ext_resource type="Texture2D" uid="uid://fgfut0findql" path="res://Assets/Sprites/Items/fruit.png" id="2_wos1q"]
+[ext_resource type="AudioStream" uid="uid://qvx2hk1judw1" path="res://Sounds/victoria.wav" id="3_wos1q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hi553"]
 radius = 6.0827627
@@ -56,3 +57,6 @@ shape = SubResource("CircleShape2D_hi553")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_b6k4l")
 animation = &"3"
+
+[node name="Sonido" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wos1q")

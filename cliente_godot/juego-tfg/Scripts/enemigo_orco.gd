@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var escena_fruta: PackedScene
+
 # --- ESTADÍSTICAS ---
 var vida_maxima = 5
 var vida_actual = 5
@@ -122,9 +124,23 @@ func morir():
 		$ZonaAtaque/CollisionShape2D.set_deferred("disabled", true)
 	
 	sprite.play("Death") 
+	soltar_botin()
 	await sprite.animation_finished
 	
 	var tween = create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.5) 
 	await tween.finished
+	
 	queue_free()
+
+func soltar_botin():
+	if escena_fruta == null:
+		return
+		
+	var probabilidad = randi() % 100 + 1
+	if probabilidad <= 30:
+		var nueva_fruta = escena_fruta.instantiate()
+		var tipo_fruta = randi() % 3 + 1
+		nueva_fruta.configurar_fruta(tipo_fruta)
+		nueva_fruta.global_position = global_position
+		get_parent().call_deferred("add_child", nueva_fruta)
