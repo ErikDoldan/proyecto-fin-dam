@@ -143,7 +143,15 @@ def api_jugador_detalle(request, jugador_id):
                 cambios_realizados = True
 
 
-            # Mapeamos los booleanos que envía Godot
+            catalogo_habilidades = {
+                'tiene_doble_salto': {'nombre': 'Fragmento de viento', 'desc': 'Permite realizar un segundo impulso en el aire.'},
+                'tiene_dash': {'nombre': 'Fragmento de rayo', 'desc': 'Otorga un impulso rápido hacia adelante para esquivar.'},
+                'tiene_fuego': {'nombre': 'Fragmento de fuego', 'desc': 'Permite disparar proyectiles de fuego a los enemigos.'},
+                'tiene_escudo': {'nombre': 'Fragmento de piedra', 'desc': 'Crea una barrera regenerable que absorbe el daño del siguiente golpe.'},
+                'tiene_planeador': {'nombre': 'Fragmento de sombra', 'desc': 'Permite descender lentamente y cruzar grandes abismos.'},
+                'tiene_agua': {'nombre': 'Fragmento de agua', 'desc': 'Aumenta considerablemente la velocidad de movimiento.'}
+            }
+
             habilidades_map = {
                 'tiene_doble_salto': datos.get('tiene_doble_salto'),
                 'tiene_dash': datos.get('tiene_dash'),
@@ -153,26 +161,26 @@ def api_jugador_detalle(request, jugador_id):
                 'tiene_agua': datos.get('tiene_agua')
             }
 
-            for nombre_campo, valor in habilidades_map.items():
+            for nombre_var, valor in habilidades_map.items():
                 if valor is not None:
-
-                    setattr(jugador, nombre_campo, valor)
+                    # 1. Actualiza el booleano en el modelo Jugador
+                    setattr(jugador, nombre_var, valor)
                     cambios_realizados = True
 
-
+                    # 2. Lógica del Inventario bonito para el TF
                     if valor == True:
-
+                        datos_item = catalogo_habilidades[nombre_var]
+                        # Buscam o cream el Item con su nombre y descripción
                         item_obj, _ = Item.objects.get_or_create(
-                            nombre=nombre_campo,
-                            defaults={'descripcion': f'Poder: {nombre_campo}', 'tipo': 'H'}
+                            nombre=datos_item['nombre'],
+                            defaults={'descripcion': datos_item['desc'], 'tipo': 'H'}
                         )
-
+                        # Registro en el Inventario (Relación N:N)
                         Inventario.objects.get_or_create(
                             jugador=jugador,
                             item=item_obj,
                             defaults={'cantidad': 1}
                         )
-            # -------------------------------------------------------------------------
 
             if cambios_realizados:
                 jugador.save()
