@@ -1,8 +1,9 @@
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Item,Jugador
+
 from django.contrib.auth.hashers import make_password, check_password
+from .models import Item, Jugador, Inventario
 
 def api_items(request):
     # Comprobamos que la petición sea de tipo GET
@@ -125,7 +126,6 @@ def api_jugador_detalle(request, jugador_id):
             datos = json.loads(body_unicode)
 
             nueva_puntuacion = datos.get('puntuacion')
-            nuevo_doble_salto = datos.get('tiene_doble_salto')
             nuevas_equipadas = datos.get('habilidades_equipadas')
             nuevo_nivel_desbloqueado = datos.get('nivel_desbloqueado')
             cambios_realizados = False
@@ -134,46 +134,49 @@ def api_jugador_detalle(request, jugador_id):
                 jugador.puntuacion = nueva_puntuacion
                 cambios_realizados = True
 
-            if nuevo_doble_salto is not None:
-                jugador.tiene_doble_salto = nuevo_doble_salto
-                cambios_realizados = True
-
-            nuevo_dash = datos.get('tiene_dash')
-            if nuevo_dash is not None:
-                jugador.tiene_dash = nuevo_dash
-                cambios_realizados = True
-
-            nuevo_fuego = datos.get('tiene_fuego')
-
-            if nuevo_fuego is not None:
-                jugador.tiene_fuego = nuevo_fuego
-                cambios_realizados = True
-
-            nuevo_escudo = datos.get('tiene_escudo')
-            if nuevo_escudo is not None:
-                jugador.tiene_escudo = nuevo_escudo
-                cambios_realizados = True
-
-            nuevo_planeador = datos.get('tiene_planeador')
-            if nuevo_planeador is not None:
-                jugador.tiene_planeador = nuevo_planeador
-                cambios_realizados = True
-
-            nuevo_agua = datos.get('tiene_agua')
-            if nuevo_agua is not None:
-                jugador.tiene_agua = nuevo_agua
-                cambios_realizados = True
-
             if nuevas_equipadas is not None:
                 jugador.habilidades_equipadas = nuevas_equipadas
                 cambios_realizados = True
 
             if nuevo_nivel_desbloqueado is not None:
                 jugador.nivel_desbloqueado = nuevo_nivel_desbloqueado
+                cambios_realizados = True
+
+
+            # Mapeamos los booleanos que envía Godot
+            habilidades_map = {
+                'tiene_doble_salto': datos.get('tiene_doble_salto'),
+                'tiene_dash': datos.get('tiene_dash'),
+                'tiene_fuego': datos.get('tiene_fuego'),
+                'tiene_escudo': datos.get('tiene_escudo'),
+                'tiene_planeador': datos.get('tiene_planeador'),
+                'tiene_agua': datos.get('tiene_agua')
+            }
+
+            for nombre_campo, valor in habilidades_map.items():
+                if valor is not None:
+
+                    setattr(jugador, nombre_campo, valor)
+                    cambios_realizados = True
+
+
+                    if valor == True:
+
+                        item_obj, _ = Item.objects.get_or_create(
+                            nombre=nombre_campo,
+                            defaults={'descripcion': f'Poder: {nombre_campo}', 'tipo': 'H'}
+                        )
+
+                        Inventario.objects.get_or_create(
+                            jugador=jugador,
+                            item=item_obj,
+                            defaults={'cantidad': 1}
+                        )
+            # -------------------------------------------------------------------------
 
             if cambios_realizados:
                 jugador.save()
-                return JsonResponse({'mensaje': 'Datos del jugador actualizados correctamente'}, status=200)
+                return JsonResponse({'mensaje': 'Datos del jugador y su inventario actualizados correctamente'}, status=200)
             else:
                 return JsonResponse({'error': 'No se enviaron parámetros válidos para actualizar'}, status=400)
 
