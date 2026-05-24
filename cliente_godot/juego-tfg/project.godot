@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="JuegoTFG"
+config/name="Arkomine"
 run/main_scene="uid://bo564lqc36bbe"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dvcu0vqe6nrny"
 
 [autoload]
 
@@ -23,6 +23,7 @@ MusicaMenus="*res://Scenes/musica_menus.tscn"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

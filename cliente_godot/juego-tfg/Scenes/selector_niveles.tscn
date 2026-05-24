@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cacmsqbjcdcie"]
+[gd_scene load_steps=44 format=3 uid="uid://cacmsqbjcdcie"]
 
 [ext_resource type="Script" uid="uid://cl7n4ttgo0th7" path="res://Scripts/selector_niveles.gd" id="1_7mfc6"]
 [ext_resource type="FontFile" uid="uid://ckeffgjqa08iq" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_d6cao"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://blwq3etkx38r0" path="res://Assets/Fonts/FotoNivel4-5.png" id="19_nkknr"]
 [ext_resource type="Texture2D" uid="uid://ck31tixbn028p" path="res://Assets/Fonts/FotoNivel4-6.png" id="20_u37k1"]
 [ext_resource type="PackedScene" uid="uid://b6wydlf8pnxw2" path="res://Scenes/menu_controles.tscn" id="21_26w8m"]
+[ext_resource type="PackedScene" uid="uid://b3hdvt6kl7edl" path="res://Scenes/menu_volumen.tscn" id="22_80u4c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgk5q"]
 atlas = ExtResource("3_r2cfi")
@@ -454,8 +455,69 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_d6cao")
 text = "Controles"
 
-[node name="MenuControles" parent="." instance=ExtResource("21_26w8m")]
+[node name="BtnVolumen" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -54.0
+offset_right = 53.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_d6cao")
+text = "Volumen"
+
+[node name="BtnPantalla" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -71.0
+offset_right = 4.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_d6cao")
+
+[node name="BtnSalir" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 194.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_d6cao")
+text = "Salir del juego
+"
+
+[node name="MenuControles" parent="." instance=ExtResource("21_26w8m")]
+visible = false
+layout_mode = 1
+color = Color(0, 0, 0, 0.79607844)
+
+[node name="MenuVolumen" parent="." instance=ExtResource("22_80u4c")]
+visible = false
+layout_mode = 1
+color = Color(0, 0, 0, 0.7921569)
+
+[node name="Label" parent="MenuVolumen" index="0"]
+offset_top = 58.0
+offset_bottom = 90.0
+
+[node name="BotonVolver" parent="MenuVolumen" index="2"]
+offset_top = -64.0
+offset_bottom = -24.0
 
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel1/BotonEntrar" to="." method="_on_boton_nivel_1_pressed"]
 [connection signal="pressed" from="ContenedorNiveles/TarjetaNivel2/BotonEntrar" to="." method="_on_boton_nivel_2_pressed"]
@@ -465,5 +527,9 @@ layout_mode = 1
 [connection signal="confirmed" from="DialogoBorrar" to="." method="_on_dialogo_borrar_confirmed"]
 [connection signal="pressed" from="BorrarCuenta" to="." method="_on_boton_borrar_pressed"]
 [connection signal="pressed" from="BtnControles" to="." method="_on_boton_ver_controles_pressed"]
+[connection signal="pressed" from="BtnVolumen" to="." method="_on_boton_ver_volumen_pressed"]
+[connection signal="pressed" from="BtnPantalla" to="." method="_on_btn_pantalla_pressed"]
+[connection signal="pressed" from="BtnSalir" to="." method="_on_btn_salir_pressed"]
 
 [editable path="MenuControles"]
+[editable path="MenuVolumen"]

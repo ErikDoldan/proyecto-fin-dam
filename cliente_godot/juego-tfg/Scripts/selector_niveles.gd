@@ -8,8 +8,10 @@ extends Control
 @onready var tarjeta_4 = $ContenedorNiveles/TarjetaNivel4
 @onready var http_borrar = $HTTPBorrar
 @onready var dialogo_borrar = $DialogoBorrar
+@onready var btn_pantalla =$BtnPantalla
 
 func _ready():
+	actualizar_texto_pantalla()
 	pedir_datos_jugador()
 	if not http_request.request_completed.is_connected(_on_http_request_request_completed):
 		http_request.request_completed.connect(_on_http_request_request_completed)
@@ -122,6 +124,27 @@ func _on_borrar_completado(_result, response_code, _headers, _body):
 
 func _on_boton_ver_controles_pressed():
 	$MenuControles.visible = true
+
+func _on_boton_ver_volumen_pressed():
+	$MenuVolumen.visible = true
 	
 func _on_boton_entrar_pressed() -> void:
 	pass 
+	
+func _on_btn_pantalla_pressed():
+	if get_tree().root.mode == Window.MODE_WINDOWED:
+		get_tree().root.mode = Window.MODE_EXCLUSIVE_FULLSCREEN
+	else:
+		get_tree().root.mode = Window.MODE_WINDOWED
+		
+	actualizar_texto_pantalla()
+	
+func actualizar_texto_pantalla():
+	if get_tree().root.mode == Window.MODE_EXCLUSIVE_FULLSCREEN or get_tree().root.mode == Window.MODE_FULLSCREEN:
+		btn_pantalla.text = "Pantalla en modo ventana"
+	else:
+		btn_pantalla.text = "Pantalla completa"
+
+
+func _on_btn_salir_pressed() -> void:
+	get_tree().quit()

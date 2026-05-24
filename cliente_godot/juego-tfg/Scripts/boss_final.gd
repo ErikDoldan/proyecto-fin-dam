@@ -105,7 +105,14 @@ func _physics_process(delta):
 			sprite.play("Idle")
 
 	move_and_slide()
-
+	
+	for i in get_slide_collision_count():
+		var colision = get_slide_collision(i)
+		var objeto_chocado = colision.get_collider()
+		if objeto_chocado and objeto_chocado.name == "Jugador" and objeto_chocado.has_method("recibir_dano"):
+			objeto_chocado.recibir_dano(global_position.x)
+			
+			
 # --- INTELIGENCIA DEL BOSS ---
 
 func decidir_ataque(distancia):

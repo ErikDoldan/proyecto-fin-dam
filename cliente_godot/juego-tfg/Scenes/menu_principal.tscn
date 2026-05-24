@@ -32,40 +32,6 @@ grow_vertical = 2
 texture = ExtResource("2_xe6lt")
 expand_mode = 1
 
-[node name="InputNombre" type="LineEdit" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -46.0
-offset_right = 155.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_crked")
-theme_override_font_sizes/font_size = 16
-
-[node name="InputPassword" type="LineEdit" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -156.5
-offset_top = 46.0
-offset_right = 156.5
-offset_bottom = 90.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_crked")
-theme_override_font_sizes/font_size = 16
-secret = true
-
 [node name="BotonJugar" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 1
@@ -92,10 +58,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -333.0
-offset_top = -52.0
-offset_right = 336.0
-offset_bottom = 321.0
+offset_left = -334.5
+offset_top = -64.0
+offset_right = 334.5
+offset_bottom = 309.0
 grow_horizontal = 2
 texture = ExtResource("4_cabj8")
 
@@ -158,6 +124,7 @@ theme_override_font_sizes/font_size = 32
 text = "Registrarse"
 
 [node name="LabelError" type="Label" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
@@ -174,6 +141,40 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_crked")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xe6lt")
 horizontal_alignment = 1
+
+[node name="InputNombre" type="LineEdit" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -46.0
+offset_right = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_crked")
+theme_override_font_sizes/font_size = 16
+
+[node name="InputPassword" type="LineEdit" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.5
+offset_top = 46.0
+offset_right = 156.5
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_crked")
+theme_override_font_sizes/font_size = 16
+secret = true
 
 [connection signal="pressed" from="BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="request_completed" from="PeticionLogin" to="." method="_on_peticion_login_request_completed"]

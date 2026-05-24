@@ -15,7 +15,7 @@ func _on_boton_registro_pressed():
 
 
 func enviar_peticion(tipo_accion: String):
-	# Limpia el mensaje de error cada vez que intenta de nuevo
+	label_error.visible = false 
 	label_error.text = "" 
 	
 	var nombre_jugador = input_nombre.text.strip_edges()
@@ -23,9 +23,9 @@ func enviar_peticion(tipo_accion: String):
 	
 	if nombre_jugador == "" or password_jugador == "":
 		label_error.text = "El nombre y la contraseña no pueden estar vacíos."
+		label_error.visible = true 
 		return
 
-	# 1. Prepara los datos
 	var datos = {
 		"nombre": nombre_jugador,
 		"contrasena": password_jugador,
@@ -38,9 +38,7 @@ func enviar_peticion(tipo_accion: String):
 	var url = "http://127.0.0.1:8000/api/jugadores"
 	http_request.request(url, cabeceras, HTTPClient.METHOD_POST, json_datos)
 
-# Esta función se ejecuta cuando Django responde
 func _on_peticion_login_request_completed(_result, response_code, _headers, body):
-	
 	if response_code == 201 or response_code == 200:
 		var respuesta = JSON.parse_string(body.get_string_from_utf8())
 		var equipadas_desde_db = respuesta.get("habilidades_equipadas", "")
@@ -73,11 +71,9 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		else:
 			Global.habilidades_equipadas = []
 			
-		# Autoequipa la habilidad si la tiene
 		if poder_obtenido and not "doble_salto" in Global.habilidades_equipadas:
 			Global.habilidades_equipadas.append("doble_salto")
 		
-		# Vamos al selector de niveles
 		get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
 		
 	else:
@@ -87,5 +83,6 @@ func _on_peticion_login_request_completed(_result, response_code, _headers, body
 		if error_json and error_json.has("error"):
 			label_error.text = error_json["error"]
 		else:
-			# Si el servidor está apagado o falla de otra forma
 			label_error.text = "Error de conexión con el servidor."
+			
+		label_error.visible = true

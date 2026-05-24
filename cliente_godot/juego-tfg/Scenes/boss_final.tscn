@@ -827,22 +827,26 @@ show_percentage = false
 
 [node name="SonidoPupa" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_eh47f")
-volume_db = 24.0
+volume_db = 18.951
 pitch_scale = 0.57
 
 [node name="SonidoDeath" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_k2w1n")
-volume_db = 7.845
+volume_db = 11.884
 pitch_scale = 0.69
 
 [node name="SonidoAtack1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_k2w1n")
+volume_db = 7.068
 
 [node name="SonidoSalto" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_obn22")
+volume_db = 8.078
 
 [node name="SonidoSpell" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_obn22")
+volume_db = 4.039
 
 [node name="SonidoLlamarada" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_f2b5x")
+volume_db = 4.039
