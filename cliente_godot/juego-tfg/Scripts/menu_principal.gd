@@ -35,7 +35,7 @@ func enviar_peticion(tipo_accion: String):
 	var json_datos = JSON.stringify(datos)
 	var cabeceras = ["Content-Type: application/json"]
 	
-	var url = "http://127.0.0.1:8000/api/jugadores"
+	var url = "https://erikdoldan.pythonanywhere.com/api/jugadores"
 	http_request.request(url, cabeceras, HTTPClient.METHOD_POST, json_datos)
 
 func _on_peticion_login_request_completed(_result, response_code, _headers, body):

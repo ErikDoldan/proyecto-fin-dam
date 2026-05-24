@@ -146,6 +146,7 @@ func morir():
 		$ZonaAtaque/CollisionShape2D.set_deferred("disabled", true)
 	
 	sprite.play("Death") 
+	sonido_pupa.play()
 	await sprite.animation_finished
 	
 	var tween = create_tween()

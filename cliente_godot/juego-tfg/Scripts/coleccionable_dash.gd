@@ -58,7 +58,7 @@ func cerrar_mensaje():
 		jugador_tocado.esta_congelado = false
 
 func enviar_a_django():
-	var url_django = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	var url_django = "https://erikdoldan.pythonanywhere.com/api/jugadores/" + str(Global.jugador_id)
 	
 	var lista_texto = ",".join(Global.habilidades_equipadas)
 	

@@ -3,7 +3,7 @@ extends CharacterBody2D
 # --- ESTADÍSTICAS DEL BOSS ---
 var vida_maxima = 30 
 var vida_actual = 30
-var velocidad = 80.0
+var velocidad = 110.0
 var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # --- ESTADOS ---
@@ -12,7 +12,7 @@ var esta_muerto = false
 var esta_atacando = false
 var recibiendo_dano = false
 var puede_atacar = true
-var tiempo_recarga_ataque = 2.0 # Segundos de descanso entre ataques
+var tiempo_recarga_ataque = 1.0 # Segundos de descanso entre ataques
 
 const BOLA_FUEGO_BOSS = preload("res://Scenes/bola_fuego_boss.tscn")
 const PANTALLA_VICTORIA = preload("res://Scenes/pantalla_victoria.tscn")

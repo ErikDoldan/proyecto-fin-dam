@@ -26,7 +26,7 @@ func pedir_datos_jugador():
 		return
 		
 	label_info.text = "Cargando datos..."
-	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	var url = "https://erikdoldan.pythonanywhere.com/api/jugadores/" + str(Global.jugador_id)
 	http_request.request(url, [], HTTPClient.METHOD_GET)
 
 func _on_http_request_request_completed(_result, response_code, _headers, body):
@@ -107,7 +107,7 @@ func _on_boton_borrar_pressed():
 func _on_dialogo_borrar_confirmed():
 	print("Confirmado. Solicitando borrado de la cuenta a Django...")
 	
-	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	var url = "https://erikdoldan.pythonanywhere.com/api/jugadores/" + str(Global.jugador_id)
 	http_borrar.request(url, [], HTTPClient.METHOD_DELETE)
 
 func _on_borrar_completado(_result, response_code, _headers, _body):

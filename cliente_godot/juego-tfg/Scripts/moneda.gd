@@ -34,7 +34,7 @@ func enviar_puntuacion_servidor():
 	var json_datos = JSON.stringify(datos)
 	var cabeceras = ["Content-Type: application/json"]
 	
-	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id) 
+	var url = "https://erikdoldan.pythonanywhere.com/api/jugadores/" + str(Global.jugador_id) 
 	
 	http_request.request(url, cabeceras, HTTPClient.METHOD_PUT, json_datos)
 	print("Enviando PUT a Django con el total de: ", Global.puntuacion_actual)

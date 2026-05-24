@@ -109,9 +109,10 @@ func actualizar_ui():
 			# -------------------------------------------
 
 func guardar_equipamiento_en_nube():
-	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	var url = "https://erikdoldan.pythonanywhere.com/api/jugadores/" + str(Global.jugador_id)
 	var lista_texto = ",".join(Global.habilidades_equipadas)
 	var datos = {"habilidades_equipadas": lista_texto}
 	var json_datos = JSON.stringify(datos)
 	var headers = ["Content-Type: application/json"]
+	http_request_save.cancel_request()
 	http_request_save.request(url, headers, HTTPClient.METHOD_PUT, json_datos)

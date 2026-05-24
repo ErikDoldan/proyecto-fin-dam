@@ -19,7 +19,7 @@ func _on_body_entered(body):
 		enviar_guardado_a_django()
 
 func enviar_guardado_a_django():
-	var url = "http://127.0.0.1:8000/api/jugadores/" + str(Global.jugador_id)
+	var url = "https://erikdoldan.pythonanywhere.com/api/jugadores/" + str(Global.jugador_id)
 	
 	# Usa la variable que configures en el Inspector en lugar de un 2 fijo
 	if Global.nivel_desbloqueado < nivel_a_desbloquear:
@@ -40,5 +40,6 @@ func _on_request_completed(_result, response_code, _headers, _body):
 	if response_code == 200:
 		print("Partida guardada con éxito. Volviendo al selector...")
 		get_tree().change_scene_to_file(ruta_siguiente_nivel)
+		MusicaMenus.play()
 	else:
 		print("Error al guardar. Código: ", response_code)
