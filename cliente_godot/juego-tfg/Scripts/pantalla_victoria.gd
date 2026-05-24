@@ -12,6 +12,6 @@ func mostrar_puntuacion(puntos_totales):
 	label_puntuacion.text = "Puntuación total: " + str(puntos_totales)
 
 func _on_boton_salir_pressed():
-	
+	MusicaMenus.play()
 	get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
 	
