@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/Global.gd"
 SonidosUi="*res://Scenes/sonidos_ui.tscn"
+MusicaMenus="*res://Scenes/musica_menus.tscn"
 
 [display]
 

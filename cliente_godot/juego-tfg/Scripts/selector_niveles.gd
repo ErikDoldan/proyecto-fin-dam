@@ -63,15 +63,19 @@ func _on_http_request_request_completed(_result, response_code, _headers, body):
 	else:
 		label_info.text = "Error de conexión. Código: " + str(response_code)
 func _on_boton_nivel_1_pressed():
+	MusicaMenus.stop()
 	get_tree().change_scene_to_file("res://Scenes/nivel_1.tscn") 	
 
 func _on_boton_nivel_2_pressed():
+	MusicaMenus.stop()
 	get_tree().change_scene_to_file("res://Scenes/nivel_2.tscn")
 
 func _on_boton_nivel_3_pressed():
+	MusicaMenus.stop()
 	get_tree().change_scene_to_file("res://Scenes/nivel_3.tscn")
 
 func _on_boton_nivel_4_pressed():
+	MusicaMenus.stop()
 	get_tree().change_scene_to_file("res://Scenes/nivel_4.tscn")
 
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dwmdak36nglcv"]
+[gd_scene load_steps=21 format=3 uid="uid://dwmdak36nglcv"]
 
 [ext_resource type="Script" uid="uid://cppbjuf08mumy" path="res://Scripts/nivel_4.gd" id="1_o0bg6"]
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_u2mur"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://isdrhl2sg35r" path="res://Scenes/inventario_ui.tscn" id="9_k7b3m"]
 [ext_resource type="PackedScene" uid="uid://e3t3ll4uce8r" path="res://Scenes/boss_final.tscn" id="10_anpwb"]
 [ext_resource type="PackedScene" uid="uid://bkru780jp2w56" path="res://Scenes/puerta_boss.tscn" id="12_ybmds"]
+[ext_resource type="AudioStream" uid="uid://cby3d1h4aoc1r" path="res://Sounds/nivel4.wav" id="13_ybmds"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mllnt"]
 texture = ExtResource("1_u2mur")
@@ -358,6 +359,11 @@ position = Vector2(3257, 3)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetonadorPuerta"]
 position = Vector2(6, 13)
 shape = SubResource("RectangleShape2D_o0bg6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ybmds")
+volume_db = -7.0
+autoplay = true
 
 [editable path="Jugador"]
 [editable path="PlataformaH"]

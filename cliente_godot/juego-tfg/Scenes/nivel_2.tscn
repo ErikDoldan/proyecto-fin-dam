@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://doak8iu5sseft"]
+[gd_scene load_steps=21 format=3 uid="uid://doak8iu5sseft"]
 
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_804co"]
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="2_hxfkh"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cjunlg6qm3p3" path="res://Scenes/plataforma_h.tscn" id="9_pot7g"]
 [ext_resource type="PackedScene" uid="uid://cscgff265g6yv" path="res://Scenes/moneda.tscn" id="12_paidj"]
 [ext_resource type="PackedScene" uid="uid://c0n1ve7rk15pf" path="res://Scenes/puerta_final.tscn" id="13_3qbs7"]
+[ext_resource type="AudioStream" uid="uid://3yypuiosxh24" path="res://Sounds/nivel2music.wav" id="14_qeet1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kkyht"]
 texture = ExtResource("1_804co")
@@ -378,6 +379,11 @@ position = Vector2(1352, 379)
 [node name="PuertaFinal" parent="." instance=ExtResource("13_3qbs7")]
 position = Vector2(1944, 457)
 nivel_a_desbloquear = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_qeet1")
+volume_db = -10.496
+autoplay = true
 
 [editable path="Jugador"]
 [editable path="NPC"]

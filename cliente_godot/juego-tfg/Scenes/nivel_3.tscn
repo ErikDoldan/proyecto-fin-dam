@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clhsvg8sogppn"]
+[gd_scene load_steps=20 format=3 uid="uid://clhsvg8sogppn"]
 
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_5dm08"]
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="2_jxqql"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://isdrhl2sg35r" path="res://Scenes/inventario_ui.tscn" id="7_koyrs"]
 [ext_resource type="PackedScene" uid="uid://c0n1ve7rk15pf" path="res://Scenes/puerta_final.tscn" id="12_io8q0"]
 [ext_resource type="PackedScene" uid="uid://cscgff265g6yv" path="res://Scenes/moneda.tscn" id="13_s86xo"]
+[ext_resource type="AudioStream" uid="uid://dv414duueefop" path="res://Sounds/nivel3.wav" id="14_litv0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jtdj"]
 texture = ExtResource("1_5dm08")
@@ -466,6 +467,11 @@ position = Vector2(680, 379)
 
 [node name="Moneda19" parent="." instance=ExtResource("13_s86xo")]
 position = Vector2(824, 186)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_litv0")
+volume_db = -10.0
+autoplay = true
 
 [editable path="EnemigoOrco2"]
 [editable path="Jugador"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cfroq4evav4gd"]
+[gd_scene load_steps=25 format=3 uid="uid://cfroq4evav4gd"]
 
 [ext_resource type="PackedScene" uid="uid://bis83iuw26ldm" path="res://Scenes/jugador.tscn" id="1_cfwl0"]
 [ext_resource type="Texture2D" uid="uid://cnymj5syp6kft" path="res://Assets/Sprites/TileSet/world_tileset.png" id="1_ecx5m"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://s2pe8d1t1y6i" path="res://Scenes/slime.tscn" id="7_22i05"]
 [ext_resource type="PackedScene" uid="uid://isdrhl2sg35r" path="res://Scenes/inventario_ui.tscn" id="9_ql53f"]
 [ext_resource type="PackedScene" uid="uid://c0n1ve7rk15pf" path="res://Scenes/puerta_final.tscn" id="9_xvap8"]
+[ext_resource type="AudioStream" uid="uid://bgc8jm68hgjk5" path="res://Sounds/nivel1.wav" id="12_61jm7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epurl"]
 texture = ExtResource("1_ecx5m")
@@ -428,6 +429,11 @@ offset_top = -45.0
 text = "Domi: Muchos se han dado la vuelta al ver lo que hay ahí delante... Pero escucha: si logras abrirte paso entre esas bestias, o si eres lo bastante ágil para sortearlas, llegarás al cofre. Dentro yace el Fragmento de Rayo. Una reliquia olvidada que te otorgará el poder de embestir hacia adelante como un relámpago. Demuéstrame que tienes agallas."
 
 [node name="InventarioUI" parent="." instance=ExtResource("9_ql53f")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_61jm7")
+volume_db = -10.0
+autoplay = true
 
 [editable path="Jugador"]
 [editable path="NPC"]

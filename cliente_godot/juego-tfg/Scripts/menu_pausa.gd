@@ -25,6 +25,7 @@ func _on_btn_continuar_pressed():
 func _on_btn_salir_pressed():
 	get_tree().paused = false 
 	get_tree().change_scene_to_file("res://Scenes/selector_niveles.tscn")
+	MusicaMenus.play()
 
 func _on_btn_controles_pressed():
 	contenedor_principal.visible = false
